@@ -2,8 +2,10 @@
 
 import express from 'express';
 
+import langRoutes from '../routes/lang.js';
+
 const router = express.Router();
 
-// Placeholder — routes will be defined and mounted here later
+router.use('/lang', langRoutes);
 
 export default router;
