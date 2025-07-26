@@ -15,5 +15,8 @@
 		"notFound": "Page Not Found",
 		"routeMissing": "The page you're looking for doesn't exist.",
 		"backHome": "Back to Home"
+	},
+	"home": {
+		"title": "DWD - Home"
 	}
 }

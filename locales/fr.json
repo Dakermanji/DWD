@@ -15,5 +15,8 @@
 		"notFound": "Page non trouvée",
 		"routeMissing": "La page que vous cherchez n'existe pas.",
 		"backHome": "Retour à l'accueil"
+	},
+	"home": {
+		"title": "DWD - Accueil"
 	}
 }
