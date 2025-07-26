@@ -27,6 +27,7 @@ function optionalEnv(variable, defaultValue) {
 // Environment configuration
 const env = {
 	// Required variables
+	SESSION_SECRET: requireEnv('SESSION_SECRET'),
 	SENTRY_DSN: requireEnv('SENTRY_DSN'),
 	SENTRY_PROJECT_ID: requireEnv('SENTRY_PROJECT_ID'),
 
