@@ -1,10 +1,12 @@
 {
 	"nav": {
+		"home": "Home",
 		"about": "About",
 		"services": "Services",
 		"portfolio": "Portfolio",
 		"contact": "Contact",
-		"projects": "Projects"
+		"projects": "Projects",
+		"toogle": "Toggle navigation"
 	},
 	"footer": {
 		"backToTop": "Back To Top"
@@ -17,6 +19,11 @@
 		"backHome": "Back to Home"
 	},
 	"home": {
-		"title": "DWD - Home"
+		"title": "DWD - Home",
+		"hero": {
+			"role": "Full Stack <span class='orange'>W</span>eb <span class='orange'>D</span>eveloper",
+			"intro": "Hi, I'm Behnam <span class='orange'>D</span>akermanji from Canada",
+			"canada_flag": "Flag of Canada"
+		}
 	}
 }

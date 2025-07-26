@@ -1,10 +1,12 @@
 {
 	"nav": {
+		"home": "الرئيسية",
 		"about": "من نحن",
 		"services": "خدماتنا",
 		"portfolio": "المعرض",
 		"contact": "اتصل بنا",
-		"projects": "المشاريع"
+		"projects": "المشاريع",
+		"toogle": "تبديل القائمة"
 	},
 	"footer": {
 		"backToTop": "العودة إلى الأعلى"
@@ -17,6 +19,11 @@
 		"backHome": "العودة إلى الصفحة الرئيسية"
 	},
 	"home": {
-		"title": "DWD - الرئيسية"
+		"title": "DWD - الرئيسية",
+		"hero": {
+			"role": "مطور <span class='orange'>و</span>يب <span class='orange'>ش</span>امل",
+			"intro": "مرحباً، أنا بهنام <span class='orange'>د</span>كرمنجي من كندا",
+			"canada_flag": "علم كندا"
+		}
 	}
 }
