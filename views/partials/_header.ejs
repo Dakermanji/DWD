@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/" aria-label="<%= __('nav.home')
+			%>" ><%- include('_company_name') %></a>
+    <% if (navBar.length > 0) { %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="<%= __('nav.toogle')
+			%>">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav <%= currentLang === 'ar' ? 'me-auto' : 'ms-auto' %>">
+        <% navBar.forEach(nav => {%>
+        <li class="nav-item">
+          <a class="nav-link <%= currentRoute === `${nav.link}` ? 'active' : '' %>" <%= nav.id ? `id=${nav.id}` : '' %> href="<%= nav.link %>" aria-label="<%= __('nav.' + nav.text) %>">
+            <span class="nav-icon" data-bs-toggle="tooltip" title="<%= nav.text %>"><%- nav.icon %></span>
+            <span class="nav-text"><%= __('nav.' + nav.text) %></span>
+          </a>
+        </li>
+        <% }) %>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/images/flags/<%= currentLang === 'en' ? 'ca' : currentLang === 'fr' ? 'qc' : 'sy' %>.svg" alt="<%= currentLang.toUpperCase() %>" width="20" height="15" class="mx-1">
+            <%= currentLang === 'en' ? 'EN' : currentLang === 'fr' ? 'FR' : 'عربي' %>
+          </a>
+          <ul class="lang dropdown-menu <%= currentLang === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end' %>" aria-labelledby="langDropdown">
+            <li class="lang">
+              <a class="dropdown-item" href="/lang/en">
+                <img src="/images/flags/ca.svg" alt="EN" width="20" height="15" class="me-1"> English
+              </a>
+            </li>
+            <li class="lang">
+              <a class="dropdown-item" href="/lang/fr">
+                <img src="/images/flags/qc.svg" alt="FR" width="20" height="15" class="me-1"> Français
+              </a>
+            </li>
+            <li class="lang">
+              <a class="dropdown-item" href="/lang/ar">
+                <img src="/images/flags/sy.svg" alt="AR" width="20" height="15" class="me-1"> العربية
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <% } %>
+  </div>
+</nav>

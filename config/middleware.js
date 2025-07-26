@@ -8,6 +8,7 @@ import { bodyParsers } from '../middlewares/bodyParsers.js';
 import { staticFiles } from '../middlewares/staticFiles.js';
 import { viewEngine } from '../middlewares/viewEngine.js';
 import { i18nMiddleware } from '../middlewares/i18n.js';
+import { navBarMiddleware } from '../middlewares/navBar.js';
 
 const applyMiddlewares = (app) => {
 	secureMiddlewares(app);
@@ -15,6 +16,7 @@ const applyMiddlewares = (app) => {
 	sessionMiddleware(app);
 	flashMiddleware(app);
 	i18nMiddleware(app);
+	navBarMiddleware(app);
 	bodyParsers(app);
 	staticFiles(app);
 	viewEngine(app);
