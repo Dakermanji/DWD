@@ -1,0 +1,37 @@
+//! config/dotenv.js
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Utility to throw errors for missing required environment variables
+function requireEnv(variable) {
+	const value = process.env[variable];
+	if (value === undefined) {
+		throw new Error(
+			`[Error]: ${variable} is not defined. Please set it in your environment variables.`
+		);
+	}
+	return value;
+}
+
+// Utility to log warnings for missing optional variables
+function optionalEnv(variable, defaultValue) {
+	if (process.env[variable] === undefined) {
+		console.warn(
+			`[Warning]: Using default value for ${variable}: ${defaultValue}`
+		);
+	}
+	return process.env[variable] || defaultValue;
+}
+
+// Environment configuration
+const env = {
+	// Required variables
+
+	// Optional variables with defaults
+	PORT: optionalEnv('PORT', 3000),
+	HOST: optionalEnv('HOST', 'localhost'),
+	NODE_ENV: optionalEnv('NODE_ENV', 'production'),
+};
+
+export default env;
