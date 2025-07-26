@@ -1,0 +1,27 @@
+{
+	"name": "dakermanji_webdev",
+	"version": "1.0.0",
+	"description": "Dakermanji {web dev} Portfolio Website",
+	"main": "server.js",
+	"type": "module",
+	"scripts": {
+		"start": "node app.js",
+		"dev": "nodemon app.js"
+	},
+	"keywords": [
+		"portfolio",
+		"web development",
+		"Node.js",
+		"Express",
+		"MySQL",
+		"JavaScript",
+		"EJS",
+		"Behnam Dakermanji",
+		"frontend",
+		"backend",
+		"fullstack",
+		"projects"
+	],
+	"author": "Behnam Dakermanji",
+	"license": "ISC"
+}

@@ -1,0 +1,5 @@
+#! .gitignore
+
+not_for_push/
+node_modules/
+.env
