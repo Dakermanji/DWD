@@ -2,6 +2,7 @@
 
 import env from '../config/dotenv.js';
 import { reportError } from '../config/sentry.js';
+import logger from '../utils/logger.js';
 
 const errorHandler = (err, req, res, next) => {
 	reportError(err);
@@ -9,6 +10,8 @@ const errorHandler = (err, req, res, next) => {
 	if (env.NODE_ENV !== 'production') {
 		console.error('[Error]', err);
 	}
+
+	logger.error(`${err.message}`, { stack: err.stack });
 
 	const status = err.status || 500;
 

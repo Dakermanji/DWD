@@ -1,5 +1,6 @@
 #! .gitignore
 
+logs/
 not_for_push/
 node_modules/
 .env
