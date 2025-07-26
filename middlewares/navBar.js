@@ -13,7 +13,7 @@ export const navBarMiddleware = (app) => {
 			// if (req.path.startsWith('/projects')) activePage = 'projects';
 
 			// Attach nav bar data to res.locals
-			res.locals.navItems = navBar[activePage] || [];
+			res.locals.navBar = navBar[activePage] || [];
 
 			next();
 		})

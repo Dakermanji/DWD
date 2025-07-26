@@ -9,6 +9,7 @@ import { staticFiles } from '../middlewares/staticFiles.js';
 import { viewEngine } from '../middlewares/viewEngine.js';
 import { i18nMiddleware } from '../middlewares/i18n.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
+import { customMiddlewares } from '../middlewares/custom.js';
 
 const applyMiddlewares = (app) => {
 	secureMiddlewares(app);
@@ -20,6 +21,7 @@ const applyMiddlewares = (app) => {
 	bodyParsers(app);
 	staticFiles(app);
 	viewEngine(app);
+	customMiddlewares(app);
 };
 
 export default applyMiddlewares;

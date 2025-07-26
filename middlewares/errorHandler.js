@@ -15,10 +15,14 @@ const errorHandler = (err, req, res, next) => {
 
 	const status = err.status || 500;
 
-	res.status(status).json({
-		status,
-		error: status === 500 ? 'Internal Server Error' : err.message,
-		...(env.NODE_ENV !== 'production' && { stack: err.stack }),
+	res.render('error', {
+		status: 404,
+		title: 'error_page.notFound',
+		error_page: {
+			title: 'error_page.notFound', // this must be a key
+			message: 'error_page.routeMissing', // another key
+		},
+		stack: env.NODE_ENV !== 'production' ? err.stack : null,
 	});
 };
 
