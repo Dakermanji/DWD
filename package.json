@@ -25,6 +25,8 @@
 	"author": "Behnam Dakermanji",
 	"license": "ISC",
 	"dependencies": {
+		"@sentry/integrations": "^7.114.0",
+		"@sentry/node": "^9.42.0",
 		"dotenv": "^17.2.1",
 		"express": "^5.1.0"
 	}

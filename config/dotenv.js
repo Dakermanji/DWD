@@ -27,6 +27,8 @@ function optionalEnv(variable, defaultValue) {
 // Environment configuration
 const env = {
 	// Required variables
+	SENTRY_DSN: requireEnv('SENTRY_DSN'),
+	SENTRY_PROJECT_ID: requireEnv('SENTRY_PROJECT_ID'),
 
 	// Optional variables with defaults
 	PORT: optionalEnv('PORT', 3000),
