@@ -1,0 +1,19 @@
+{
+	"nav": {
+		"about": "À propos",
+		"services": "Services",
+		"portfolio": "Portfolio",
+		"contact": "Contact",
+		"projects": "Projets"
+	},
+	"footer": {
+		"backToTop": "Retour en haut"
+	},
+	"error_page": {
+		"title": "Une erreur s'est produite",
+		"generic": "Nous n'avons pas pu compléter votre demande.",
+		"notFound": "Page non trouvée",
+		"routeMissing": "La page que vous cherchez n'existe pas.",
+		"backHome": "Retour à l'accueil"
+	}
+}

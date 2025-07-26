@@ -12,7 +12,7 @@
         <% navBar.forEach(nav => {%>
         <li class="nav-item">
           <a class="nav-link <%= currentRoute === `${nav.link}` ? 'active' : '' %>" <%= nav.id ? `id=${nav.id}` : '' %> href="<%= nav.link %>" aria-label="<%= __('nav.' + nav.text) %>">
-            <span class="nav-icon" data-bs-toggle="tooltip" title="<%= nav.text %>"><%- nav.icon %></span>
+            <span class="nav-icon" data-bs-toggle="tooltip" title="<%= __('nav.' + nav.text) %>"><%- nav.icon %></span>
             <span class="nav-text"><%= __('nav.' + nav.text) %></span>
           </a>
         </li>
