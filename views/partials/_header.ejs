@@ -17,7 +17,21 @@
           </a>
         </li>
         <% }) %>
-
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#authModal">
+              <i  data-bs-toggle="tooltip" title="<%= __('auth.login') %> / <%= __('auth.register') %>" class="bi bi-box-arrow-in-right"></i> <span class="nav-text"><%= __('auth.login') %> / <%= __('auth.register') %></span>
+            </a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <form action="/auth/logout" method="GET" class="d-inline">
+              <button type="submit" class="btn btn-link nav-link" data-bs-toggle="tooltip" title="<%= __('auth.logout') %>">
+                <i class="bi bi-box-arrow-right"></i> <span class="nav-text"><%= __('auth.logout') %></span>
+              </button>
+            </form>
+          </li>
+        <% } %>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="/images/flags/<%= currentLocale === 'en' ? 'ca' : currentLocale === 'fr' ? 'qc' : 'sy' %>.svg" alt="<%= currentLocale.toUpperCase() %>" width="20" height="15" class="mx-1">

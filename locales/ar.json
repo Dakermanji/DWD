@@ -9,7 +9,8 @@
 		"toogle": "تبديل القائمة"
 	},
 	"footer": {
-		"backToTop": "العودة إلى الأعلى"
+		"backToTop": "العودة إلى الأعلى",
+		"rights": "جميع الحقوق محفوظة."
 	},
 	"error_page": {
 		"title": "حدث خطأ ما",
@@ -173,5 +174,10 @@
 			"message_content": "رسالتك",
 			"send_message_btn": "إرسال"
 		}
+	},
+	"auth": {
+		"login": "تسجيل الدخول",
+		"register": "إنشاء حساب",
+		"logout": "تسجيل الخروج"
 	}
 }

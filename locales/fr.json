@@ -9,7 +9,8 @@
 		"toogle": "Basculer la navigation"
 	},
 	"footer": {
-		"backToTop": "Retour en haut"
+		"backToTop": "Retour en haut",
+		"rights": "Tous droits réservés."
 	},
 	"error_page": {
 		"title": "Une erreur s'est produite",
@@ -173,5 +174,10 @@
 		"message_subject": "Sujet",
 		"message_content": "Votre message",
 		"send_message_btn": "Envoyer"
+	},
+	"auth": {
+		"login": "Se connecter",
+		"register": "S'inscrire",
+		"logout": "Se déconnecter"
 	}
 }
