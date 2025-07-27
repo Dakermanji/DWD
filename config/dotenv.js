@@ -30,11 +30,16 @@ const env = {
 	SESSION_SECRET: requireEnv('SESSION_SECRET'),
 	SENTRY_DSN: requireEnv('SENTRY_DSN'),
 	SENTRY_PROJECT_ID: requireEnv('SENTRY_PROJECT_ID'),
+	DB_USER: requireEnv('DB_USER'),
+	DB_PASSWORD: requireEnv('DB_PASSWORD'),
+	DB_NAME: requireEnv('DB_NAME'),
 
 	// Optional variables with defaults
 	PORT: optionalEnv('PORT', 3000),
 	HOST: optionalEnv('HOST', 'localhost'),
 	NODE_ENV: optionalEnv('NODE_ENV', 'production'),
+	DB_HOST: optionalEnv('DB_HOST', 'localhost'),
+	DB_PORT: optionalEnv('DB_PORT', 3306),
 };
 
 export default env;
