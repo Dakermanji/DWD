@@ -178,6 +178,12 @@
 	"auth": {
 		"login": "Se connecter",
 		"register": "S'inscrire",
-		"logout": "Se déconnecter"
+		"logout": "Se déconnecter",
+		"title": "Authentification",
+		"identifier": "Nom d'utilisateur ou email",
+		"password": "Mot de passe",
+		"email": "Adresse e-mail",
+		"send_signup_link": "Envoyer le lien d'inscription",
+		"or_continue_with": "ou continuer avec"
 	}
 }

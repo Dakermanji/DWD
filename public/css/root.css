@@ -13,6 +13,7 @@
     --color-link: #1d57ad;
     --color-projects: #575d88;
     --color-text-body: #444;
+    --color-bg-modal: #eee;
 
     /* Fonts */
     --font-family-headers: 'Poppins', sans-serif;
@@ -34,6 +35,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 h1,

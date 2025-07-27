@@ -10,6 +10,8 @@ export const renderHomePage = (req, res) => {
 			'index/services',
 			'index/portfolio',
 			'index/contact',
+			'index/modals',
+			'modals',
 		],
 		scripts: ['index/selectors', 'index/main'],
 	});

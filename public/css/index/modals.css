@@ -1,0 +1,19 @@
+/*! public/css/index/modals.css */
+
+.with-line {
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.with-line .line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}

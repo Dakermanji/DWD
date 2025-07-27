@@ -178,6 +178,12 @@
 	"auth": {
 		"login": "Log in",
 		"register": "Register",
-		"logout": "Log out"
+		"logout": "Log out",
+		"title": "Authentication",
+		"identifier": "Username or Email",
+		"password": "Password",
+		"email": "Email Address",
+		"send_signup_link": "Send Sign-Up Link",
+		"or_continue_with": "or continue with"
 	}
 }
