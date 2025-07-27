@@ -103,3 +103,23 @@
 		</div>
 	</div>
 </section>
+
+<section id="portfolio">
+  <div class="container">
+    <h2 class="text-center mb-5"><%= __('home.portfolio.title') %></h2>
+    <div class="work-list">
+      <% __('home.portfolio.my_works').forEach(project => { %>
+      <div class="work text-center">
+        <a href="/<%= project.link %>">
+          <h4 class='mb-4 mt-3'><%= project.title %></h4>
+          <img src="/images/index/<%= project.img %>" alt="<%= project.title %>" loading="lazy">
+        </a>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <button id="see-more-btn" class="btn" aria-label="__('home.portfolio.see_more_btn')"> <%= __('home.portfolio.see_more_btn') %></button>
+  </div>
+  </div>
+</section>

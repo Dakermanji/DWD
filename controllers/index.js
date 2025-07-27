@@ -3,7 +3,13 @@
 export const renderHomePage = (req, res) => {
 	res.render('index', {
 		title: 'home.title',
-		styles: ['index/main', 'index/hero', 'index/about', 'index/services'],
+		styles: [
+			'index/main',
+			'index/hero',
+			'index/about',
+			'index/services',
+			'index/portfolio',
+		],
 		scripts: ['index/selectors', 'index/main'],
 	});
 };

@@ -136,5 +136,35 @@
 				}
 			]
 		}
+	},
+	"portfolio": {
+		"title": "Mes réalisations",
+		"my_works": [
+			{
+				"img": "weather_app_fr.jpg",
+				"title": "Application Météo",
+				"description": "Développée avec Express, EJS et Weather API",
+				"link": "weather"
+			},
+			{
+				"img": "chat_app_fr.jpg",
+				"title": "Application de Chat",
+				"description": "Développée avec Express, Socket.io, Bcrypt et MySQL",
+				"link": "chat_app"
+			},
+			{
+				"img": "visited_countries_fr.jpg",
+				"title": "Pays Visités",
+				"description": "Développée avec Express, Bcrypt, MySQL, Nodemailer et plus",
+				"link": "visited_countries"
+			},
+			{
+				"img": "book_reviews_fr.jpg",
+				"title": "Critiques de Livres",
+				"description": "Développée avec MySQL et OpenLibrary API",
+				"link": "books"
+			}
+		],
+		"see_more_btn": "Voir plus"
 	}
 }
