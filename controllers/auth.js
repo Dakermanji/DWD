@@ -1,5 +1,7 @@
 //! controllers/auth.js
 
+import passport from '../config/passport.js';
+
 export function postLogin(req, res, next) {
 	// TODO: handled by passport-local
 }
@@ -31,3 +33,21 @@ export function postResetPassword(req, res, next) {
 export function postLogout(req, res) {
 	// TODO: logout
 }
+
+// GOOGLE LOGIN
+export const googleLogin = passport.authenticate('google', {
+	scope: ['profile', 'email'],
+});
+
+export const googleCallback = (req, res, next) => {
+	// TODO Google callback
+};
+
+// GITHUB LOGIN
+export const githubLogin = passport.authenticate('github', {
+	scope: ['user:email'],
+});
+
+export const githubCallback = (req, res, next) => {
+	// TODO GitHub callback
+};

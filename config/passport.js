@@ -11,11 +11,10 @@ import {
 	findUserByEmail,
 	findUserByGoogleId,
 	findUserByGitHubId,
-	linkGoogleIdToUser,
-	linkGitHubIdToUser,
+	linkOAuthId,
 	createUserWithGoogle,
 	createUserWithGitHub,
-} from '../models/user.model.js';
+} from '../models/user.js';
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
@@ -86,7 +85,7 @@ passport.use(
 
 				user = await findUserByEmail(email);
 				if (user) {
-					await linkGoogleIdToUser(user.id, googleId);
+					await linkOAuthId(user.id, { githubId });
 					user.google_id = googleId;
 					return done(null, user);
 				}
@@ -121,7 +120,7 @@ passport.use(
 
 				user = await findUserByEmail(email);
 				if (user) {
-					await linkGitHubIdToUser(user.id, githubId);
+					await linkOAuthId(user.id, { githubId });
 					user.github_id = githubId;
 					return done(null, user);
 				}
@@ -134,3 +133,5 @@ passport.use(
 		}
 	)
 );
+
+export default passport;

@@ -185,5 +185,10 @@
 		"email": "Adresse e-mail",
 		"send_signup_link": "Envoyer le lien d'inscription",
 		"or_continue_with": "ou continuer avec"
+	},
+	"flash": {
+		"auth": {
+			"invalid_email": "Email invalide"
+		}
 	}
 }

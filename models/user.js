@@ -1,10 +1,10 @@
 //! models/user.js
 
-import db from '../config/database.js';
+import { promisePool } from '../config/database.js';
 
 // Create a new user with just email and token (initial register)
 export async function createUserWithEmail(email, token, tokenExpiry) {
-	const [result] = await db.query(
+	const [result] = await promisePool.query(
 		`INSERT INTO users (email, token, token_expiry)
 		 VALUES (?, ?, ?)`,
 		[email, token, tokenExpiry]
@@ -14,7 +14,7 @@ export async function createUserWithEmail(email, token, tokenExpiry) {
 
 // Set username and password during register confirmation
 export async function setUsernameAndPassword(userId, username, hashedPassword) {
-	await db.query(
+	await promisePool.query(
 		`UPDATE users
 		 SET username = ?, hashed_password = ?, confirmed = TRUE, token = NULL, token_expiry = NULL
 		 WHERE id = ?`,
@@ -23,16 +23,17 @@ export async function setUsernameAndPassword(userId, username, hashedPassword) {
 }
 
 // Find user by email (used in local register and login)
-export async function findByEmail(email) {
-	const [rows] = await db.query(`SELECT * FROM users WHERE email = ?`, [
-		email,
-	]);
+export async function findUserByEmail(email) {
+	const [rows] = await promisePool.query(
+		`SELECT * FROM users WHERE email = ?`,
+		[email]
+	);
 	return rows[0];
 }
 
 // Find user by token (register confirmation or reset password)
 export async function findByToken(token) {
-	const [rows] = await db.query(
+	const [rows] = await promisePool.query(
 		`SELECT * FROM users WHERE token = ? AND token_expiry > NOW()`,
 		[token]
 	);
@@ -48,8 +49,10 @@ export async function updateToken(userId, token, expiry) {
 }
 
 // Find user by ID (used in deserializeUser)
-export async function findById(id) {
-	const [rows] = await db.query(`SELECT * FROM users WHERE id = ?`, [id]);
+export async function findUserById(id) {
+	const [rows] = await promisePool.query(`SELECT * FROM users WHERE id = ?`, [
+		id,
+	]);
 	return rows[0];
 }
 
@@ -72,21 +75,26 @@ export async function linkOAuthId(
 	params.push(userId);
 
 	const setClause = updates.join(', ');
-	await db.query(`UPDATE users SET ${setClause} WHERE id = ?`, params);
+	await promisePool.query(
+		`UPDATE users SET ${setClause} WHERE id = ?`,
+		params
+	);
 }
 
 // Find by OAuth ID
-export async function findByGoogleId(googleId) {
-	const [rows] = await db.query(`SELECT * FROM users WHERE google_id = ?`, [
-		googleId,
-	]);
+export async function findUserByGoogleId(googleId) {
+	const [rows] = await promisePool.query(
+		`SELECT * FROM users WHERE google_id = ?`,
+		[googleId]
+	);
 	return rows[0];
 }
 
-export async function findByGitHubId(githubId) {
-	const [rows] = await db.query(`SELECT * FROM users WHERE github_id = ?`, [
-		githubId,
-	]);
+export async function findUserByGitHubId(githubId) {
+	const [rows] = await promisePool.query(
+		`SELECT * FROM users WHERE github_id = ?`,
+		[githubId]
+	);
 	return rows[0];
 }
 
@@ -100,16 +108,25 @@ export async function updateLastLogin(userId) {
 
 // Check if user is blocked
 export async function isBlocked(userId) {
-	const [rows] = await db.query(`SELECT blocked FROM users WHERE id = ?`, [
-		userId,
-	]);
+	const [rows] = await promisePool.query(
+		`SELECT blocked FROM users WHERE id = ?`,
+		[userId]
+	);
 	return rows[0]?.blocked === 1;
 }
 
 // Change block status (admin use)
 export async function changeBlockStatus(userId, blocked) {
-	await db.query(`UPDATE users SET blocked = ? WHERE id = ?`, [
+	await promisePool.query(`UPDATE users SET blocked = ? WHERE id = ?`, [
 		blocked ? 1 : 0,
 		userId,
 	]);
+}
+
+export async function createUserWithGitHub(user) {
+	//todo
+}
+
+export async function createUserWithGoogle(user) {
+	//todo
 }

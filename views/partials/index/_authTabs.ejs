@@ -57,7 +57,7 @@
 						id="loginTab"
 						role="tabpanel"
 					>
-						<form action="/auth/login" method="POST">
+						<form action="/auth/login" method="POST" novalidate>
 							<div class="mb-3">
 								<label for="identifier" class="form-label">
 									<%= __('auth.identifier') %>
@@ -97,7 +97,11 @@
 
 					<!-- Register Form (email only) -->
 					<div class="tab-pane fade" id="registerTab" role="tabpanel">
-						<form action="/auth/register/email" method="POST">
+						<form
+							action="/auth/register/email"
+							method="POST"
+							novalidate
+						>
 							<div class="mb-3">
 								<label for="registerEmail" class="form-label"
 									><%= __('auth.email') %></label
@@ -107,6 +111,7 @@
 									class="form-control"
 									id="registerEmail"
 									name="email"
+									value="<%= registerEmail || '' %>"
 									required
 								/>
 							</div>
@@ -144,4 +149,13 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div
+	id="authModalState"
+	data-tab="<%= authTab || '' %>"
+	data-register-email="<%= registerEmail || '' %>"
+	data-show="<%= showAuthModal ? 'true' : 'false' %>"
+	hidden
+>
 </div>

@@ -1,4 +1,5 @@
 //! routes/auth.js
+
 import express from 'express';
 import {
 	postLogin,
@@ -10,6 +11,7 @@ import {
 	postResetPassword,
 	postLogout,
 } from '../controllers/auth.js';
+import { validateRegisterEmail } from '../middlewares/validators/auth.js';
 
 const router = express.Router();
 
@@ -17,13 +19,13 @@ const router = express.Router();
 router.post('/login', postLogin);
 
 // Register (POST: email only)
-router.post('/register/email', postRegisterEmail);
+router.post('/register/email', validateRegisterEmail, postRegisterEmail);
 
 // Confirm Register (GET)
 router.get('/register/confirm/:token', getConfirmRegister);
 
 // Complete Account (POST)
-router.post('/auth/complete', postCompleteAccount);
+router.post('/complete', postCompleteAccount);
 
 // Request Reset (POST)
 router.post('/reset/request', postRequestReset);
