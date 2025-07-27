@@ -15,7 +15,7 @@
 
 <section id="about">
 	<div class="container">
-		<h2 class="sub-title"><%= __('home.about.title') %></h2>
+		<h2 class="text-center mb-5"><%= __('home.about.title') %></h2>
 		<div class="row">
 			<div class="about-col-1 text-center">
 				<img
@@ -81,6 +81,25 @@
 				</div>
 				<% }) %>
 			</div>
+		</div>
+	</div>
+</section>
+
+<section id="services">
+	<div class="container">
+		<h2 class="text-center mb-5"><%= __('home.services.title') %></h2>
+		<div class="row">
+			<% __('home.services.detailed').forEach(service => { %>
+			<div class="service-card col-md-4 mb-4">
+				<div class="card shadow-sm text-center">
+					<div class="card-body">
+						<i class="bi <%= service.icon %> display-4 mb-5"></i>
+						<h3 class="card-title"><%= service.title %></h3>
+						<p class="card-text"><%= service.description %></p>
+					</div>
+				</div>
+			</div>
+			<% }) %>
 		</div>
 	</div>
 </section>
