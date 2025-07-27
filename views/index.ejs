@@ -123,3 +123,59 @@
   </div>
   </div>
 </section>
+
+<section id="contact" aria-label="Contact Me" class="py-5">
+	<div class="container">
+		<h2 class="text-center mb-5"><%= __('home.contact.title') %></h2>
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<% if (!user) { %>
+				<p id="disabled_form" class="text-danger text-center fw-bold">
+					<%= __('home.contact.disabled') %>
+				</p>
+				<% } %>
+
+				<form
+					action="/send-message"
+					method="POST"
+					class="needs-validation"
+					novalidate
+				>
+					<div class="form-group mb-3">
+						<label for="subject"><%= __('home.contact.message_subject') %></label>
+						<input
+							type="text"
+							id="subject"
+							name="subject"
+							class="form-control"
+							maxlength="100"
+							required
+							<%= !user ? 'disabled' : '' %>
+						/>
+					</div>
+
+					<div class="form-group mb-3">
+						<label for="message" aria-label="<%= __('home.contact.message_content') %>">
+							<%= __('home.contact.message_content') %>
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							class="form-control"
+							maxlength="1000"
+							rows="5"
+							required
+							<%= !user ? 'disabled' : '' %>
+						></textarea>
+					</div>
+
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary" aria-label="<%= __('home.contact.send_message_btn') %>" <%= !user ? 'disabled' : '' %>>
+							<%= __('home.contact.send_message_btn') %>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

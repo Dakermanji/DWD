@@ -9,6 +9,7 @@ export const renderHomePage = (req, res) => {
 			'index/about',
 			'index/services',
 			'index/portfolio',
+			'index/contact',
 		],
 		scripts: ['index/selectors', 'index/main'],
 	});

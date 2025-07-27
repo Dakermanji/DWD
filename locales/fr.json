@@ -166,5 +166,12 @@
 			}
 		],
 		"see_more_btn": "Voir plus"
+	},
+	"contact": {
+		"title": "Contactez-moi",
+		"disabled": "Veuillez vous connecter / vous inscrire pour nous contacter",
+		"message_subject": "Sujet",
+		"message_content": "Votre message",
+		"send_message_btn": "Envoyer"
 	}
 }

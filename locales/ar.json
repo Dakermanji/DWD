@@ -165,6 +165,13 @@
 				}
 			],
 			"see_more_btn": "عرض المزيد"
+		},
+		"contact": {
+			"title": "اتصل بي",
+			"disabled": "يرجى تسجيل الدخول / التسجيل للتواصل معنا",
+			"message_subject": "الموضوع",
+			"message_content": "رسالتك",
+			"send_message_btn": "إرسال"
 		}
 	}
 }

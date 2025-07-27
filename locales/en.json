@@ -165,6 +165,13 @@
 				}
 			],
 			"see_more_btn": "See More"
+		},
+		"contact": {
+			"title": "Contact Me",
+			"disabled": "Please log in / register to contact us",
+			"message_subject": "Subject",
+			"message_content": "Your Message",
+			"send_message_btn": "Send Message"
 		}
 	}
 }
