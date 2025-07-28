@@ -7,6 +7,7 @@ import { flashMiddleware } from '../middlewares/flash.js';
 import { bodyParsers } from '../middlewares/bodyParsers.js';
 import { staticFiles } from '../middlewares/staticFiles.js';
 import { viewEngine } from '../middlewares/viewEngine.js';
+import { initializePassport } from '../middlewares/passport.js';
 import { i18nMiddleware } from '../middlewares/i18n.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
 import { customMiddlewares } from '../middlewares/custom.js';
@@ -19,6 +20,7 @@ const applyMiddlewares = (app) => {
 	i18nMiddleware(app);
 	navBarMiddleware(app);
 	bodyParsers(app);
+	initializePassport(app);
 	staticFiles(app);
 	viewEngine(app);
 	customMiddlewares(app);
