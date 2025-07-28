@@ -45,6 +45,7 @@ export async function handleRegisterEmail(email, req) {
 		await sendSignupEmail(email, getConfirmUrl(token));
 	}
 
+	req.flash('success', 'auth.signup_email_sent_generic');
 	return { reused: !expired };
 }
 
