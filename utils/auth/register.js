@@ -5,7 +5,6 @@ import {
 	findUserByEmail,
 	createUserWithEmail,
 	incrementTokenRequestCount,
-	blockUser,
 	updateToken,
 } from '../../models/user.js';
 import env from '../../config/dotenv.js';
@@ -33,9 +32,10 @@ export async function handleRegisterEmail(email, req) {
 
 	const currentCount = (user.token_request_count ?? 0) + 1;
 	if (currentCount >= 10) {
-		await blockUser(user.id);
-		return { blocked: true };
+		return { token_request_count: true };
 	}
+
+	if (user.blocked) return { blocked: true };
 
 	const expired =
 		!user.token_expiry || new Date(user.token_expiry) < new Date();

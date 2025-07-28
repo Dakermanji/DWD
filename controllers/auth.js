@@ -19,8 +19,13 @@ export async function postRegisterEmail(req, res, next) {
 		const { email } = req.body;
 
 		const result = await handleRegisterEmail(email, req);
-		if (result.blocked) {
+		if (result.token_request_count >= 10) {
 			req.flash('error', 'auth.too_many_signup_requests');
+			return res.redirect('/');
+		}
+
+		if (result.blocked) {
+			req.flash('error', 'auth.blocked');
 			return res.redirect('/');
 		}
 
@@ -37,7 +42,12 @@ export async function getConfirmRegister(req, res, next) {
 	try {
 		const user = await findUserByToken(token);
 
-		if (!user || user.blocked || user.confirmed) {
+		if (
+			!user ||
+			user.blocked ||
+			user.confirmed ||
+			user.token_request_count >= 10
+		) {
 			req.flash('error', 'auth.invalid_or_expired_token');
 			return res.redirect('/');
 		}
@@ -69,7 +79,12 @@ export async function postCompleteAccount(req, res, next) {
 		}
 
 		const user = await findUserByToken(token);
-		if (!user || user.blocked || user.confirmed) {
+		if (
+			!user ||
+			user.blocked ||
+			user.confirmed ||
+			user.token_request_count >= 10
+		) {
 			req.flash('error', 'auth.invalid_or_expired_token');
 			return res.redirect('/');
 		}

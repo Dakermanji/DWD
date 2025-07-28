@@ -44,6 +44,12 @@ passport.use(
 						message: 'auth.errors.invalid_credentials',
 					});
 
+				if (user.token_request_count >= 10) {
+					return done(null, false, {
+						message: 'auth.errors.too_many_signup_requests',
+					});
+				}
+
 				if (user.blocked) {
 					return done(null, false, {
 						message: 'auth.errors.blocked',

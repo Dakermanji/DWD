@@ -146,9 +146,3 @@ export async function incrementTokenRequestCount(userId) {
 		[userId]
 	);
 }
-
-export async function blockUser(userId) {
-	await promisePool.query(`UPDATE users SET blocked = TRUE WHERE id = ?`, [
-		userId,
-	]);
-}
