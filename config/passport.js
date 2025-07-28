@@ -44,12 +44,6 @@ passport.use(
 						message: 'auth.errors.invalid_credentials',
 					});
 
-				if (user.token_request_count >= 10) {
-					return done(null, false, {
-						message: 'auth.errors.too_many_signup_requests',
-					});
-				}
-
 				if (user.blocked) {
 					return done(null, false, {
 						message: 'auth.errors.blocked',
@@ -91,7 +85,7 @@ passport.use(
 
 				user = await findUserByEmail(email);
 				if (user) {
-					await linkOAuthId(user.id, { githubId });
+					await linkOAuthId(user.id, { googleId });
 					user.google_id = googleId;
 					return done(null, user);
 				}
