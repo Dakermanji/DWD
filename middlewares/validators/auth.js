@@ -47,3 +47,17 @@ export function validateCompleteAccount(req, res, next) {
 	req.flash('success', 'auth.registeration_completed');
 	next();
 }
+
+export function validateLoginInput(req, res, next) {
+	const { identifier, password } = req.body;
+
+	if (!identifier || !password) {
+		req.flash('error', 'auth.missing_credentials');
+		req.session.showAuthModal = true;
+		req.session.authTab = 'login';
+		req.session.identifier = identifier || '';
+		return res.redirect('/');
+	}
+
+	next();
+}

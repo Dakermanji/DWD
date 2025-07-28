@@ -199,7 +199,9 @@
 			"username_taken": "Ce nom d'utilisateur est déjà pris.",
 			"blocked": "Veuillez nous contacter pour finaliser votre inscription.</br>Notre email : dakermanji@gmail.com",
 			"registeration_completed": "Inscription réussie !</br>Vous pouvez maintenant accéder à votre compte.",
-			"passwords_do_not_match": "Les mots de passe ne correspondent pas. Veuillez réessayer."
+			"passwords_do_not_match": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
+			"missing_credentials": "Veuillez saisir votre nom d'utilisateur/email et votre mot de passe.",
+			"invalid_credentials": "Nom d'utilisateur, email ou mot de passe incorrect. Veuillez réessayer."
 		}
 	}
 }

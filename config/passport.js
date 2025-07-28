@@ -1,5 +1,6 @@
 //! config/passport.js
 
+import validator from 'validator';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
@@ -9,6 +10,7 @@ import bcrypt from 'bcrypt';
 import {
 	findUserById,
 	findUserByEmail,
+	findUserByUsername,
 	findUserByGoogleId,
 	findUserByGitHubId,
 	linkOAuthId,
@@ -33,16 +35,22 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
 	new LocalStrategy(
 		{
-			usernameField: 'email',
+			usernameField: 'identifier',
 			passwordField: 'password',
+			passReqToCallback: true,
 		},
-		async (email, password, done) => {
+		async (req, identifier, password, done) => {
 			try {
-				const user = await findUserByEmail(email);
-				if (!user || !user.hashed_password)
+				const isEmail = validator.isEmail(identifier);
+				const user = isEmail
+					? await findUserByEmail(identifier)
+					: await findUserByUsername(identifier);
+
+				if (!user || !user.hashed_password) {
 					return done(null, false, {
 						message: 'auth.errors.invalid_credentials',
 					});
+				}
 
 				if (user.blocked) {
 					return done(null, false, {
@@ -54,10 +62,11 @@ passport.use(
 					password,
 					user.hashed_password
 				);
-				if (!match)
+				if (!match) {
 					return done(null, false, {
 						message: 'auth.errors.invalid_credentials',
 					});
+				}
 
 				return done(null, user);
 			} catch (err) {

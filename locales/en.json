@@ -199,7 +199,9 @@
 			"username_taken": "That username is already taken.",
 			"blocked": "Please contact us to complete your registeration.</br>Our email: dakermanji@gmail.com",
 			"registeration_completed": "Registration successful!</br>You can now access your account.",
-			"passwords_do_not_match": "Passwords do not match. Please try again."
+			"passwords_do_not_match": "Passwords do not match. Please try again.",
+			"missing_credentials": "Please enter both username/email and password.",
+			"invalid_credentials": "Invalid username/email or password. Please try again."
 		}
 	}
 }

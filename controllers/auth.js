@@ -4,14 +4,31 @@ import passport from '../config/passport.js';
 import bcrypt from 'bcrypt';
 
 import { handleRegisterEmail } from '../utils/auth/register.js';
+import { resolveLoginUser, authenticateUser } from '../utils/auth/login.js';
 import {
 	findUserByUsername,
 	findUserByToken,
 	setUsernameAndPassword,
 } from '../models/user.js';
 
-export function postLogin(req, res, next) {
-	// TODO: handled by passport-local
+export async function postLogin(req, res, next) {
+	const { identifier } = req.body;
+
+	try {
+		const user = await resolveLoginUser(identifier);
+
+		if (!user) {
+			req.flash('error', 'auth.invalid_credentials');
+			req.session.showAuthModal = true;
+			req.session.authTab = 'login';
+			req.session.identifier = identifier;
+			return res.redirect('/');
+		}
+
+		authenticateUser(req, res, next, user, identifier);
+	} catch (err) {
+		next(err);
+	}
 }
 
 export async function postRegisterEmail(req, res, next) {

@@ -14,12 +14,13 @@ import {
 import {
 	validateRegisterEmail,
 	validateCompleteAccount,
+	validateLoginInput,
 } from '../middlewares/validators/auth.js';
 
 const router = express.Router();
 
 // Log In (POST)
-router.post('/login', postLogin);
+router.post('/login', validateLoginInput, postLogin);
 
 // Register (POST: email only)
 router.post('/register/email', validateRegisterEmail, postRegisterEmail);
