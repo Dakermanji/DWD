@@ -11,6 +11,7 @@ CREATE TABLE users (
     token VARCHAR(255) DEFAULT NULL,
     token_expiry DATETIME DEFAULT NULL,
     last_login_at DATETIME DEFAULT NULL,
+    token_request_count INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_email (email),

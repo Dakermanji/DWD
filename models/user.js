@@ -130,3 +130,16 @@ export async function createUserWithGitHub(user) {
 export async function createUserWithGoogle(user) {
 	//todo
 }
+
+export async function incrementTokenRequestCount(userId) {
+	await promisePool.query(
+		`UPDATE users SET token_request_count = token_request_count + 1 WHERE id = ?`,
+		[userId]
+	);
+}
+
+export async function blockUser(userId) {
+	await promisePool.query(`UPDATE users SET blocked = TRUE WHERE id = ?`, [
+		userId,
+	]);
+}

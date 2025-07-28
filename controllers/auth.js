@@ -1,13 +1,27 @@
 //! controllers/auth.js
 
 import passport from '../config/passport.js';
+import { handleRegisterEmail } from '../utils/auth/register.js';
 
 export function postLogin(req, res, next) {
 	// TODO: handled by passport-local
 }
 
-export function postRegisterEmail(req, res, next) {
-	// TODO: validate + insert email, generate token, send email
+export async function postRegisterEmail(req, res, next) {
+	try {
+		const { email } = req.body;
+
+		const result = await handleRegisterEmail(email, req);
+		if (result.blocked) {
+			req.flash('error', 'auth.too_many_signup_requests');
+			return res.redirect('/');
+		}
+
+		req.session.showEmailSentModal = true;
+		res.redirect('/');
+	} catch (err) {
+		next(err);
+	}
 }
 
 export function getConfirmRegister(req, res, next) {
