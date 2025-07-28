@@ -197,7 +197,9 @@
 			"signup_email_sent_generic": "An email has been sent.</br>Please check your email.",
 			"invalid_or_expired_token": "This token is invalid or has expired. Please try signing up again.",
 			"username_taken": "That username is already taken.",
-			"blocked": "Please contact us to complete your registeration.</br>Our email: dakermanji@gmail.com"
+			"blocked": "Please contact us to complete your registeration.</br>Our email: dakermanji@gmail.com",
+			"registeration_completed": "Registration successful!</br>You can now access your account.",
+			"passwords_do_not_match": "Passwords do not match. Please try again."
 		}
 	}
 }

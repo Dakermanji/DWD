@@ -197,7 +197,9 @@
 			"signup_email_sent_generic": "Un email a été envoyé.</br>Veuillez vérifier votre boîte de réception.",
 			"invalid_or_expired_token": "Ce lien est invalide ou a expiré. Veuillez essayer de vous inscrire à nouveau.",
 			"username_taken": "Ce nom d'utilisateur est déjà pris.",
-			"blocked": "Veuillez nous contacter pour finaliser votre inscription.</br>Notre email : dakermanji@gmail.com"
+			"blocked": "Veuillez nous contacter pour finaliser votre inscription.</br>Notre email : dakermanji@gmail.com",
+			"registeration_completed": "Inscription réussie !</br>Vous pouvez maintenant accéder à votre compte.",
+			"passwords_do_not_match": "Les mots de passe ne correspondent pas. Veuillez réessayer."
 		}
 	}
 }

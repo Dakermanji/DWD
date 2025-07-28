@@ -24,25 +24,26 @@ export function validateCompleteAccount(req, res, next) {
 	const { username, password, confirmPassword } = req.body;
 
 	if (!username || !usernameRegex.test(username)) {
-		req.flash('error', 'flash.auth.invalid_username');
+		req.flash('error', 'auth.invalid_username');
 		req.session.showSetUsernameModal = true;
 		req.session.authContext = { type: 'local' };
 		return res.redirect('/');
 	}
 
 	if (!passwordRegex.test(password)) {
-		req.flash('error', 'flash.auth.weak_password');
+		req.flash('error', 'auth.weak_password');
 		req.session.showSetUsernameModal = true;
 		req.session.authContext = { type: 'local' };
 		return res.redirect('/');
 	}
 
 	if (password !== confirmPassword) {
-		req.flash('error', 'flash.auth.passwords_do_not_match');
+		req.flash('error', 'auth.passwords_do_not_match');
 		req.session.showSetUsernameModal = true;
 		req.session.authContext = { type: 'local' };
 		return res.redirect('/');
 	}
 
+	req.flash('success', 'auth.registeration_completed');
 	next();
 }
