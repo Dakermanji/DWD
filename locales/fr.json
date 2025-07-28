@@ -184,11 +184,19 @@
 		"password": "Mot de passe",
 		"email": "Adresse e-mail",
 		"send_signup_link": "Envoyer le lien d'inscription",
-		"or_continue_with": "ou continuer avec"
+		"or_continue_with": "ou continuer avec",
+		"complete_profile": "Complétez votre profil",
+		"choose_username": "Choisissez un nom d'utilisateur",
+		"confirm_password": "Confirmez le mot de passe",
+		"save_and_continue": "Enregistrer et continuer"
 	},
 	"flash": {
 		"auth": {
-			"invalid_email": "Email invalide"
+			"invalid_email": "Email invalide",
+			"too_many_signup_requests": "Trop de tentatives d'inscription. Cet email a été temporairement bloqué.",
+			"signup_email_sent_generic": "Un email a été envoyé.</br>Veuillez vérifier votre boîte de réception.",
+			"invalid_or_expired_token": "Ce lien est invalide ou a expiré. Veuillez essayer de vous inscrire à nouveau.",
+			"username_taken": "Ce nom d'utilisateur est déjà pris."
 		}
 	}
 }

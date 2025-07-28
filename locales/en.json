@@ -184,13 +184,19 @@
 		"password": "Password",
 		"email": "Email Address",
 		"send_signup_link": "Send Sign-Up Link",
-		"or_continue_with": "or continue with"
+		"or_continue_with": "or continue with",
+		"complete_profile": "Complete Your Profile",
+		"choose_username": "Choose a Username",
+		"confirm_password": "Confirm Password",
+		"save_and_continue": "Save and Continue"
 	},
 	"flash": {
 		"auth": {
 			"invalid_email": "Invalid Email",
 			"too_many_signup_requests": "Too many signup attempts. This email has been temporarily blocked.",
-			"signup_email_sent_generic": "An email has been sent.</br>Please check your email."
+			"signup_email_sent_generic": "An email has been sent.</br>Please check your email.",
+			"invalid_or_expired_token": "This token is invalid or has expired. Please try signing up again.",
+			"username_taken": "That username is already taken."
 		}
 	}
 }

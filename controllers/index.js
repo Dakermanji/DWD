@@ -1,11 +1,21 @@
 //! controllers/index.js
 
 export const renderHomePage = (req, res) => {
-	const { showAuthModal, authTab, registerEmail } = req.session;
+	const {
+		showAuthModal,
+		authTab,
+		registerEmail,
+		token,
+		showSetUsernameModal,
+		authContext,
+	} = req.session;
 
 	delete req.session.showAuthModal;
 	delete req.session.authTab;
 	delete req.session.registerEmail;
+	delete req.session.token;
+	delete req.session.showSetUsernameModal;
+	delete req.session.authContext;
 
 	res.render('index', {
 		title: 'home.title',
@@ -23,5 +33,8 @@ export const renderHomePage = (req, res) => {
 		showAuthModal,
 		authTab,
 		registerEmail,
+		token,
+		showSetUsernameModal,
+		authContext,
 	});
 };

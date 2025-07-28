@@ -11,7 +11,10 @@ import {
 	postResetPassword,
 	postLogout,
 } from '../controllers/auth.js';
-import { validateRegisterEmail } from '../middlewares/validators/auth.js';
+import {
+	validateRegisterEmail,
+	validateCompleteAccount,
+} from '../middlewares/validators/auth.js';
 
 const router = express.Router();
 
@@ -25,7 +28,7 @@ router.post('/register/email', validateRegisterEmail, postRegisterEmail);
 router.get('/register/confirm/:token', getConfirmRegister);
 
 // Complete Account (POST)
-router.post('/complete', postCompleteAccount);
+router.post('/complete', validateCompleteAccount, postCompleteAccount);
 
 // Request Reset (POST)
 router.post('/reset/request', postRequestReset);

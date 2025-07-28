@@ -184,11 +184,19 @@
 		"password": "كلمة المرور",
 		"email": "عنوان البريد الإلكتروني",
 		"send_signup_link": "إرسال رابط التسجيل",
-		"or_continue_with": "أو المتابعة عبر"
+		"or_continue_with": "أو المتابعة عبر",
+		"complete_profile": "أكمل ملفك الشخصي",
+		"choose_username": "اختر اسم مستخدم",
+		"confirm_password": "تأكيد كلمة المرور",
+		"save_and_continue": "احفظ وتابع"
 	},
 	"flash": {
 		"auth": {
-			"invalid_email": "بريد إلكتروني غير صالح"
+			"invalid_email": "بريد إلكتروني غير صالح",
+			"too_many_signup_requests": "عدد كبير جدًا من محاولات التسجيل. تم حظر هذا البريد الإلكتروني مؤقتًا.",
+			"signup_email_sent_generic": "تم إرسال رسالة بريد إلكتروني.</br>يرجى التحقق من بريدك الإلكتروني.",
+			"invalid_or_expired_token": "هذا الرابط غير صالح أو انتهت صلاحيته. يرجى المحاولة مرة أخرى.",
+			"username_taken": "اسم المستخدم هذا مستخدم بالفعل."
 		}
 	}
 }

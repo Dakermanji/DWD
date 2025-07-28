@@ -1,7 +1,14 @@
 //! controllers/auth.js
 
 import passport from '../config/passport.js';
+import bcrypt from 'bcrypt';
+
 import { handleRegisterEmail } from '../utils/auth/register.js';
+import {
+	findUserByUsername,
+	findUserByToken,
+	setUsernameAndPassword,
+} from '../models/user.js';
 
 export function postLogin(req, res, next) {
 	// TODO: handled by passport-local
@@ -24,12 +31,59 @@ export async function postRegisterEmail(req, res, next) {
 	}
 }
 
-export function getConfirmRegister(req, res, next) {
-	// TODO: validate token, show setUsernameModal
+export async function getConfirmRegister(req, res, next) {
+	const { token } = req.params;
+
+	try {
+		const user = await findUserByToken(token);
+
+		if (!user || user.blocked || user.confirmed) {
+			req.flash('error', 'auth.invalid_or_expired_token');
+			return res.redirect('/');
+		}
+
+		// Valid token → show modal to set username/password
+		req.session.showSetUsernameModal = true;
+		req.session.token = token;
+		req.session.authContext = {
+			type: 'local',
+			email: user.email,
+		};
+
+		return res.redirect('/');
+	} catch (err) {
+		next(err);
+	}
 }
 
-export function postCompleteAccount(req, res, next) {
-	// TODO: set username + password, login user
+export async function postCompleteAccount(req, res, next) {
+	const { username, password, token } = req.body;
+
+	try {
+		const existing = await findUserByUsername(username);
+		if (existing) {
+			req.flash('error', 'auth.username_taken');
+			req.session.showSetUsernameModal = true;
+			req.session.authContext = { type: 'local' };
+			return res.redirect('/');
+		}
+
+		const user = await findUserByToken(token);
+		if (!user || user.blocked || user.confirmed) {
+			req.flash('error', 'auth.invalid_or_expired_token');
+			return res.redirect('/');
+		}
+
+		const hashedPassword = await bcrypt.hash(password, 12);
+		await setUsernameAndPassword(user.id, username, hashedPassword);
+
+		req.login({ id: user.id }, (err) => {
+			if (err) return next(err);
+			res.redirect('/');
+		});
+	} catch (err) {
+		next(err);
+	}
 }
 
 export function postRequestReset(req, res, next) {

@@ -18,3 +18,7 @@ if (authModalState) {
 		if (input) input.value = email;
 	}
 }
+
+if (setUsernameModal) {
+	new bootstrap.Modal(setUsernameModal).show();
+}

@@ -8,6 +8,7 @@ import {
 	blockUser,
 	updateToken,
 } from '../../models/user.js';
+import env from '../../config/dotenv.js';
 import { sendSignupEmail } from '../email.js';
 
 export async function handleRegisterEmail(email, req) {
@@ -48,5 +49,8 @@ export async function handleRegisterEmail(email, req) {
 }
 
 function getConfirmUrl(token) {
-	return `${process.env.HOST}/auth/register/confirm/${token}`;
+	if (env.NODE_ENV === 'development') {
+		return `${env.HOST}:${env.PORT}/auth/register/confirm/${token}`;
+	}
+	return `${env.HOST}/auth/register/confirm/${token}`;
 }

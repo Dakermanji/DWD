@@ -31,8 +31,17 @@ export async function findUserByEmail(email) {
 	return rows[0];
 }
 
+// Find user by email (used in local register and login)
+export async function findUserByUsername(username) {
+	const [rows] = await promisePool.query(
+		`SELECT * FROM users WHERE username = ?`,
+		[username]
+	);
+	return rows[0];
+}
+
 // Find user by token (register confirmation or reset password)
-export async function findByToken(token) {
+export async function findUserByToken(token) {
 	const [rows] = await promisePool.query(
 		`SELECT * FROM users WHERE token = ? AND token_expiry > NOW()`,
 		[token]
@@ -42,7 +51,7 @@ export async function findByToken(token) {
 
 // Set register/login token and expiry
 export async function updateToken(userId, token, expiry) {
-	await db.query(
+	await promisePool.query(
 		`UPDATE users SET token = ?, token_expiry = ? WHERE id = ?`,
 		[token, expiry, userId]
 	);
@@ -100,7 +109,7 @@ export async function findUserByGitHubId(githubId) {
 
 // Update last login timestamp
 export async function updateLastLogin(userId) {
-	await db.query(
+	await promisePool.query(
 		`UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = ?`,
 		[userId]
 	);
