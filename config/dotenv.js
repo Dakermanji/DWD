@@ -33,6 +33,8 @@ const env = {
 	DB_USER: requireEnv('DB_USER'),
 	DB_PASSWORD: requireEnv('DB_PASSWORD'),
 	DB_NAME: requireEnv('DB_NAME'),
+	EMAIL_USER: requireEnv('EMAIL_USER'),
+	EMAIL_PASS: requireEnv('EMAIL_PASS'),
 
 	// Optional variables with defaults
 	PORT: optionalEnv('PORT', 3000),
@@ -40,6 +42,7 @@ const env = {
 	NODE_ENV: optionalEnv('NODE_ENV', 'production'),
 	DB_HOST: optionalEnv('DB_HOST', 'localhost'),
 	DB_PORT: optionalEnv('DB_PORT', 3306),
+	EMAIL_SERVICE: optionalEnv('EMAIL_SERVICE', 'gmail'),
 };
 
 export default env;

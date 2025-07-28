@@ -1,14 +1,13 @@
 //! config/nodemailer.js
 
 import nodemailer from 'nodemailer';
+import env from './dotenv.js';
 
 const transporter = nodemailer.createTransport({
-	host: process.env.MAIL_HOST,
-	port: parseInt(process.env.MAIL_PORT),
-	secure: process.env.MAIL_SECURE === 'true',
+	service: env.EMAIL_SERVICE,
 	auth: {
-		user: process.env.MAIL_USER,
-		pass: process.env.MAIL_PASSWORD,
+		user: env.EMAIL_USER,
+		pass: env.EMAIL_PASS,
 	},
 });
 

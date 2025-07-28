@@ -8,6 +8,7 @@ import {
 	blockUser,
 	updateToken,
 } from '../../models/user.js';
+import { sendSignupEmail } from '../email.js';
 
 export async function handleRegisterEmail(email, req) {
 	const token = crypto.randomBytes(32).toString('hex');
@@ -17,7 +18,7 @@ export async function handleRegisterEmail(email, req) {
 
 	if (!user) {
 		await createUserWithEmail(email, token, tokenExpiry);
-		logSignupURL(token);
+		await sendSignupEmail(email, getConfirmUrl(token));
 		return { created: true };
 	}
 
@@ -40,14 +41,12 @@ export async function handleRegisterEmail(email, req) {
 
 	if (expired) {
 		await updateToken(user.id, token, tokenExpiry);
-		logSignupURL(token);
+		await sendSignupEmail(email, getConfirmUrl(token));
 	}
 
 	return { reused: !expired };
 }
 
-function logSignupURL(token) {
-	const confirmUrl = `${process.env.HOST}/auth/register/confirm/${token}`;
-	console.log(`[dev] Signup URL: ${confirmUrl}`);
-	// Later: sendSignupEmail(email, confirmUrl)
+function getConfirmUrl(token) {
+	return `${process.env.HOST}/auth/register/confirm/${token}`;
 }
