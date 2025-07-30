@@ -129,8 +129,17 @@ export function postResetPassword(req, res, next) {
 	// TODO: update password for user
 }
 
-export function postLogout(req, res) {
-	// TODO: logout
+export function postLogout(req, res, next) {
+	req.logout((err) => {
+		console.log(err);
+		if (err) return next(err);
+
+		req.session.destroy((err) => {
+			if (err) return next(err);
+			res.clearCookie('connect.sid');
+			res.redirect('/');
+		});
+	});
 }
 
 // GOOGLE LOGIN
