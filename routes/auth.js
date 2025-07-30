@@ -17,6 +17,7 @@ import {
 	validateRegisterEmail,
 	validateCompleteAccount,
 	validateLoginInput,
+	validateResetPassword,
 } from '../middlewares/validators/auth.js';
 
 const router = express.Router();
@@ -45,7 +46,7 @@ router.post('/reset/request', postRequestReset);
 router.get('/reset/:token', getResetForm);
 
 // Reset Password (POST)
-router.post('/reset', postResetPassword);
+router.post('/reset', validateResetPassword, postResetPassword);
 
 // Logout
 router.post('/logout', postLogout);

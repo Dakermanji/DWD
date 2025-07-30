@@ -61,3 +61,23 @@ export function validateLoginInput(req, res, next) {
 
 	next();
 }
+
+export function validateResetPassword(req, res, next) {
+	const { password, confirmPassword, token } = req.body;
+
+	if (!passwordRegex.test(password)) {
+		req.flash('error', 'auth.weak_password');
+		req.session.showResetPasswordModal = true;
+		req.session.token = token;
+		return res.redirect('/');
+	}
+
+	if (password !== confirmPassword) {
+		req.flash('error', 'auth.passwords_do_not_match');
+		req.session.showResetPasswordModal = true;
+		req.session.token = token;
+		return res.redirect('/');
+	}
+
+	next();
+}
