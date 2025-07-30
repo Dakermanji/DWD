@@ -1,6 +1,8 @@
 //! routes/auth.js
 
 import express from 'express';
+
+import { checkProfanity } from '../middlewares/profanity.js';
 import {
 	postLogin,
 	postRegisterEmail,
@@ -29,7 +31,12 @@ router.post('/register/email', validateRegisterEmail, postRegisterEmail);
 router.get('/register/confirm/:token', getConfirmRegister);
 
 // Complete Account (POST)
-router.post('/complete', validateCompleteAccount, postCompleteAccount);
+router.post(
+	'/complete',
+	checkProfanity('username'),
+	validateCompleteAccount,
+	postCompleteAccount
+);
 
 // Request Reset (POST)
 router.post('/reset/request', postRequestReset);

@@ -183,5 +183,6 @@
 <%- include('partials/index/_authTabs') %>
 
 <% if (showSetUsernameModal) { %>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 	<%- include('partials/index/_setUsername') %>
 <% } %>

@@ -17,11 +17,15 @@ export const secureMiddlewares = (app) => {
 							'https://cdn.jsdelivr.net',
 							'https://fonts.googleapis.com',
 						],
-						'script-src': ["'self'", 'https://cdn.jsdelivr.net'],
+						'script-src': [
+							"'self'",
+							'https://cdn.jsdelivr.net',
+							'https://cdnjs.cloudflare.com',
+						],
 						'font-src': [
 							"'self'",
 							'https://fonts.gstatic.com',
-							'https://cdn.jsdelivr.net', // <-- added this
+							'https://cdn.jsdelivr.net',
 						],
 						'connect-src': ["'self'"],
 						'img-src': ["'self'", 'data:'],

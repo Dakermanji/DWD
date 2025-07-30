@@ -38,16 +38,20 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="password" class="form-label"
+						<label for="set-password" class="form-label"
 							><%= __('auth.password') %></label
 						>
 						<input
 							type="password"
 							class="form-control"
-							id="password"
+							id="set-password"
 							name="password"
+							autocomplete="new-password"
 							required
 						/>
+						<div class="password-meter mt-2">
+							<div id="password-bar" class="password-bar"></div>
+						</div>
 					</div>
 
 					<div class="mb-3">
@@ -59,6 +63,7 @@
 							class="form-control"
 							id="confirmPassword"
 							name="confirmPassword"
+							autocomplete="new-password"
 							required
 						/>
 					</div>
@@ -74,3 +79,6 @@
 		</div>
 	</div>
 </div>
+
+<script src="/js/index/commonPasswords.js" defer></script>
+<script src="/js/index/password.js" defer></script>
