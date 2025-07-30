@@ -209,20 +209,62 @@ export function postLogout(req, res, next) {
 	});
 }
 
-// GOOGLE LOGIN
 export const googleLogin = passport.authenticate('google', {
 	scope: ['profile', 'email'],
 });
 
-export const googleCallback = (req, res, next) => {
-	// TODO Google callback
-};
+export function googleCallback(req, res, next) {
+	passport.authenticate('google', async (err, user) => {
+		if (err) return next(err);
 
-// GITHUB LOGIN
+		if (!user) {
+			req.flash('error', 'auth.google_oauth_failed');
+			return res.redirect('/');
+		}
+
+		req.login(user, (err) => {
+			if (err) return next(err);
+
+			if (!user.username) {
+				req.session.authContext = {
+					type: 'oauth',
+					email: user.email,
+					provider: 'google',
+				};
+				req.session.showSetUsernameModal = true;
+			}
+
+			res.redirect('/');
+		});
+	})(req, res, next);
+}
+
 export const githubLogin = passport.authenticate('github', {
 	scope: ['user:email'],
 });
 
-export const githubCallback = (req, res, next) => {
-	// TODO GitHub callback
-};
+export function githubCallback(req, res, next) {
+	passport.authenticate('github', async (err, user) => {
+		if (err) return next(err);
+
+		if (!user) {
+			req.flash('error', 'auth.github_oauth_failed');
+			return res.redirect('/');
+		}
+
+		req.login(user, (err) => {
+			if (err) return next(err);
+
+			if (!user.username) {
+				req.session.authContext = {
+					type: 'oauth',
+					email: user.email,
+					provider: 'github',
+				};
+				req.session.showSetUsernameModal = true;
+			}
+
+			res.redirect('/');
+		});
+	})(req, res, next);
+}

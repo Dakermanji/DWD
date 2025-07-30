@@ -12,6 +12,10 @@ import {
 	getResetForm,
 	postResetPassword,
 	postLogout,
+	googleLogin,
+	googleCallback,
+	githubLogin,
+	githubCallback,
 } from '../controllers/auth.js';
 import {
 	validateRegisterEmail,
@@ -50,5 +54,13 @@ router.post('/reset', validateResetPassword, postResetPassword);
 
 // Logout
 router.post('/logout', postLogout);
+
+// Google
+router.get('/google', googleLogin);
+router.get('/google/callback', googleCallback);
+
+// GitHub
+router.get('/github', githubLogin);
+router.get('/github/callback', githubCallback);
 
 export default router;

@@ -192,7 +192,9 @@
 		"forgot_password": "Mot de passe oublié ?",
 		"reset_password": "Réinitialiser le mot de passe",
 		"send_reset_link": "Envoyer le lien de réinitialisation",
-		"password_changed": "Votre mot de passe a été mis à jour avec succès."
+		"password_changed": "Votre mot de passe a été mis à jour avec succès.",
+		"google_oauth_failed": "La connexion Google a échoué. Veuillez réessayer.",
+		"github_oauth_failed": "La connexion GitHub a échoué. Veuillez réessayer."
 	},
 	"flash": {
 		"auth": {

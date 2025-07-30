@@ -192,7 +192,9 @@
 		"forgot_password": "Forgot your password?",
 		"reset_password": "Reset Password",
 		"send_reset_link": "Send Reset Link",
-		"password_changed": "Your password has been successfully updated."
+		"password_changed": "Your password has been successfully updated.",
+		"google_oauth_failed": "Google login failed. Please try again.",
+		"github_oauth_failed": "GitHub login failed. Please try again."
 	},
 	"flash": {
 		"auth": {

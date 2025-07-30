@@ -192,7 +192,9 @@
 		"forgot_password": "هل نسيت كلمة المرور؟",
 		"reset_password": "إعادة تعيين كلمة المرور",
 		"send_reset_link": "إرسال رابط إعادة التعيين",
-		"password_changed": "تم تحديث كلمة المرور بنجاح."
+		"password_changed": "تم تحديث كلمة المرور بنجاح.",
+		"google_oauth_failed": "فشل تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى.",
+		"github_oauth_failed": "فشل تسجيل الدخول عبر GitHub. يرجى المحاولة مرة أخرى."
 	},
 	"flash": {
 		"auth": {
