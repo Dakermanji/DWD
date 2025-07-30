@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 
 import { handleRegisterEmail } from '../utils/auth/register.js';
 import { resolveLoginUser, authenticateUser } from '../utils/auth/login.js';
+import { handleResetRequest } from '../utils/auth/reset.js';
 import {
 	findUserByUsername,
 	findUserByToken,
@@ -127,8 +128,22 @@ export function getResetForm(req, res, next) {
 	// TODO: verify token, show reset modal
 }
 
-export function postResetPassword(req, res, next) {
-	// TODO: update password for user
+export async function postResetPassword(req, res, next) {
+	const { email } = req.body;
+
+	try {
+		const result = await handleResetRequest(email, req);
+
+		if (result?.denied) {
+			req.flash('error', 'auth.blocked_or_limited');
+			return res.redirect('/');
+		}
+
+		req.flash('success', 'auth.reset_email_sent_generic');
+		res.redirect('/');
+	} catch (err) {
+		next(err);
+	}
 }
 
 export function postLogout(req, res, next) {

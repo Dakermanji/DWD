@@ -188,7 +188,10 @@
 		"complete_profile": "Complete Your Profile",
 		"choose_username": "Choose a Username",
 		"confirm_password": "Confirm Password",
-		"save_and_continue": "Save and Continue"
+		"save_and_continue": "Save and Continue",
+		"forgot_password": "Forgot your password?",
+		"reset_password": "Reset Password",
+		"send_reset_link": "Send Reset Link"
 	},
 	"flash": {
 		"auth": {
@@ -201,7 +204,9 @@
 			"registeration_completed": "Registration successful!</br>You can now access your account.",
 			"passwords_do_not_match": "Passwords do not match. Please try again.",
 			"missing_credentials": "Please enter both username/email and password.",
-			"invalid_credentials": "Invalid username/email or password. Please try again."
+			"invalid_credentials": "Invalid username/email or password. Please try again.",
+			"reset_email_sent_generic": "Please check your email for a password reset link.",
+			"blocked_or_limited": "Your account is blocked or you've made too many reset requests."
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	}

@@ -22,3 +22,26 @@ if (authModalState) {
 if (setUsernameModal) {
 	new bootstrap.Modal(setUsernameModal).show();
 }
+
+if (resetTrigger) {
+	resetTrigger.addEventListener('click', (e) => {
+		e.preventDefault();
+
+		const authModalEl = document.getElementById('authModal');
+		const resetModalEl = document.getElementById('resetPasswordModal');
+
+		const authInstance = bootstrap.Modal.getInstance(authModalEl);
+		if (authInstance) {
+			authInstance.hide();
+
+			authModalEl.addEventListener('hidden.bs.modal', function handler() {
+				authModalEl.removeEventListener('hidden.bs.modal', handler);
+				const resetInstance = new bootstrap.Modal(resetModalEl);
+				resetInstance.show();
+			});
+		} else {
+			const resetInstance = new bootstrap.Modal(resetModalEl);
+			resetInstance.show();
+		}
+	});
+}

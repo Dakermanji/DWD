@@ -24,3 +24,22 @@ export async function sendSignupEmail(to, link) {
 		reportError(new Error(error));
 	}
 }
+
+export async function sendResetPasswordEmail(to, link) {
+	const from = `${companyName} <${env.EMAIL_USER}>`;
+	const subject = companyName;
+
+	const html = `
+		<p><strong>${companyName}</strong></p>
+		<p>You requested to reset your password.</p>
+		<p>Vous avez demandé à réinitialiser votre mot de passe.</p>
+		<p>لقد طلبت إعادة تعيين كلمة المرور الخاصة بك.</p>
+		<p><a href="${link}">${link}</a></p>
+	`;
+
+	try {
+		await transporter.sendMail({ from, to, subject, html });
+	} catch (error) {
+		reportError(new Error(error));
+	}
+}
