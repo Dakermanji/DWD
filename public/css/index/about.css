@@ -100,7 +100,7 @@
     overflow: hidden;
     padding: 20px;
     border-radius: 10px;
-    background: rgb(210, 204, 249, 0.67);
+    background: rgba(210, 204, 249, 0.67);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     z-index: 2;
     position: relative;

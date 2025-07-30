@@ -6,7 +6,7 @@
 		"portfolio": "Portfolio",
 		"contact": "Contact",
 		"projects": "Projets",
-		"toogle": "Basculer la navigation"
+		"toggle": "Basculer la navigation"
 	},
 	"footer": {
 		"backToTop": "Retour en haut",

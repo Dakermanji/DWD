@@ -1,12 +1,12 @@
 {
 	"nav": {
 		"home": "الرئيسية",
-		"about": "من نحن",
-		"services": "خدماتنا",
+		"about": "نبذة عني",
+		"services": "الخدمات",
 		"portfolio": "المعرض",
 		"contact": "اتصل بنا",
-		"projects": "المشاريع",
-		"toogle": "تبديل القائمة"
+		"projects": "أعمالي",
+		"toggle": "تبديل القائمة"
 	},
 	"footer": {
 		"backToTop": "العودة إلى الأعلى",

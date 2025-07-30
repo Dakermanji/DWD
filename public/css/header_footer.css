@@ -108,9 +108,3 @@ footer .social i {
 footer .social i:hover {
     color: var(--color-primary);
 }
-
-@media (max-width: 768px) {
-    main {
-        margin-bottom: 0;
-    }
-}
