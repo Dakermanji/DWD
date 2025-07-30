@@ -45,3 +45,7 @@ if (resetTrigger) {
 		}
 	});
 }
+
+if (setPasswordModal) {
+	new bootstrap.Modal(setPasswordModal).show();
+}

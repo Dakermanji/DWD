@@ -15,21 +15,18 @@ const errorHandler = (err, req, res, next) => {
 
 	const status = err.status || 500;
 
-	let errorKeys = {
-		title: 'error_page.title',
-		message: 'error_page.generic',
-	};
+	let title = 'error_page.title';
+	let message = 'error_page.generic';
 
 	if (status === 404) {
-		errorKeys = {
-			title: 'error_page.notFound',
-			message: 'error_page.routeMissing',
-		};
+		title = 'error_page.notFound';
+		message = 'error_page.routeMissing';
 	}
 
 	res.status(status).render('error', {
 		status,
-		error_page: errorKeys,
+		title,
+		message,
 		stack: env.NODE_ENV !== 'production' ? err.stack : null,
 	});
 };

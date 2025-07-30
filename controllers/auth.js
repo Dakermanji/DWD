@@ -124,8 +124,33 @@ export function postRequestReset(req, res, next) {
 	// TODO: send reset token via email
 }
 
-export function getResetForm(req, res, next) {
-	// TODO: verify token, show reset modal
+export async function getResetForm(req, res, next) {
+	const { token } = req.params;
+
+	try {
+		const user = await findUserByToken(token);
+
+		if (
+			!user ||
+			user.blocked ||
+			!user.token_expiry ||
+			new Date(user.token_expiry) < new Date()
+		) {
+			req.flash('error', 'auth.invalid_or_expired_token');
+			return res.redirect('/');
+		}
+
+		req.session.showResetPasswordModal = true;
+		req.session.token = token;
+		req.session.authContext = {
+			type: 'reset',
+			email: user.email,
+		};
+
+		res.redirect('/');
+	} catch (err) {
+		next(err);
+	}
 }
 
 export async function postResetPassword(req, res, next) {

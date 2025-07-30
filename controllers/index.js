@@ -9,6 +9,7 @@ export const renderHomePage = (req, res) => {
 		showSetUsernameModal,
 		authContext,
 		identifier,
+		showResetPasswordModal,
 	} = req.session;
 
 	delete req.session.showAuthModal;
@@ -18,6 +19,7 @@ export const renderHomePage = (req, res) => {
 	delete req.session.showSetUsernameModal;
 	delete req.session.authContext;
 	delete req.session.identifier;
+	delete req.session.showResetPasswordModal;
 
 	res.render('index', {
 		title: 'home.title',
@@ -39,5 +41,6 @@ export const renderHomePage = (req, res) => {
 		showSetUsernameModal,
 		authContext,
 		identifier,
+		showResetPasswordModal,
 	});
 };
