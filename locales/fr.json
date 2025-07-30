@@ -202,8 +202,7 @@
 			"passwords_do_not_match": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
 			"missing_credentials": "Veuillez saisir votre nom d'utilisateur/email et votre mot de passe.",
 			"invalid_credentials": "Nom d'utilisateur, email ou mot de passe incorrect. Veuillez réessayer.",
-			"bad_username": "Ce nom d'utilisateur n'est pas autorisé en raison de notre politique de contenu.",
-			"register": "Veuillez vérifier votre e-mail pour terminer votre inscription."
+			"bad_username": "Ce nom d'utilisateur n'est pas autorisé en raison de notre politique de contenu."
 		},
 		"profanity": "Un langage inapproprié a été détecté dans votre saisie. Veuillez réessayer avec un contenu plus approprié."
 	}

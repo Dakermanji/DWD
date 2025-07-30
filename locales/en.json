@@ -201,8 +201,7 @@
 			"registeration_completed": "Registration successful!</br>You can now access your account.",
 			"passwords_do_not_match": "Passwords do not match. Please try again.",
 			"missing_credentials": "Please enter both username/email and password.",
-			"invalid_credentials": "Invalid username/email or password. Please try again.",
-			"register": "Please, check your email to complete your registration."
+			"invalid_credentials": "Invalid username/email or password. Please try again."
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	}

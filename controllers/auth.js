@@ -36,7 +36,7 @@ export async function postRegisterEmail(req, res, next) {
 		const { email } = req.body;
 
 		const result = await handleRegisterEmail(email, req);
-		if (result.token_request_count >= 10) {
+		if (result.limited) {
 			req.flash('error', 'auth.too_many_signup_requests');
 			return res.redirect('/');
 		}
@@ -46,7 +46,6 @@ export async function postRegisterEmail(req, res, next) {
 			return res.redirect('/');
 		}
 
-		req.flash('success', 'auth.register');
 		res.redirect('/');
 	} catch (err) {
 		next(err);
@@ -62,7 +61,7 @@ export async function getConfirmRegister(req, res, next) {
 		if (
 			!user ||
 			user.blocked ||
-			user.confirmed ||
+			user.hashed_password ||
 			user.token_request_count >= 10
 		) {
 			req.flash('error', 'auth.invalid_or_expired_token');
@@ -99,7 +98,7 @@ export async function postCompleteAccount(req, res, next) {
 		if (
 			!user ||
 			user.blocked ||
-			user.confirmed ||
+			user.hashed_password ||
 			user.token_request_count >= 10
 		) {
 			req.flash('error', 'auth.invalid_or_expired_token');

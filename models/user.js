@@ -16,7 +16,7 @@ export async function createUserWithEmail(email, token, tokenExpiry) {
 export async function setUsernameAndPassword(userId, username, hashedPassword) {
 	await promisePool.query(
 		`UPDATE users
-		 SET username = ?, hashed_password = ?, confirmed = TRUE, token = NULL, token_expiry = NULL
+		 SET username = ?, hashed_password = ?, token = NULL, token_expiry = NULL
 		 WHERE id = ?`,
 		[username, hashedPassword, userId]
 	);

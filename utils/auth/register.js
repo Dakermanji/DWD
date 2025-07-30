@@ -22,17 +22,17 @@ export async function handleRegisterEmail(email, req) {
 		return { created: true };
 	}
 
-	if (user.confirmed) {
+	if (user.hashed_password) {
 		// Don’t expose registration path to confirmed users
 		req.flash('success', 'auth.signup_email_sent_generic');
-		return { confirmed: true };
+		return;
 	}
 
 	await incrementTokenRequestCount(user.id);
 
 	const currentCount = (user.token_request_count ?? 0) + 1;
 	if (currentCount >= 10) {
-		return { token_request_count: true };
+		return { limited: true };
 	}
 
 	if (user.blocked) return { blocked: true };
