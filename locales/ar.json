@@ -191,7 +191,8 @@
 		"save_and_continue": "احفظ وتابع",
 		"forgot_password": "هل نسيت كلمة المرور؟",
 		"reset_password": "إعادة تعيين كلمة المرور",
-		"send_reset_link": "إرسال رابط إعادة التعيين"
+		"send_reset_link": "إرسال رابط إعادة التعيين",
+		"password_changed": "تم تحديث كلمة المرور بنجاح."
 	},
 	"flash": {
 		"auth": {

@@ -5,7 +5,10 @@ import bcrypt from 'bcrypt';
 
 import { handleRegisterEmail } from '../utils/auth/register.js';
 import { resolveLoginUser, authenticateUser } from '../utils/auth/login.js';
-import { handleResetRequest } from '../utils/auth/reset.js';
+import {
+	handleResetRequest,
+	handlePasswordReset,
+} from '../utils/auth/reset.js';
 import {
 	findUserByUsername,
 	findUserByToken,
@@ -120,8 +123,23 @@ export async function postCompleteAccount(req, res, next) {
 	}
 }
 
-export function postRequestReset(req, res, next) {
-	// TODO: send reset token via email
+export async function postRequestReset(req, res, next) {
+	const { email } = req.body;
+
+	try {
+		const result = await handleResetRequest(email, req);
+		console.log(result);
+
+		if (result?.denied) {
+			req.flash('error', 'auth.blocked_or_limited');
+			return res.redirect('/');
+		}
+
+		req.flash('success', 'auth.reset_email_sent_generic');
+		res.redirect('/');
+	} catch (err) {
+		next(err);
+	}
 }
 
 export async function getResetForm(req, res, next) {
@@ -154,18 +172,25 @@ export async function getResetForm(req, res, next) {
 }
 
 export async function postResetPassword(req, res, next) {
-	const { email } = req.body;
+	const { password, confirmPassword, token } = req.body;
 
 	try {
-		const result = await handleResetRequest(email, req);
+		const result = await handlePasswordReset(
+			token,
+			password,
+			confirmPassword
+		);
 
-		if (result?.denied) {
-			req.flash('error', 'auth.blocked_or_limited');
+		if (result.error) {
+			req.flash('error', result.error);
 			return res.redirect('/');
 		}
 
-		req.flash('success', 'auth.reset_email_sent_generic');
-		res.redirect('/');
+		req.login({ id: result.user.id }, (err) => {
+			if (err) return next(err);
+			req.flash('success', 'auth.password_changed');
+			res.redirect('/');
+		});
 	} catch (err) {
 		next(err);
 	}

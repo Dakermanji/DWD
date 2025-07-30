@@ -191,7 +191,8 @@
 		"save_and_continue": "Save and Continue",
 		"forgot_password": "Forgot your password?",
 		"reset_password": "Reset Password",
-		"send_reset_link": "Send Reset Link"
+		"send_reset_link": "Send Reset Link",
+		"password_changed": "Your password has been successfully updated."
 	},
 	"flash": {
 		"auth": {

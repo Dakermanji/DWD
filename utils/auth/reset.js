@@ -1,10 +1,13 @@
 //! utils/auth/reset.js
 
+import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import {
 	findUserByEmail,
 	updateToken,
 	incrementTokenRequestCount,
+	findUserByToken,
+	setUsernameAndPassword,
 } from '../../models/user.js';
 import env from '../../config/dotenv.js';
 import { sendResetPasswordEmail } from '../email.js';
@@ -31,4 +34,26 @@ function getResetUrl(token) {
 		return `${env.HOST}:${env.PORT}/auth/reset/${token}`;
 	}
 	return `${env.HOST}/auth/reset/${token}`;
+}
+
+export async function handlePasswordReset(token, password, confirmPassword) {
+	if (!token || password !== confirmPassword) {
+		return { error: 'auth.invalid_or_expired_token' };
+	}
+
+	const user = await findUserByToken(token);
+
+	if (
+		!user ||
+		user.blocked ||
+		!user.token_expiry ||
+		new Date(user.token_expiry) < new Date()
+	) {
+		return { error: 'auth.invalid_or_expired_token' };
+	}
+
+	const hashedPassword = await bcrypt.hash(password, 12);
+	await setUsernameAndPassword(user.id, null, hashedPassword);
+
+	return { user };
 }
