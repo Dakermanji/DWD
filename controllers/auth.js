@@ -36,17 +36,19 @@ export async function postRegisterEmail(req, res, next) {
 		const { email } = req.body;
 
 		const result = await handleRegisterEmail(email, req);
-		if (result.limited) {
+		if (result?.limited) {
 			req.flash('error', 'auth.too_many_signup_requests');
 			return res.redirect('/');
 		}
 
-		if (result.blocked) {
+		if (result?.blocked) {
 			req.flash('error', 'auth.blocked');
 			return res.redirect('/');
 		}
 
-		res.redirect('/');
+		// Show success for both new and reused token flows
+		req.flash('success', 'auth.signup_email_sent_generic');
+		return res.redirect('/');
 	} catch (err) {
 		next(err);
 	}

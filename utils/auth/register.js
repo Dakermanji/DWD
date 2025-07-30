@@ -22,11 +22,7 @@ export async function handleRegisterEmail(email, req) {
 		return { created: true };
 	}
 
-	if (user.hashed_password) {
-		// Don’t expose registration path to confirmed users
-		req.flash('success', 'auth.signup_email_sent_generic');
-		return;
-	}
+	if (user.hashed_password) return;
 
 	await incrementTokenRequestCount(user.id);
 
