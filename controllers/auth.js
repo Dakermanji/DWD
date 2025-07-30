@@ -46,7 +46,7 @@ export async function postRegisterEmail(req, res, next) {
 			return res.redirect('/');
 		}
 
-		req.session.showEmailSentModal = true;
+		req.flash('success', 'auth.register');
 		res.redirect('/');
 	} catch (err) {
 		next(err);
