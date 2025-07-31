@@ -28,4 +28,11 @@ export const navBar = {
 			icon: '<i class="bi bi-view-list"></i>',
 		},
 	],
+	dashboard: [
+		{
+			link: '/dashboard',
+			text: 'account',
+			icon: '<i class="bi bi-person-circle"></i>',
+		},
+	],
 };

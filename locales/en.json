@@ -6,7 +6,8 @@
 		"portfolio": "Portfolio",
 		"contact": "Contact",
 		"projects": "Projects",
-		"toggle": "Toggle navigation"
+		"toggle": "Toggle navigation",
+		"account": "My account"
 	},
 	"footer": {
 		"backToTop": "Back To Top",
@@ -215,6 +216,15 @@
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	},
 	"dashboard": {
-		"title": "Dashboard"
+		"title": "Dashboard",
+		"account_info": "Account Information",
+		"username": "Username",
+		"email": "Email",
+		"created": "Created at",
+		"last_login": "Last login",
+		"auth_providers": "Authentication Methods",
+		"reset_password": "Change Password",
+		"projects_title": "Our Projects",
+		"projects_description": "This section will showcase our projects soon."
 	}
 }

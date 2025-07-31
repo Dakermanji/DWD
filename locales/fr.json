@@ -6,7 +6,8 @@
 		"portfolio": "Portfolio",
 		"contact": "Contact",
 		"projects": "Projets",
-		"toggle": "Basculer la navigation"
+		"toggle": "Basculer la navigation",
+		"account": "Mon compte"
 	},
 	"footer": {
 		"backToTop": "Retour en haut",
@@ -214,6 +215,15 @@
 		"profanity": "Un langage inapproprié a été détecté dans votre saisie. Veuillez réessayer avec un contenu plus approprié."
 	},
 	"dashboard": {
-		"title": "Tableau de bord"
+		"title": "Tableau de bord",
+		"account_info": "Informations du compte",
+		"username": "Nom d'utilisateur",
+		"email": "Adresse e-mail",
+		"created": "Créé le",
+		"last_login": "Dernière connexion",
+		"auth_providers": "Méthodes d'authentification",
+		"reset_password": "Changer le mot de passe",
+		"projects_title": "Nos projets",
+		"projects_description": "Cette section présentera bientôt nos projets."
 	}
 }

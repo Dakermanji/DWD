@@ -1,3 +1,56 @@
-<section class="container py-5 text-center">
-	<h1 class="mb-4"><%= __('dashboard.title') %></h1>
+<section class="container py-5">
+	<h1 class="mb-4 text-center"><%= __('dashboard.title') %></h1>
+
+	<div class="row mb-5">
+		<div
+			id="user-info"
+			class="col-md-6 offset-md-3 bg-light rounded shadow p-4"
+		>
+			<h4><%= __('dashboard.account_info') %></h4>
+			<ul class="list-unstyled">
+				<li
+					><strong><%= __('dashboard.username') %>:</strong> <%=
+					user.username || '—' %></li
+				>
+				<li
+					><strong><%= __('dashboard.email') %>:</strong> <%=
+					user.email %></li
+				>
+				<li
+					><strong><%= __('dashboard.created') %>:</strong> <%=
+					user.created_at.toLocaleString() %></li
+				>
+				<li
+					><strong><%= __('dashboard.last_login') %>:</strong> <%=
+					user.last_login_at?.toLocaleString() || '—' %></li
+				>
+				<li>
+					<strong><%= __('dashboard.auth_providers') %>:</strong>
+					<% if (user.google_id) { %>
+					<span class="badge bg-danger">Google</span>
+					<% } %> <% if (user.github_id) { %>
+					<span class="badge bg-dark">GitHub</span>
+					<% } %> <% if (user.hashed_password) { %>
+					<span class="badge bg-primary">Local</span>
+					<% } %>
+				</li>
+			</ul>
+			<form action="/auth/reset" method="POST">
+				<input type="hidden" name="email" value="<%= user.email %>" />
+				<button type="submit" class="btn btn-warning btn-sm">
+					<%= __('dashboard.reset_password') %>
+				</button>
+			</form>
+		</div>
+	</div>
+
+	<div id="our-subjects" class="row">
+		<div class="col text-center">
+			<h4><%= __('dashboard.projects_title') %></h4>
+			<p class="text-muted"
+				><%= __('dashboard.projects_description') %></p
+			>
+			<!-- Future: cards or grid -->
+		</div>
+	</div>
 </section>

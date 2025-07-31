@@ -10,7 +10,7 @@ export const navBarMiddleware = (app) => {
 			let activePage = 'index';
 
 			// example for another navBar options
-			// if (req.path.startsWith('/projects')) activePage = 'projects';
+			if (req.path.startsWith('/dashboard')) activePage = 'dashboard';
 
 			// Attach nav bar data to res.locals
 			res.locals.navBar = navBar[activePage] || [];
