@@ -192,9 +192,7 @@
 		"forgot_password": "Forgot your password?",
 		"reset_password": "Reset Password",
 		"send_reset_link": "Send Reset Link",
-		"password_changed": "Your password has been successfully updated.",
-		"google_oauth_failed": "Google login failed. Please try again.",
-		"github_oauth_failed": "GitHub login failed. Please try again."
+		"password_changed": "Your password has been successfully updated."
 	},
 	"flash": {
 		"auth": {
@@ -209,7 +207,9 @@
 			"missing_credentials": "Please enter both username/email and password.",
 			"invalid_credentials": "Invalid username/email or password. Please try again.",
 			"reset_email_sent_generic": "Please check your email for a password reset link.",
-			"blocked_or_limited": "Your account is blocked or you've made too many reset requests."
+			"blocked_or_limited": "Your account is blocked or you've made too many reset requests.",
+			"google_oauth_failed": "Google login failed. Please try again.",
+			"github_oauth_failed": "GitHub login failed. Please try again."
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	}

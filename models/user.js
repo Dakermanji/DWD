@@ -132,12 +132,24 @@ export async function changeBlockStatus(userId, blocked) {
 	]);
 }
 
-export async function createUserWithGitHub(user) {
-	//todo
+// Create new user with Google OAuth
+export async function createUserWithGoogle(email, googleId) {
+	const [result] = await promisePool.query(
+		`INSERT INTO users (email, google_id)
+		 VALUES (?, ?)`,
+		[email, googleId]
+	);
+	return findUserById(result.insertId);
 }
 
-export async function createUserWithGoogle(user) {
-	//todo
+// Create new user with GitHub OAuth
+export async function createUserWithGitHub(email, githubId) {
+	const [result] = await promisePool.query(
+		`INSERT INTO users (email, github_id)
+		 VALUES (?, ?)`,
+		[email, githubId]
+	);
+	return findUserById(result.insertId);
 }
 
 export async function incrementTokenRequestCount(userId) {
