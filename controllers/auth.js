@@ -125,6 +125,7 @@ export async function postCompleteAccount(req, res, next) {
 
 export async function postRequestReset(req, res, next) {
 	const { email } = req.body;
+	const { originalUrl } = req.query;
 
 	try {
 		const result = await handleResetRequest(email, req);
@@ -135,7 +136,9 @@ export async function postRequestReset(req, res, next) {
 		}
 
 		req.flash('success', 'auth.reset_email_sent_generic');
-		res.redirect('/');
+
+		if (originalUrl) res.redirect(`/${originalUrl}`);
+		else res.redirect('/');
 	} catch (err) {
 		next(err);
 	}

@@ -35,7 +35,10 @@
 					<% } %>
 				</li>
 			</ul>
-			<form action="/auth/reset" method="POST">
+			<form
+				action="/auth/reset/request?originalUrl=dashboard"
+				method="POST"
+			>
 				<input type="hidden" name="email" value="<%= user.email %>" />
 				<button type="submit" class="btn btn-warning btn-sm">
 					<%= __('dashboard.reset_password') %>
