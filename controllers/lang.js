@@ -8,14 +8,14 @@ export const changeLanguage = (req, res, next) => {
 	if (!i18n.getLocales().includes(lang)) {
 		const err = new Error(`Unsupported locale: '${lang}'`);
 		err.status = 400;
-		return next(err); // Passes to your global errorHandler
+		return next(err);
 	}
 
 	res.cookie('lang', lang, {
 		maxAge: 30 * 24 * 60 * 60 * 1000,
 		httpOnly: true,
-	}); // 30 days
+	});
 
-	const returnTo = req.get('Referer') || '/';
+	const returnTo = req.query.returnTo || '/';
 	res.redirect(returnTo);
 };

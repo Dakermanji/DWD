@@ -8,6 +8,7 @@ import { bodyParsers } from '../middlewares/bodyParsers.js';
 import { staticFiles } from '../middlewares/staticFiles.js';
 import { viewEngine } from '../middlewares/viewEngine.js';
 import { initializePassport } from '../middlewares/passport.js';
+import { initRestrictRoute } from '../middlewares/ensureAuthenticated.js';
 import { i18nMiddleware } from '../middlewares/i18n.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
 import { customMiddlewares } from '../middlewares/custom.js';
@@ -23,6 +24,7 @@ const applyMiddlewares = (app) => {
 	initializePassport(app);
 	staticFiles(app);
 	viewEngine(app);
+	initRestrictRoute(app);
 	customMiddlewares(app);
 };
 

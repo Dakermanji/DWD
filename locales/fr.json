@@ -208,8 +208,12 @@
 			"invalid_credentials": "Nom d'utilisateur, email ou mot de passe incorrect. Veuillez réessayer.",
 			"bad_username": "Ce nom d'utilisateur n'est pas autorisé en raison de notre politique de contenu.",
 			"google_oauth_failed": "La connexion Google a échoué. Veuillez réessayer.",
-			"github_oauth_failed": "La connexion GitHub a échoué. Veuillez réessayer."
+			"github_oauth_failed": "La connexion GitHub a échoué. Veuillez réessayer.",
+			"login_required": "Veuillez vous connecter pour accéder à cette page."
 		},
 		"profanity": "Un langage inapproprié a été détecté dans votre saisie. Veuillez réessayer avec un contenu plus approprié."
+	},
+	"dashboard": {
+		"title": "Tableau de bord"
 	}
 }

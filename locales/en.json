@@ -209,8 +209,12 @@
 			"reset_email_sent_generic": "Please check your email for a password reset link.",
 			"blocked_or_limited": "Your account is blocked or you've made too many reset requests.",
 			"google_oauth_failed": "Google login failed. Please try again.",
-			"github_oauth_failed": "GitHub login failed. Please try again."
+			"github_oauth_failed": "GitHub login failed. Please try again.",
+			"login_required": "Please log in to access this page."
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
+	},
+	"dashboard": {
+		"title": "Dashboard"
 	}
 }

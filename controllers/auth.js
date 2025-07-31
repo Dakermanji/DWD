@@ -128,7 +128,6 @@ export async function postRequestReset(req, res, next) {
 
 	try {
 		const result = await handleResetRequest(email, req);
-		console.log(result);
 
 		if (result?.denied) {
 			req.flash('error', 'auth.blocked_or_limited');
@@ -198,7 +197,6 @@ export async function postResetPassword(req, res, next) {
 
 export function postLogout(req, res, next) {
 	req.logout((err) => {
-		console.log(err);
 		if (err) return next(err);
 
 		req.session.destroy((err) => {
