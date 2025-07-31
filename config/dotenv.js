@@ -35,6 +35,11 @@ const env = {
 	DB_NAME: requireEnv('DB_NAME'),
 	EMAIL_USER: requireEnv('EMAIL_USER'),
 	EMAIL_PASS: requireEnv('EMAIL_PASS'),
+	GOOGLE_CLIENT_ID: requireEnv('GOOGLE_CLIENT_ID'),
+	GOOGLE_CLIENT_SECRET: requireEnv('GOOGLE_CLIENT_SECRET'),
+	GOOGLE_CALLBACK_URL: requireEnv('GOOGLE_CALLBACK_URL'),
+	GITHUB_CLIENT_ID: requireEnv('GITHUB_CLIENT_ID'),
+	GITHUB_CLIENT_SECRET: requireEnv('GITHUB_CLIENT_SECRET'),
 
 	// Optional variables with defaults
 	PORT: optionalEnv('PORT', 3000),
@@ -43,6 +48,10 @@ const env = {
 	DB_HOST: optionalEnv('DB_HOST', 'localhost'),
 	DB_PORT: optionalEnv('DB_PORT', 3306),
 	EMAIL_SERVICE: optionalEnv('EMAIL_SERVICE', 'gmail'),
+	GITHUB_CALLBACK_URL: optionalEnv(
+		'GITHUB_CALLBACK_URL',
+		'/auth/github/callback'
+	),
 };
 
 export default env;
