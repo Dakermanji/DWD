@@ -158,3 +158,18 @@ export async function incrementTokenRequestCount(userId) {
 		[userId]
 	);
 }
+
+export async function isUsernameTaken(username) {
+	const [rows] = await promisePool.query(
+		'SELECT 1 FROM users WHERE username = ? LIMIT 1',
+		[username]
+	);
+	return rows.length > 0;
+}
+
+export async function updateUsernameById(id, username) {
+	await promisePool.query('UPDATE users SET username = ? WHERE id = ?', [
+		username,
+		id,
+	]);
+}

@@ -13,6 +13,8 @@ import {
 	findUserByUsername,
 	findUserByToken,
 	setUsernameAndPassword,
+	isUsernameTaken,
+	updateUsernameById,
 } from '../models/user.js';
 
 export async function postLogin(req, res, next) {
@@ -269,3 +271,26 @@ export function githubCallback(req, res, next) {
 		});
 	})(req, res, next);
 }
+
+export const updateUsername = async (req, res, next) => {
+	try {
+		const { username } = req.body;
+
+		if (!username || username === req.user.username) {
+			req.flash('error', 'auth.invalid_username');
+			return res.redirect('/dashboard');
+		}
+
+		const taken = await isUsernameTaken(username);
+		if (taken) {
+			req.flash('error', 'auth.username_taken');
+			return res.redirect('/dashboard');
+		}
+
+		await updateUsernameById(req.user.id, username);
+		req.flash('success', 'auth.username_updated');
+		res.redirect('/dashboard');
+	} catch (err) {
+		next(err);
+	}
+};

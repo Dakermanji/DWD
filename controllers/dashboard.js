@@ -5,6 +5,8 @@ export function renderDashboard(req, res, next) {
 		res.render('dashboard', {
 			title: 'dashboard.title',
 			user: req.user,
+			scripts: ['dashboard'],
+			styles: ['dashboard'],
 		});
 	} catch (err) {
 		next(err);

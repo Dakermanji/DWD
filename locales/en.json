@@ -211,7 +211,9 @@
 			"blocked_or_limited": "Your account is blocked or you've made too many reset requests.",
 			"google_oauth_failed": "Google login failed. Please try again.",
 			"github_oauth_failed": "GitHub login failed. Please try again.",
-			"login_required": "Please log in to access this page."
+			"login_required": "Please log in to access this page.",
+			"invalid_username": "Invalid or unchanged username.",
+			"username_updated": "Your username has been updated successfully."
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	},

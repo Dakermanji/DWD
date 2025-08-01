@@ -16,12 +16,14 @@ import {
 	googleCallback,
 	githubLogin,
 	githubCallback,
+	updateUsername,
 } from '../controllers/auth.js';
 import {
 	validateRegisterEmail,
 	validateCompleteAccount,
 	validateLoginInput,
 	validateResetPassword,
+	validateUsernameInput,
 } from '../middlewares/validators/auth.js';
 
 const router = express.Router();
@@ -62,5 +64,12 @@ router.get('/google/callback', googleCallback);
 // GitHub
 router.get('/github', githubLogin);
 router.get('/github/callback', githubCallback);
+
+router.post(
+	'/update-username',
+	validateUsernameInput,
+	checkProfanity('username'),
+	updateUsername
+);
 
 export default router;

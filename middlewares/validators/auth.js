@@ -81,3 +81,18 @@ export function validateResetPassword(req, res, next) {
 
 	next();
 }
+
+export function validateUsernameInput(req, res, next) {
+	const { username } = req.body;
+
+	if (
+		typeof username !== 'string' ||
+		!validator.isLength(username, { min: 3, max: 50 }) ||
+		!/^[a-zA-Z0-9_.-]+$/.test(username)
+	) {
+		req.flash('error', 'auth.invalid_username');
+		return res.redirect('/dashboard');
+	}
+
+	next();
+}

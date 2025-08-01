@@ -8,10 +8,48 @@
 		>
 			<h4><%= __('dashboard.account_info') %></h4>
 			<ul class="list-unstyled">
-				<li
-					><strong><%= __('dashboard.username') %>:</strong> <%=
-					user.username || '—' %></li
-				>
+				<li id="username-block">
+					<strong><%= __('dashboard.username') %>:</strong>
+
+					<span id="username-value"><%= user.username || '—' %></span>
+
+					<!-- Edit Button -->
+					<button
+						id="edit-username-btn"
+						type="button"
+						class="btn btn-sm btn-outline-secondary ms-2"
+					>
+						<i class="bi bi-pencil"></i>
+					</button>
+
+					<!-- Username Edit Form -->
+					<form
+						id="username-form"
+						action="/auth/update-username"
+						method="POST"
+						class="inline-flex hidden"
+					>
+						<input
+							type="text"
+							name="username"
+							value="<%= user.username || '' %>"
+							class="form-control form-control-sm"
+							required
+							pattern="^[a-zA-Z0-9_.-]{3,50}$"
+						/>
+						<button type="submit" class="btn btn-sm btn-success">
+							<i class="bi bi-check-lg"></i>
+						</button>
+						<button
+							type="button"
+							id="cancel-edit-btn"
+							class="btn btn-sm btn-danger"
+						>
+							<i class="bi bi-x-lg"></i>
+						</button>
+					</form>
+				</li>
+
 				<li
 					><strong><%= __('dashboard.email') %>:</strong> <%=
 					user.email %></li
