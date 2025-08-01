@@ -2,101 +2,103 @@
 
 let usernameCheckTimeout;
 
+// Get all relevant DOM elements once
+const usernameEl = document.getElementById('username-value');
+const inputEl = document.getElementById('username-input');
+const formEl = document.getElementById('username-form');
+const editBtn = document.getElementById('edit-username-btn');
+const cancelBtn = document.getElementById('cancel-edit-btn');
+const submitBtn = document.getElementById('submit-username-btn');
+const feedbackEl = document.getElementById('username-feedback');
 const messagesEl = document.getElementById('username-messages');
+
 const MESSAGES = {
-	username_updated: messagesEl?.dataset.updated || 'Updated',
-	username_taken: messagesEl?.dataset.taken || 'Taken',
-	invalid_username: messagesEl?.dataset.invalid || 'Invalid',
-	username_available: messagesEl?.dataset.available || 'Available',
-	username_error: messagesEl?.dataset.error || 'Error checking username',
 	username_updated:
-		messagesEl?.dataset.updated || 'Username has been updated',
+		messagesEl?.dataset.updated || 'Username has been updated.',
+	username_taken: messagesEl?.dataset.taken || 'Username taken.',
+	invalid: messagesEl?.dataset.invalid || 'Invalid username.',
+	username_available: messagesEl?.dataset.available || 'Username available.',
+	username_error: messagesEl?.dataset.error || 'Error checking username.',
+};
+
+const currentUsername = inputEl?.dataset.current?.trim();
+
+// Helpers
+const show = (el) => el?.classList.remove('hidden');
+const hide = (el) => el?.classList.add('hidden');
+const setFeedback = (msg, type) => {
+	if (!feedbackEl) return;
+	feedbackEl.textContent = msg;
+	feedbackEl.classList.remove('text-success', 'text-danger');
+	feedbackEl.classList.add(
+		type === 'success' ? 'text-success' : 'text-danger'
+	);
+	show(feedbackEl);
+};
+
+const resetFormDisplay = (editing = false) => {
+	if (editing) {
+		hide(usernameEl);
+		hide(editBtn);
+		show(formEl);
+	} else {
+		show(usernameEl);
+		show(editBtn);
+		hide(formEl);
+	}
 };
 
 const updateUsernameDOM = (username) => {
-	document.getElementById('username-value').textContent = username;
-	document.getElementById('username-value').classList.remove('hidden');
-	document.getElementById('edit-username-btn').classList.remove('hidden');
-	document.getElementById('username-form').classList.add('hidden');
-	showFlashMessage(
-		'✅ ' + MESSAGES.username_updated || 'Username updated!',
-		'success'
-	);
+	if (usernameEl) usernameEl.textContent = username;
+	resetFormDisplay(false);
+	hide(feedbackEl); // ✅ hide feedback on success
+	showFlashMessage('✅ ' + MESSAGES.username_updated, 'success');
 };
 
-document.getElementById('edit-username-btn')?.addEventListener('click', () => {
-	document.getElementById('username-value').classList.add('hidden');
-	document.getElementById('edit-username-btn').classList.add('hidden');
-	document.getElementById('username-form').classList.remove('hidden');
+// Events
+editBtn?.addEventListener('click', () => resetFormDisplay(true));
+cancelBtn?.addEventListener('click', () => resetFormDisplay(false));
+
+submitBtn?.addEventListener('click', async () => {
+	const username = inputEl.value.trim();
+	hide(feedbackEl);
+
+	if (username === currentUsername) {
+		updateUsernameDOM(username);
+		return;
+	}
+
+	try {
+		const res = await fetch('/auth/update-username', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+			body: JSON.stringify({ username }),
+		});
+		const result = await res.json();
+
+		if (!res.ok)
+			throw new Error(`❌ ${result.error}` || 'Something went wrong');
+		updateUsernameDOM(username);
+	} catch (err) {
+		setFeedback(err.message, 'danger');
+		showFlashMessage(err.message, 'danger');
+	}
 });
 
-document.getElementById('cancel-edit-btn')?.addEventListener('click', () => {
-	document.getElementById('username-value').classList.remove('hidden');
-	document.getElementById('edit-username-btn').classList.remove('hidden');
-	document.getElementById('username-form').classList.add('hidden');
-});
-
-document
-	.getElementById('submit-username-btn')
-	?.addEventListener('click', async () => {
-		const input = document.getElementById('username-input');
-		const currentUsername = input?.dataset.current?.trim();
-		const feedback = document.getElementById('username-feedback');
-		const username = input.value.trim();
-
-		feedback.textContent = '';
-		feedback.classList.add('hidden');
-
-		if (username === currentUsername) {
-			feedback.textContent = MESSAGES.available;
-			feedback.classList.add('text-success');
-			feedback.classList.remove('text-danger');
-			feedback.classList.remove('hidden');
-			updateUsernameDOM(username, MESSAGES.username_updated);
-			return;
-		}
-
-		try {
-			const res = await fetch('/auth/update-username', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Accept: 'application/json',
-				},
-				body: JSON.stringify({ username }),
-			});
-
-			const result = await res.json();
-
-			if (!res.ok)
-				throw new Error(result.error || 'Something went wrong');
-
-			// Success: update DOM
-			updateUsernameDOM(username, MESSAGES.username_updated);
-		} catch (err) {
-			feedback.textContent = err.message;
-			feedback.classList.remove('hidden');
-			showFlashMessage(err.message, 'danger');
-		}
-	});
-
-const usernameInput = document.getElementById('username-input');
-usernameInput?.addEventListener('input', () => {
+inputEl?.addEventListener('input', () => {
 	clearTimeout(usernameCheckTimeout);
 
-	const feedback = document.getElementById('username-feedback');
-	const username = usernameInput.value.trim();
-	const currentUsername = usernameInput?.dataset.current?.trim();
-	feedback.textContent = '';
-	feedback.classList.remove('text-danger', 'text-success');
+	const username = inputEl.value.trim();
+	hide(feedbackEl);
+	feedbackEl.classList.remove('text-success', 'text-danger');
 
 	if (username.length < 3) return;
 
 	if (username === currentUsername) {
-		feedback.textContent = MESSAGES.username_available;
-		feedback.classList.add('text-success');
-		feedback.classList.remove('text-danger');
-		feedback.classList.remove('hidden');
+		setFeedback(MESSAGES.username_available, 'success');
 		return;
 	}
 
@@ -107,21 +109,18 @@ usernameInput?.addEventListener('input', () => {
 			);
 			const result = await res.json();
 
-			console.log(result);
 			if (!result.available) {
-				feedback.textContent =
+				const msg =
 					result.reason === 'invalid'
-						? MESSAGES.username_updated
+						? MESSAGES.invalid
 						: MESSAGES.username_taken;
-				feedback.classList.add('text-danger');
+				setFeedback(msg, 'danger');
 			} else {
-				feedback.textContent = MESSAGES.username_available;
-				feedback.classList.add('text-success');
+				setFeedback(MESSAGES.username_available, 'success');
 			}
 		} catch (err) {
-			feedback.textContent = `⚠️ ${MESSAGES.username_error}`;
-			console.log(err);
-			feedback.classList.add('text-danger');
+			setFeedback(`⚠️ ${MESSAGES.username_error}`, 'danger');
+			console.error(err);
 		}
 	}, 400);
 });
