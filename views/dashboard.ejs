@@ -4,7 +4,7 @@
 	<div class="row mb-5">
 		<div
 			id="user-info"
-			class="col-md-6 offset-md-3 bg-light rounded shadow p-4"
+			class="col-md-6 mx-auto bg-light rounded shadow p-4"
 		>
 			<h4><%= __('dashboard.account_info') %></h4>
 			<ul class="list-unstyled">
@@ -23,23 +23,25 @@
 					</button>
 
 					<!-- Username Edit Form -->
-					<form
-						id="username-form"
-						action="/auth/update-username"
-						method="POST"
-						class="inline-flex hidden"
-					>
+					<div id="username-form" class="inline-flex hidden">
 						<input
 							type="text"
-							name="username"
-							value="<%= user.username || '' %>"
+							id="username-input"
 							class="form-control form-control-sm"
+							value="<%= user.username || '' %>"
 							required
-							pattern="^[a-zA-Z0-9_.-]{3,50}$"
+							pattern="^[a-zA-Z0-9_.\-]{3,50}$"
+							data-current="<%= user.username || '' %>"
 						/>
-						<button type="submit" class="btn btn-sm btn-success">
+
+						<button
+							type="button"
+							id="submit-username-btn"
+							class="btn btn-sm btn-success"
+						>
 							<i class="bi bi-check-lg"></i>
 						</button>
+
 						<button
 							type="button"
 							id="cancel-edit-btn"
@@ -47,7 +49,21 @@
 						>
 							<i class="bi bi-x-lg"></i>
 						</button>
-					</form>
+					</div>
+
+					<div
+						id="username-feedback"
+						class="form-text small mt-1 text-muted"
+					></div>
+					<div
+						id="username-messages"
+						data-updated="<%= __('flash.auth.username_updated') %>"
+						data-taken="<%= __('auth.username.taken') %>"
+						data-invalid="<%= __('auth.username.invalid') %>"
+						data-available="<%= __('auth.username.available') %>"
+						data-error="<%= __('auth.username.error') %>"
+					>
+					</div>
 				</li>
 
 				<li

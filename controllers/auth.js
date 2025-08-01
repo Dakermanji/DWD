@@ -9,6 +9,7 @@ import {
 	handleResetRequest,
 	handlePasswordReset,
 } from '../utils/auth/reset.js';
+import { respondWithFlashOrJson } from '../utils/respond.js';
 import {
 	findUserByUsername,
 	findUserByToken,
@@ -272,24 +273,54 @@ export function githubCallback(req, res, next) {
 	})(req, res, next);
 }
 
-export const updateUsername = async (req, res, next) => {
+export const handleUpdateUsername = async (req, res, next) => {
 	try {
 		const { username } = req.body;
 
 		if (!username || username === req.user.username) {
-			req.flash('error', 'auth.invalid_username');
-			return res.redirect('/dashboard');
+			return respondWithFlashOrJson(
+				req,
+				res,
+				400,
+				'auth.invalid_username'
+			);
 		}
 
-		const taken = await isUsernameTaken(username);
-		if (taken) {
-			req.flash('error', 'auth.username_taken');
-			return res.redirect('/dashboard');
+		if (await isUsernameTaken(username)) {
+			return respondWithFlashOrJson(req, res, 409, 'auth.username_taken');
 		}
 
 		await updateUsernameById(req.user.id, username);
+
+		if (req.headers.accept === 'application/json') {
+			return res.status(200).json({
+				message: req.__('flash.auth.username_updated'),
+				key: 'username_updated',
+			});
+		}
+
 		req.flash('success', 'auth.username_updated');
 		res.redirect('/dashboard');
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const checkUsernameAvailability = async (req, res, next) => {
+	try {
+		const { username } = req.query;
+
+		if (
+			typeof username !== 'string' ||
+			!/^[a-zA-Z0-9_.\-]{3,50}$/.test(username)
+		) {
+			return res
+				.status(400)
+				.json({ available: false, reason: 'invalid' });
+		}
+
+		const taken = await isUsernameTaken(username);
+		res.json({ available: !taken });
 	} catch (err) {
 		next(err);
 	}

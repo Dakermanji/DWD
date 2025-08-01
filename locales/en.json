@@ -193,7 +193,13 @@
 		"forgot_password": "Forgot your password?",
 		"reset_password": "Reset Password",
 		"send_reset_link": "Send Reset Link",
-		"password_changed": "Your password has been successfully updated."
+		"password_changed": "Your password has been successfully updated.",
+		"username": {
+			"taken": "❌ Username is already taken.",
+			"invalid": "⚠️ Invalid username.",
+			"available": "✅ Username is available.",
+			"error": "⚠️ Error checking username."
+		}
 	},
 	"flash": {
 		"auth": {
@@ -213,7 +219,8 @@
 			"github_oauth_failed": "GitHub login failed. Please try again.",
 			"login_required": "Please log in to access this page.",
 			"invalid_username": "Invalid or unchanged username.",
-			"username_updated": "Your username has been updated successfully."
+			"username_updated": "Your username has been updated successfully.",
+			"username_available": "This username is available!"
 		},
 		"profanity": "Profanity was detected in your input. Please try again with more appropriate language."
 	},

@@ -193,7 +193,13 @@
 		"forgot_password": "Mot de passe oublié ?",
 		"reset_password": "Réinitialiser le mot de passe",
 		"send_reset_link": "Envoyer le lien de réinitialisation",
-		"password_changed": "Votre mot de passe a été mis à jour avec succès."
+		"password_changed": "Votre mot de passe a été mis à jour avec succès.",
+		"username": {
+			"taken": "❌ Ce nom d'utilisateur est déjà pris.",
+			"invalid": "⚠️ Nom d'utilisateur invalide.",
+			"available": "✅ Ce nom d'utilisateur est disponible.",
+			"error": "⚠️ Erreur lors de la vérification du nom d'utilisateur."
+		}
 	},
 	"flash": {
 		"auth": {

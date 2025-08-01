@@ -16,7 +16,8 @@ import {
 	googleCallback,
 	githubLogin,
 	githubCallback,
-	updateUsername,
+	handleUpdateUsername,
+	checkUsernameAvailability,
 } from '../controllers/auth.js';
 import {
 	validateRegisterEmail,
@@ -69,7 +70,9 @@ router.post(
 	'/update-username',
 	validateUsernameInput,
 	checkProfanity('username'),
-	updateUsername
+	handleUpdateUsername
 );
+
+router.get('/check-username', checkUsernameAvailability);
 
 export default router;
