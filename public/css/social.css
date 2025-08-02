@@ -1,0 +1,46 @@
+/*! public/css/social.css */
+
+.social-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    max-width: 85vw;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1055;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    padding: 1rem;
+}
+
+html[dir="ltr"] .social-panel {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+html[dir="rtl"] .social-panel {
+    right: 0;
+    transform: translateX(100%);
+}
+
+html .social-panel.open {
+    transform: translateX(0);
+}
+
+/* Header */
+.social-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+#closeSocialPanel {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}

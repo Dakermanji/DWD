@@ -59,6 +59,12 @@
 		<script src="/js/header.js" defer></script>
 		<script src="/js/root.js" defer></script>
 
+		<!-- Conditional Styles and Scripts -->
+		<% if (user) { %>
+		<link rel="stylesheet" href="/css/social.css" />
+		<script src="/js/social.js" defer></script>
+		<% } %>
+
 		<!-- Dynamic Styles -->
 		<% const stylesArray = typeof styles !== 'undefined' ? styles : []; %>
 		<% stylesArray.forEach(style => { %>
@@ -90,7 +96,7 @@
 			<%- body %>
 			<!-- This is where content from other views will appear -->
 		</main>
-
+		<% if (user) { %> <%- include('partials/_social') %> <% } %>
 		<!-- Footer -->
 		<%- include('partials/_footer') %>
 	</body>

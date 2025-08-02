@@ -2,13 +2,13 @@
   <div class="container">
     <a class="navbar-brand" href="/" aria-label="<%= __('nav.home')
 			%>" ><%- include('_company_name') %></a>
-    <% if (navBar.length > 0) { %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="<%= __('nav.toggle')
 			%>">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav <%= currentLocale === 'ar' ? 'me-auto' : 'ms-auto' %>">
+        <% if (navBar.length > 0) { %>
         <% navBar.forEach(nav => {%>
         <li class="nav-item">
           <a class="nav-link <%= currentRoute === `${nav.link}` ? 'active' : '' %>" <%= nav.id ? `id=${nav.id}` : '' %> href="<%= nav.link %>" aria-label="<%= __('nav.' + nav.text) %>">
@@ -16,7 +16,7 @@
             <span class="nav-text"><%= __('nav.' + nav.text) %></span>
           </a>
         </li>
-        <% }) %>
+        <% })} %>
         <% if (!user) { %>
           <li class="nav-item">
             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#authModal">
@@ -24,6 +24,28 @@
             </a>
           </li>
         <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link <%= currentRoute === "/dashboard" ? 'active' : '' %>"
+              id="dashboard"
+              href="/dashboard"
+              aria-label="<%= __('nav.account') %>">
+              <span
+                class="nav-icon"
+                data-bs-toggle="tooltip"
+                title="<%= __('nav.account') %>"
+                ><i class="bi bi-person-circle"></i>
+              </span>
+              <span class="nav-text"><%= __('dashboard.title') %></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="socialToggle" aria-label="<%= __('nav.social') %>">
+              <span class="nav-icon" data-bs-toggle="tooltip" title="<%= __('nav.social') %>">
+                <i class="bi bi-people-fill"></i>
+              </span>
+              <span class="nav-text"><%= __('nav.social') %></span>
+            </a>
+          </li>
           <li class="nav-item">
             <form action="/auth/logout" method="POST" class="d-inline">
               <button type="submit" class="btn btn-link nav-link" data-bs-toggle="tooltip" title="<%= __('auth.logout') %>">
@@ -56,6 +78,6 @@
         </li>
       </ul>
     </div>
-    <% } %>
+
   </div>
 </nav>
