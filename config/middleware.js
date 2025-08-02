@@ -11,6 +11,7 @@ import { initializePassport } from '../middlewares/passport.js';
 import { initRestrictRoute } from '../middlewares/ensureAuthenticated.js';
 import { i18nMiddleware } from '../middlewares/i18n.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
+import { socialMiddleware } from '../middlewares/social.js';
 import { customMiddlewares } from '../middlewares/custom.js';
 
 const applyMiddlewares = (app) => {
@@ -19,6 +20,7 @@ const applyMiddlewares = (app) => {
 	sessionMiddleware(app);
 	flashMiddleware(app);
 	i18nMiddleware(app);
+	socialMiddleware(app);
 	navBarMiddleware(app);
 	bodyParsers(app);
 	initializePassport(app);

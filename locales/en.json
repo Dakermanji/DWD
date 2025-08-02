@@ -241,7 +241,7 @@
 		"notifications": "Notifications",
 		"followers": "Followers",
 		"following": "Following",
-		"requests": "Follow Requests",
-		"blocked": "Blocked Users"
+		"blocked": "Blocked Users",
+		"request_to_follow": "Request to follow"
 	}
 }

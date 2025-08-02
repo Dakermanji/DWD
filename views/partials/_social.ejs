@@ -27,5 +27,23 @@
 			</li>
 			<% }) %>
 		</ul>
+		<form id="followRequestForm" class="mt-auto pt-3 border-top">
+			<label for="followRequestInput" class="form-label">
+				<%= __('social.request_to_follow') %>
+			</label>
+			<div class="input-group">
+				<input
+					type="text"
+					id="followRequestInput"
+					name="username"
+					class="form-control"
+					placeholder="<%= __('auth.identifier') %>"
+					autocomplete="off"
+				/>
+				<button class="btn btn-outline-primary" type="submit">
+					<i class="bi bi-person-plus"></i>
+				</button>
+			</div>
+		</form>
 	</div>
 </aside>

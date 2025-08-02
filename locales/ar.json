@@ -239,7 +239,7 @@
 		"notifications": "الإشعارات",
 		"followers": "المتابعون",
 		"following": "المتابَعون",
-		"requests": "طلبات المتابعة",
-		"blocked": "المستخدمون المحظورون"
+		"blocked": "المستخدمون المحظورون",
+		"request_to_follow": "طلب متابعة"
 	}
 }

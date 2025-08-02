@@ -239,7 +239,7 @@
 		"notifications": "Notifications",
 		"followers": "Abonnés",
 		"following": "Abonnements",
-		"requests": "Demandes d’abonnement",
-		"blocked": "Utilisateurs bloqués"
+		"blocked": "Utilisateurs bloqués",
+		"request_to_follow": "Demande d'abonnement"
 	}
 }

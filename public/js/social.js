@@ -50,3 +50,16 @@ groupHeader.forEach((header) => {
 		}
 	});
 });
+
+// TODO: Submit a real request
+const followForm = document.getElementById('followRequestForm');
+if (followForm) {
+	followForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const input = document.getElementById('followRequestInput');
+		if (input?.value.trim()) {
+			alert(`Follow request sent to: ${input.value.trim()}`);
+			input.value = '';
+		}
+	});
+}
