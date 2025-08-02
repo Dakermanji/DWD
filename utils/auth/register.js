@@ -1,11 +1,14 @@
 //! utils/auth/register.js
 
+import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import {
 	findUserByEmail,
 	createUserWithEmail,
 	incrementTokenRequestCount,
 	updateToken,
+	findUserByToken,
+	setUsernameAndPassword,
 } from '../../models/user.js';
 import env from '../../config/dotenv.js';
 import { sendSignupEmail } from '../email.js';
@@ -49,4 +52,31 @@ function getConfirmUrl(token) {
 		return `${env.HOST}:${env.PORT}/auth/register/confirm/${token}`;
 	}
 	return `${env.HOST}/auth/register/confirm/${token}`;
+}
+
+export async function handleTokenBasedAccountCompletion(
+	token,
+	username,
+	password
+) {
+	const user = await findUserByToken(token);
+	if (
+		!user ||
+		user.blocked ||
+		user.hashed_password ||
+		user.token_request_count >= 10
+	) {
+		throw new Error('auth.invalid_or_expired_token');
+	}
+
+	const hashedPassword = await bcrypt.hash(password, 12);
+	await setUsernameAndPassword(user.id, username, hashedPassword);
+	return user.id;
+}
+
+export function handleTakenUsername(req, res, token) {
+	req.flash('error', 'auth.username_taken');
+	req.session.showSetUsernameModal = true;
+	req.session.authContext = { type: token ? 'local' : 'oauth' };
+	return res.redirect('/');
 }

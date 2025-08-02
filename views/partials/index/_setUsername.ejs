@@ -21,60 +21,23 @@
 			</div>
 
 			<div class="modal-body">
+				<% if (typeof token !== 'undefined') { %>
+				<!-- 🔐 Email signup -->
 				<form action="/auth/complete" method="POST">
-					<input type="hidden" name="token" value="<%= token %>" />
-
-					<div class="mb-3">
-						<label for="username" class="form-label"
-							><%= __('auth.choose_username') %></label
-						>
-						<input
-							type="text"
-							class="form-control"
-							id="username"
-							name="username"
-							required
-						/>
-					</div>
-
-					<div class="mb-3">
-						<label for="set-password" class="form-label"
-							><%= __('auth.password') %></label
-						>
-						<input
-							type="password"
-							class="form-control"
-							id="set-password"
-							name="password"
-							autocomplete="new-password"
-							required
-						/>
-						<div class="password-meter mt-2">
-							<div id="password-bar" class="password-bar"></div>
-						</div>
-					</div>
-
-					<div class="mb-3">
-						<label for="confirmPassword" class="form-label"
-							><%= __('auth.confirm_password') %></label
-						>
-						<input
-							type="password"
-							class="form-control"
-							id="confirmPassword"
-							name="confirmPassword"
-							autocomplete="new-password"
-							required
-						/>
-					</div>
-
-					<div class="d-grid">
-						<button type="submit" class="btn btn-primary">
-							<i class="bi bi-check2-circle me-1"></i> <%=
-							__('auth.save_and_continue') %>
-						</button>
-					</div>
+					<input
+						id="token"
+						type="hidden"
+						name="token"
+						value="<%= token %>"
+					/>
+					<%- include('_setUsernameWithPassword') %>
 				</form>
+				<% } else { %>
+				<!-- 🌐 OAuth -->
+				<form action="/auth/complete" method="POST">
+					<%- include('_setUsernameOnly') %>
+				</form>
+				<% } %>
 			</div>
 		</div>
 	</div>

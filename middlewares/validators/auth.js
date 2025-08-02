@@ -21,30 +21,28 @@ export function validateRegisterEmail(req, res, next) {
 }
 
 export function validateCompleteAccount(req, res, next) {
-	const { username, password, confirmPassword } = req.body;
+	const { username, password, confirmPassword, token } = req.body;
+
+	const fail = (flashKey, type = token ? 'local' : 'oauth') => {
+		req.flash('error', `auth.${flashKey}`);
+		req.session.showSetUsernameModal = true;
+		req.session.authContext = { type };
+		return res.redirect('/');
+	};
 
 	if (!username || !usernameRegex.test(username)) {
-		req.flash('error', 'auth.invalid_username');
-		req.session.showSetUsernameModal = true;
-		req.session.authContext = { type: 'local' };
-		return res.redirect('/');
+		return fail('invalid_username');
 	}
 
-	if (!passwordRegex.test(password)) {
-		req.flash('error', 'auth.weak_password');
-		req.session.showSetUsernameModal = true;
-		req.session.authContext = { type: 'local' };
-		return res.redirect('/');
+	if (token) {
+		if (!passwordRegex.test(password)) {
+			return fail('weak_password');
+		}
+		if (password !== confirmPassword) {
+			return fail('passwords_do_not_match');
+		}
 	}
 
-	if (password !== confirmPassword) {
-		req.flash('error', 'auth.passwords_do_not_match');
-		req.session.showSetUsernameModal = true;
-		req.session.authContext = { type: 'local' };
-		return res.redirect('/');
-	}
-
-	req.flash('success', 'auth.registeration_completed');
 	next();
 }
 

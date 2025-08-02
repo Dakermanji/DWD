@@ -23,14 +23,19 @@ export function checkProfanity(field) {
 
 			if (response.data?.isProfanity) {
 				req.flash('error', 'profanity');
-				// TODO: back to a good URL
-				return res.redirect('/');
+
+				if (req.originalUrl === '/auth/complete') {
+					req.session.token = req.body.token;
+					req.session.showSetUsernameModal = true;
+					return res.redirect('/');
+				} else {
+					return res.redirect(req.originalUrl);
+				}
 			}
 		} catch (err) {
 			console.error('Profanity check failed:', err.message);
 			return next(err);
 		}
-
 		next();
 	};
 }

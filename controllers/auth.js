@@ -1,9 +1,12 @@
 //! controllers/auth.js
 
 import passport from '../config/passport.js';
-import bcrypt from 'bcrypt';
 
-import { handleRegisterEmail } from '../utils/auth/register.js';
+import {
+	handleRegisterEmail,
+	handleTokenBasedAccountCompletion,
+	handleTakenUsername,
+} from '../utils/auth/register.js';
 import { resolveLoginUser, authenticateUser } from '../utils/auth/login.js';
 import {
 	handleResetRequest,
@@ -11,9 +14,7 @@ import {
 } from '../utils/auth/reset.js';
 import { respondWithFlashOrJson } from '../utils/respond.js';
 import {
-	findUserByUsername,
 	findUserByToken,
-	setUsernameAndPassword,
 	isUsernameTaken,
 	updateUsernameById,
 } from '../models/user.js';
@@ -95,33 +96,38 @@ export async function postCompleteAccount(req, res, next) {
 	const { username, password, token } = req.body;
 
 	try {
-		const existing = await findUserByUsername(username);
-		if (existing) {
-			req.flash('error', 'auth.username_taken');
-			req.session.showSetUsernameModal = true;
-			req.session.authContext = { type: 'local' };
+		const isTaken = await isUsernameTaken(username);
+		if (isTaken) {
+			return handleTakenUsername(req, res, token);
+		}
+
+		if (token) {
+			const userId = await handleTokenBasedAccountCompletion(
+				token,
+				username,
+				password
+			);
+			return req.login({ id: userId }, (err) => {
+				if (err) return next(err);
+				req.flash('success', 'auth.registeration_completed');
+				res.redirect('/');
+			});
+		}
+
+		if (req.user) {
+			await updateUsernameById(req.user.id, username);
+			req.session.showSetUsernameModal = false;
+			req.flash('success', 'auth.registeration_completed');
 			return res.redirect('/');
 		}
 
-		const user = await findUserByToken(token);
-		if (
-			!user ||
-			user.blocked ||
-			user.hashed_password ||
-			user.token_request_count >= 10
-		) {
-			req.flash('error', 'auth.invalid_or_expired_token');
-			return res.redirect('/');
-		}
-
-		const hashedPassword = await bcrypt.hash(password, 12);
-		await setUsernameAndPassword(user.id, username, hashedPassword);
-
-		req.login({ id: user.id }, (err) => {
-			if (err) return next(err);
-			res.redirect('/');
-		});
+		req.flash('error', 'auth.unauthorized_profile_completion');
+		return res.redirect('/');
 	} catch (err) {
+		if (err.message?.startsWith('auth.')) {
+			req.flash('error', err.message);
+			return res.redirect('/');
+		}
 		next(err);
 	}
 }

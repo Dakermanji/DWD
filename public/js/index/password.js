@@ -2,6 +2,7 @@
 
 const passwordInput = document.getElementById('set-password');
 const bar = document.getElementById('password-bar');
+const tokenEl = document.getElementById('token');
 
 const colors = [
 	'#c0392b', // very weak
@@ -26,17 +27,18 @@ function basicRequirements(password) {
 	);
 }
 
-passwordInput.addEventListener('input', () => {
-	const result = zxcvbn(passwordInput.value);
-	let score = result.score;
+if (tokenEl)
+	passwordInput.addEventListener('input', () => {
+		const result = zxcvbn(passwordInput.value);
+		let score = result.score;
 
-	if (
-		!basicRequirements(passwordInput.value) ||
-		isTooCommon(passwordInput.value)
-	) {
-		score = 1; // Override if weak
-	}
+		if (
+			!basicRequirements(passwordInput.value) ||
+			isTooCommon(passwordInput.value)
+		) {
+			score = 1; // Override if weak
+		}
 
-	bar.style.width = `${(score + 1) * 20}%`;
-	bar.style.backgroundColor = colors[score];
-});
+		bar.style.width = `${(score + 1) * 20}%`;
+		bar.style.backgroundColor = colors[score];
+	});
