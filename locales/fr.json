@@ -234,5 +234,12 @@
 		"reset_password": "Changer le mot de passe",
 		"projects_title": "Nos projets",
 		"projects_description": "Cette section présentera bientôt nos projets."
+	},
+	"social": {
+		"notifications": "Notifications",
+		"followers": "Abonnés",
+		"following": "Abonnements",
+		"requests": "Demandes d’abonnement",
+		"blocked": "Utilisateurs bloqués"
 	}
 }

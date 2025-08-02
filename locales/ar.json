@@ -234,5 +234,12 @@
 		"reset_password": "تغيير كلمة المرور",
 		"projects_title": "مشاريعنا",
 		"projects_description": "سيتم عرض مشاريعنا في هذا القسم قريبًا."
+	},
+	"social": {
+		"notifications": "الإشعارات",
+		"followers": "المتابعون",
+		"following": "المتابَعون",
+		"requests": "طلبات المتابعة",
+		"blocked": "المستخدمون المحظورون"
 	}
 }

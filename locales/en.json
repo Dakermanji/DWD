@@ -236,5 +236,12 @@
 		"reset_password": "Change Password",
 		"projects_title": "Our Projects",
 		"projects_description": "This section will showcase our projects soon."
+	},
+	"social": {
+		"notifications": "Notifications",
+		"followers": "Followers",
+		"following": "Following",
+		"requests": "Follow Requests",
+		"blocked": "Blocked Users"
 	}
 }

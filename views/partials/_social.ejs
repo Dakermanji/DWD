@@ -1,13 +1,31 @@
-<aside id="socialPanel" class="social-panel">
-	<!-- Header -->
+<aside id="socialPanel" class="social-panel d-flex flex-column">
 	<div class="social-header">
 		<h5><%= __('nav.social') %></h5>
 		<button id="closeSocialPanel" aria-label="Close">&times;</button>
 	</div>
 
-	<!-- Body with tabs -->
-	<div class="social-body">
-		<!-- Tabs here: Followers, Following, Requests, Blocked, etc. -->
-		<p>Coming soon...</p>
+	<div class="social-body d-flex flex-column flex-grow-1">
+		<ul class="social-sections d-flex flex-column flex-grow-1">
+			<% const sections = [ { key: 'notifications', icon: 'bi-bell' }, {
+			key: 'followers', icon: 'bi-person-check' }, { key: 'following',
+			icon: 'bi-person-plus' }, { key: 'requests', icon:
+			'bi-person-plus-fill' }, { key: 'blocked', icon: 'bi-person-x-fill'
+			}, ]; %> <% sections.forEach(({ key, icon }) => { %>
+			<li class="social-group flex-grow-0" data-section="<%= key %>">
+				<div
+					class="group-header d-flex align-items-center justify-content-between"
+				>
+					<div>
+						<i class="bi <%= icon %> me-2"></i>
+						<span><%= __('social.' + key) %></span>
+					</div>
+					<i class="bi bi-chevron-down toggle-icon"></i>
+				</div>
+				<ul class="group-content flex-grow-1">
+					<li class="px-2 py-1 text-muted">Coming soon...</li>
+				</ul>
+			</li>
+			<% }) %>
+		</ul>
 	</div>
 </aside>
