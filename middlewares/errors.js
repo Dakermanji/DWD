@@ -11,7 +11,13 @@ import AppError from '../utils/AppError.js';
 import logger from '../utils/logger.js';
 import env from '../config/dotenv.js';
 
+const IGNORED_PREFIXES = ['/.well-known/'];
+
 const notFound = (req, res, next) => {
+	if (IGNORED_PREFIXES.some((prefix) => req.originalUrl.startsWith(prefix))) {
+		return res.sendStatus(404);
+	}
+
 	next(new AppError(`Route not found: ${req.originalUrl}`, 404));
 };
 

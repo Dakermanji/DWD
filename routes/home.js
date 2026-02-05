@@ -1,0 +1,16 @@
+//! routes/home.js
+
+/**
+ * Home routes
+ * -----------
+ * Public-facing landing routes.
+ */
+
+import express from 'express';
+import renderHomePage from '../controllers/home.js';
+
+const router = express.Router();
+
+router.get('/', renderHomePage);
+
+export default router;

@@ -1,0 +1,29 @@
+<!-- views/layout.ejs -->
+<!doctype html>
+<html lang="<%= lang %>" dir="<%= dir %>">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title><%= t('app.name') %></title>
+	</head>
+	<body>
+		<nav>
+			<a href="/"><%= t('routes.home') %></a>
+			|
+			<a
+				href="/lang/en?returnTo=<%= encodeURIComponent(requestPath || '/') %>"
+				>EN</a
+			>
+			<a
+				href="/lang/fr?returnTo=<%= encodeURIComponent(requestPath || '/') %>"
+				>FR</a
+			>
+			<a
+				href="/lang/ar?returnTo=<%= encodeURIComponent(requestPath || '/') %>"
+				>AR</a
+			>
+		</nav>
+
+		<main> <%- body %> </main>
+	</body>
+</html>

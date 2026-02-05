@@ -9,21 +9,18 @@
 
 import express from 'express';
 import langRoutes from '../routes/lang.js';
+import homeRoutes from '../routes/home.js';
 
-// Create router instance
 const router = express.Router();
 
 /**
- * Base route
- * Currently used as a simple health / smoke test
- * and to verify i18n wiring.
+ * Public / base routes
+ * Includes the home page and simple smoke-test endpoints.
  */
-router.get('/', (req, res) => {
-	res.send(req.t('app.name'));
-});
+router.use('/', homeRoutes);
 
 /**
- * Language switch routes
+ * Language switching
  * Example:
  *   /lang/fr?returnTo=/
  *   /lang/ar?returnTo=/projects
