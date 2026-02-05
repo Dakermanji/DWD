@@ -9,8 +9,9 @@
  */
 
 import app from './config/express.js';
+import env from './config/dotenv.js';
 
 // Start the Express server and listen for incoming requests
-app.listen(3000, () => {
-	console.log('Server is running on localhost:3000');
+app.listen(env.PORT, () => {
+	console.log(`Server is running on ${env.SITE_URL}`);
 });

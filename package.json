@@ -34,6 +34,7 @@
 	},
 	"homepage": "https://github.com/Dakermanji/DWD#readme",
 	"dependencies": {
+		"dotenv": "^17.2.3",
 		"express": "^5.2.1"
 	}
 }
