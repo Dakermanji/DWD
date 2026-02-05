@@ -59,6 +59,8 @@ const env = {
 	HOST: optionalEnv('HOST', 'localhost'),
 	PORT: Number(optionalEnv('PORT', 3000)),
 	NODE_ENV: optionalEnv('NODE_ENV', 'development'),
+	SENTRY_DSN: optionalEnv('SENTRY_DSN', ''),
+	SENTRY_TRACES_SAMPLE_RATE: optionalEnv('SENTRY_TRACES_SAMPLE_RATE', '0.0'),
 };
 
 export default env;

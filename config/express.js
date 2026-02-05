@@ -14,6 +14,7 @@
  */
 
 import express from 'express';
+import * as Sentry from '@sentry/node';
 import router from './routes.js';
 import applyMiddlewares from './middleware.js';
 import { notFound, errorHandler } from '../middlewares/errors.js';
@@ -27,8 +28,16 @@ applyMiddlewares(app);
 // Register application routes
 app.use('/', router);
 
-// Error handling must be registered after routes
+// 404 creator (turns missing routes into errors)
 app.use(notFound);
+
+/**
+ * Sentry error handler should be registered before any other error middleware.
+ * This ensures Sentry captures errors, while our errorHandler still formats responses.
+ */
+Sentry.setupExpressErrorHandler(app);
+
+// Error handling must be registered after routes
 app.use(errorHandler);
 
 // Export the app to be used by the server entry point
