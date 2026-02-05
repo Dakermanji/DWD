@@ -1,3 +1,5 @@
+//! config/dotenv.js
+
 /**
  * Environment configuration loader
  * --------------------------------
@@ -52,7 +54,7 @@ function optionalEnv(key, defaultValue) {
  */
 const env = {
 	// Required variables (enable when needed)
-	// SESSION_SECRET: requireEnv('SESSION_SECRET'),
+	SESSION_SECRET: requireEnv('SESSION_SECRET'),
 
 	// Optional variables with defaults
 	SITE_URL: optionalEnv('SITE_URL', 'http://localhost:3000'),

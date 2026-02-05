@@ -14,6 +14,8 @@
 import expressMiddlewares from '../middlewares/express.js';
 import securityMiddlewares from '../middlewares/security.js';
 import cookieMiddlewares from '../middlewares/cookies.js';
+import flashMiddlewares from '../middlewares/flash.js';
+import sessionMiddlewares from '../middlewares/session.js';
 import i18nMiddlewares from '../middlewares/i18n.js';
 import ejsMiddlewares from '../middlewares/ejs.js';
 import loggerMiddlewares from '../middlewares/logger.js';
@@ -37,6 +39,16 @@ const applyMiddlewares = (app) => {
 	 * Required for cookie-based language detection and future sessions.
 	 */
 	cookieMiddlewares(app);
+
+	/**
+	 * Sessions (MUST be before flash)
+	 */
+	sessionMiddlewares(app);
+
+	/**
+	 * Flash (adds req.flash)
+	 */
+	flashMiddlewares(app);
 
 	/**
 	 * Internationalization (i18n)

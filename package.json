@@ -35,11 +35,13 @@
 	"homepage": "https://github.com/Dakermanji/DWD#readme",
 	"dependencies": {
 		"@sentry/node": "^10.38.0",
+		"connect-flash": "^0.1.1",
 		"cookie-parser": "^1.4.7",
 		"dotenv": "^17.2.3",
 		"ejs": "^4.0.1",
 		"express": "^5.2.1",
 		"express-ejs-layouts": "^2.5.1",
+		"express-session": "^1.19.0",
 		"helmet": "^8.1.0",
 		"i18next": "^25.8.4",
 		"i18next-http-middleware": "^3.9.2",

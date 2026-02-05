@@ -9,7 +9,7 @@
 
 const renderHomePage = (req, res) => {
 	res.locals.requestPath = req.originalUrl;
-	res.render('home');
+	res.render('home', { title: 'home', styles: [], scripts: [] });
 };
 
 export default renderHomePage;
