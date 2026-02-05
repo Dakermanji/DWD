@@ -16,6 +16,7 @@
 import express from 'express';
 import router from './routes.js';
 import applyMiddlewares from './middleware.js';
+import { notFound, errorHandler } from '../middlewares/errors.js';
 
 // Create the Express application instance
 const app = express();
@@ -25,6 +26,10 @@ applyMiddlewares(app);
 
 // Register application routes
 app.use('/', router);
+
+// Error handling must be registered after routes
+app.use(notFound);
+app.use(errorHandler);
 
 // Export the app to be used by the server entry point
 export default app;

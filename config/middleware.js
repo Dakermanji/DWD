@@ -9,17 +9,15 @@
  * Keeps express.js clean and declarative.
  */
 
-import express from 'express';
+import expressMiddlewares from '../middlewares/express.js';
+import loggerMiddlewares from '../middlewares/logger.js';
 
 const applyMiddlewares = (app) => {
-	// Serve static assets (CSS, JS, images) from /public
-	app.use(express.static('public'));
+	// Core Express middleware
+	expressMiddlewares(app);
 
-	// Parse incoming JSON payloads
-	app.use(express.json());
-
-	// Parse URL-encoded payloads (forms)
-	app.use(express.urlencoded({ extended: true }));
+	// Logging & observability
+	loggerMiddlewares(app);
 };
 
 export default applyMiddlewares;
