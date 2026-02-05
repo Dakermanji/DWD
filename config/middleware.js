@@ -11,10 +11,14 @@
 
 import expressMiddlewares from '../middlewares/express.js';
 import loggerMiddlewares from '../middlewares/logger.js';
+import securityMiddlewares from '../middlewares/security.js';
 
 const applyMiddlewares = (app) => {
 	// Core Express middleware
 	expressMiddlewares(app);
+
+	// Security headers
+	securityMiddlewares(app);
 
 	// Logging & observability
 	loggerMiddlewares(app);
