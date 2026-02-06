@@ -60,6 +60,16 @@ const applyMiddlewares = (app) => {
 	i18nMiddlewares(app);
 
 	/**
+	 * Navigation
+	 * - Resolves page-specific navigation based on the current route
+	 * - Exposes nav items and active section to templates
+	 *
+	 * Notes:
+	 * - Runs after i18n so navigation labels can be translated in views.
+	 */
+	navBarMiddleware(app);
+
+	/**
 	 * Views (EJS + layouts)
 	 * Configures the template engine and layout system.
 	 * Must run after i18n so templates can use t/lang/dir.
