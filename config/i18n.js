@@ -19,6 +19,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { SUPPORTED_LANGUAGES } from './languages.js';
 
+// Locales' Folders
+const NAMESPACES = ['auth', 'common', 'dashboard', 'flash', 'footer', 'nav'];
+
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,11 +41,14 @@ const loadJson = (relativePath) => {
 };
 
 // Translation resources (namespace: "common")
-const resources = {
-	en: { common: loadJson('locales/en/common.json') },
-	fr: { common: loadJson('locales/fr/common.json') },
-	ar: { common: loadJson('locales/ar/common.json') },
-};
+const resources = Object.fromEntries(
+	SUPPORTED_LANGUAGES.map(({ code }) => [
+		code,
+		Object.fromEntries(
+			NAMESPACES.map((ns) => [ns, loadJson(`locales/${code}/${ns}.json`)])
+		),
+	])
+);
 
 // Enable language detection plugin (required for cookie/header detection)
 i18next.use(i18nextMiddleware.LanguageDetector);
@@ -59,7 +65,7 @@ await i18next.init({
 	fallbackLng: 'en',
 
 	defaultNS: 'common',
-	ns: ['common', 'flash'],
+	ns: NAMESPACES,
 
 	// EJS escapes output by default; we don't want double-escaping
 	interpolation: { escapeValue: false },

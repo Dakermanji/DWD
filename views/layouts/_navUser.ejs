@@ -4,16 +4,16 @@
 		class="nav-link <%= currentRoute === '/dashboard' ? 'active' : '' %>"
 		id="dashboard"
 		href="/dashboard"
-		aria-label="<%= t('nav.account') %>"
+		aria-label="<%= t('nav:account') %>"
 	>
 		<span
 			class="nav-icon"
 			data-bs-toggle="tooltip"
-			title="<%= t('nav.account') %>"
+			title="<%= t('nav:account') %>"
 		>
 			<i class="bi bi-person-circle"></i>
 		</span>
-		<span class="nav-text"><%= t('dashboard.title') %></span>
+		<span class="nav-text"><%= t('dashboard:title') %></span>
 	</a>
 </li>
 
@@ -22,16 +22,16 @@
 		href="#"
 		class="nav-link"
 		id="socialToggle"
-		aria-label="<%= t('nav.social') %>"
+		aria-label="<%= t('nav:social') %>"
 	>
 		<span
 			class="nav-icon"
 			data-bs-toggle="tooltip"
-			title="<%= t('nav.social') %>"
+			title="<%= t('nav:social') %>"
 		>
 			<i class="bi bi-people-fill"></i>
 		</span>
-		<span class="nav-text"><%= t('nav.social') %></span>
+		<span class="nav-text"><%= t('nav:social') %></span>
 	</a>
 </li>
 
@@ -41,10 +41,10 @@
 			type="submit"
 			class="btn btn-link nav-link"
 			data-bs-toggle="tooltip"
-			title="<%= t('auth.logout') %>"
+			title="<%= t('auth:logout') %>"
 		>
 			<i class="bi bi-box-arrow-right"></i>
-			<span class="nav-text"><%= t('auth.logout') %></span>
+			<span class="nav-text"><%= t('auth:logout') %></span>
 		</button>
 	</form>
 </li>
