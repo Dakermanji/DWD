@@ -17,8 +17,10 @@ import cookieMiddlewares from '../middlewares/cookies.js';
 import flashMiddlewares from '../middlewares/flash.js';
 import sessionMiddlewares from '../middlewares/session.js';
 import i18nMiddlewares from '../middlewares/i18n.js';
+import { navBarMiddleware } from '../middlewares/navBar.js';
 import ejsMiddlewares from '../middlewares/ejs.js';
 import loggerMiddlewares from '../middlewares/logger.js';
+import { customMiddlewares } from '../middlewares/custom.js';
 
 const applyMiddlewares = (app) => {
 	/**
@@ -69,6 +71,13 @@ const applyMiddlewares = (app) => {
 	 * Runs after i18n so logs can include language/context later if needed.
 	 */
 	loggerMiddlewares(app);
+
+	/**
+	 * Application-level custom middleware
+	 * - Enforces HTTPS in production
+	 * - Injects shared view locals (user, route, languages)
+	 */
+	customMiddlewares(app);
 };
 
 export default applyMiddlewares;
