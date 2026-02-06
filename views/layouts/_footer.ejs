@@ -1,0 +1,19 @@
+<!-- views/layouts/_footer.ejs -->
+<footer class="bg-dark" id="footer" role="contentinfo">
+	<div class="container text-center">
+		<p class="mb-0">
+			&copy; <%= new Date().getFullYear() %> <%- include('_company_name')
+			%>. <%= t('footer.rights') %>
+		</p>
+
+		<a
+			href="#top"
+			class="d-block mt-2"
+			id="back-to-top"
+			aria-label="<%= t('footer.backToTop') %>"
+		>
+			<i class="bi bi-arrow-up-circle"></i>
+			<%= t('footer.backToTop') %>
+		</a>
+	</div>
+</footer>

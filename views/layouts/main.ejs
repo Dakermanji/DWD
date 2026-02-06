@@ -3,7 +3,7 @@
 <html lang="<%= lang %>" dir="<%= dir %>">
 	<%- include('_head') %>
 
-	<body>
+	<body id="top">
 		<%- include('_flash') %>
 
 		<!-- Header -->
@@ -13,6 +13,7 @@
 		<main class="container"> <%- body %> </main>
 
 		<!-- Footer (future partial) -->
+		<%- include('_footer') %>
 
 		<!-- Generic i18n strings for client-side scripts -->
 		<%- include('_i18n') %>
