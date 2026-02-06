@@ -33,8 +33,13 @@ export const customMiddlewares = (app) => {
 
 	// 📌 Set view locals
 	app.use((req, res, next) => {
+		// Route path without query params (for active states)
 		res.locals.currentRoute = req.path;
+		// Full URL including query params (for redirects / returnTo)
+		res.locals.currentUrl = req.originalUrl;
+		// User
 		res.locals.user = req.user || null;
+		// Supported Languages
 		res.locals.supportedLanguages = SUPPORTED_LANGUAGES;
 		next();
 	});
