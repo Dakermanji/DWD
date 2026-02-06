@@ -1,0 +1,20 @@
+<!-- views/layouts/_navLang.ejs -->
+<li class="nav-item dropdown">
+  <a class="nav-link" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <% const currentLang = supportedLanguages.find(l => l.code === lang); %>
+    <img src="/images/flags/<%= currentLang?.flag || 'ca' %>.svg" alt="<%= lang.toUpperCase() %>" width="20" height="15" class="mx-1">
+    <%= lang === 'ar' ? 'عربي' : lang.toUpperCase() %>
+  </a>
+
+  <ul class="lang dropdown-menu <%= lang === 'ar' ? 'dropdown-menu-start' : 'dropdown-menu-end' %>" aria-labelledby="langDropdown">
+    <% supportedLanguages.forEach(l => { %>
+      <li class="lang">
+        <a class="dropdown-item d-flex justify-content-between" href="/lang/<%= l.code %>?returnTo=<%= encodeURIComponent(currentUrl) %>">
+          <span><img src="/images/flags/<%= l.flag %>.svg" alt="<%= l.code.toUpperCase() %>" width="20" height="15" class="me-1"></span>
+          <span><%= l.name %></span>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</li>
+
