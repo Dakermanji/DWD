@@ -1,0 +1,110 @@
+/*! public/css/root.css */
+
+/* Root Variables */
+:root {
+    /* Colors */
+    --color-primary: #ff7f27;
+    --color-primary-dark: #fa6806;
+    --color-secondary: #4db6ac;
+    --color-secondary-dark: #00897b;
+    --color-tertiary: #6c757d;
+    --color-tertiary-dark: #495057;
+    --color-dark: #222;
+    --color-link: #1d57ad;
+    --color-projects: #575d88;
+    --color-text-body: #444;
+    --color-bg-modal: #eee;
+
+    /* Fonts */
+    --font-family-headers: 'Poppins', sans-serif;
+    --font-family-body: 'Roboto', sans-serif;
+
+    /* Misc */
+    --transition-duration: 0.4s;
+}
+
+/* Global Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-body);
+    font-weight: 400;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-family-headers);
+    font-weight: 600;
+}
+
+body,
+html {
+    margin: 0;
+}
+
+/* Main Container */
+main.container {
+    flex: 1;
+    padding: 2rem;
+    margin-top: 3rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    max-width: 100%;
+}
+
+/* Utility Classes */
+.orange {
+    color: var(--color-primary);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+}
+
+[dir="rtl"] .modal-header .modal-title {
+    text-align: right;
+    flex: 1;
+}
+
+/* Flash messages */
+.flash-message {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    /* above most content */
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    opacity: 0.95;
+    padding: 1rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#notifications-list {
+    min-width: 340px;
+    max-width: 420px;
+}
