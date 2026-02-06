@@ -17,6 +17,7 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { SUPPORTED_LANGUAGES } from './languages.js';
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -50,7 +51,8 @@ await i18next.init({
 	// Keep language resolution predictable (e.g. "fr-CA" -> "fr")
 	load: 'languageOnly',
 
-	supportedLngs: ['en', 'fr', 'ar'],
+	// Supported Languages:
+	supportedLngs: SUPPORTED_LANGUAGES.map((l) => l.code), //example: ['ar', 'en', 'fr']
 	nonExplicitSupportedLngs: true,
 
 	resources,
