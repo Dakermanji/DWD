@@ -32,7 +32,7 @@ const ejsMiddlewares = (app) => {
 	 * - views/layout.ejs           -> 'layout'
 	 * - views/layouts/main.ejs     -> 'layouts/main'
 	 */
-	app.set('layout', 'layout');
+	app.set('layout', 'layouts/main');
 };
 
 export default ejsMiddlewares;

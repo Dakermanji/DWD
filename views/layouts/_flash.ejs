@@ -1,0 +1,12 @@
+<!-- views/layouts/_flash.ejs -->
+<% if (flash?.success?.length) { %>
+    <div class="flash-message alert alert-success mb-0 rounded-0">
+    <%= flash.success[0] %>
+    </div>
+<% } %>
+
+<% if (flash?.error?.length) { %>
+    <div class="flash-message alert alert-danger mb-0 rounded-0">
+    <%= flash.error[0] %>
+    </div>
+<% } %>
