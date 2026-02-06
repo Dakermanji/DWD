@@ -1,17 +1,19 @@
 <!-- views/layouts/main.ejs -->
 <!DOCTYPE html>
 <html lang="<%= lang %>" dir="<%= dir %>">
-	<%- include('./_head') %>
+	<%- include('_head') %>
 
 	<body>
-		<%- include('./_flash') %>
+		<%- include('_flash') %>
+
 		<!-- Header (future partial) -->
 
+		<!-- Body (main contents) -->
 		<main class="container"> <%- body %> </main>
 
 		<!-- Footer (future partial) -->
 
 		<!-- Generic i18n strings for client-side scripts -->
-		<%- include('./_i18n') %>
+		<%- include('_i18n') %>
 	</body>
 </html>

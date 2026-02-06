@@ -57,7 +57,7 @@ await i18next.init({
 	fallbackLng: 'en',
 
 	defaultNS: 'common',
-	ns: ['common'],
+	ns: ['common', 'flash'],
 
 	// EJS escapes output by default; we don't want double-escaping
 	interpolation: { escapeValue: false },
