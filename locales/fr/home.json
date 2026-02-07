@@ -94,5 +94,25 @@
 				}
 			]
 		}
+	},
+	"services": {
+		"title": "Mes services",
+		"items": [
+			{
+				"icon": "bi-diagram-3",
+				"title": "Intégration et développement d'API",
+				"description": "Je suis spécialisé dans le développement et l'intégration d'APIs permettant à vos applications de communiquer de manière fluide avec d'autres services. Que vous ayez besoin d'APIs sur mesure ou d'une intégration tierce, je garantis un échange de données fiable et efficace."
+			},
+			{
+				"icon": "bi-database-check",
+				"title": "Gestion de bases de données",
+				"description": "Je propose des solutions de gestion de bases de données efficaces et sécurisées, assurant que vos données soient bien organisées, facilement accessibles et protégées. Les services incluent la conception, l'optimisation et la maintenance continue des bases de données pour soutenir vos besoins opérationnels."
+			},
+			{
+				"icon": "bi-braces-asterisk",
+				"title": "Développement backend",
+				"description": "Je conçois et mets en œuvre des systèmes backend robustes et évolutifs qui assurent un fonctionnement fluide et efficace de vos applications. Mon expertise comprend le développement d'APIs, la gestion des bases de données et la création de logique côté serveur pour répondre à divers besoins métier."
+			}
+		]
 	}
 }
