@@ -114,5 +114,35 @@
 				"description": "أصمم وأنفذ أنظمة خلفية قوية وقابلة للتوسع تضمن تشغيل تطبيقاتك بسلاسة وكفاءة. تشمل خبرتي تطوير APIs، إدارة قواعد البيانات، وإنشاء منطق الخادم لتلبية مختلف المتطلبات التجارية."
 			}
 		]
+	},
+	"portfolio": {
+		"title": "أعمالي",
+		"items": [
+			{
+				"img": "weather_app_ar.jpg",
+				"title": "تطبيق الطقس",
+				"description": "تم تطويره باستخدام Express و EJS و Weather API",
+				"link": "weather"
+			},
+			{
+				"img": "chat_app_ar.jpg",
+				"title": "تطبيق الدردشة",
+				"description": "تم تطويره باستخدام Express و Socket.io و Bcrypt و MySQL",
+				"link": "chat_app"
+			},
+			{
+				"img": "visited_countries_ar.jpg",
+				"title": "الدول التي زرتها",
+				"description": "تم تطويره باستخدام Express و Bcrypt و MySQL و Nodemailer والمزيد",
+				"link": "visited_countries"
+			},
+			{
+				"img": "book_reviews_ar.jpg",
+				"title": "مراجعات الكتب",
+				"description": "تم تطويره باستخدام MySQL و OpenLibrary API",
+				"link": "books"
+			}
+		],
+		"see_more_btn": "عرض المزيد"
 	}
 }

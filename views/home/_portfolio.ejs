@@ -1,1 +1,40 @@
 <!-- views/home/_portfolio.ejs -->
+
+<section id="portfolio">
+	<div class="container">
+		<h2 class="text-center mb-5"><%= t('home:portfolio.title') %></h2>
+
+		<%
+			const portfolio = t('home:portfolio.items');
+			const items = Array.isArray(portfolio) ? portfolio : [];
+		%>
+
+		<div class="work-list">
+			<% items.forEach((item) => { %>
+				<div class="work text-center">
+					<a href="/<%= item.link %>">
+						<h4 class="mb-4 mt-3"><%= item.title %></h4>
+
+						<img
+							src="/images/index/projects/<%= item.img %>"
+							alt="<%= t('screenshot_of', { title: item.title }) %>"
+							loading="lazy"
+							decoding="async"
+						/>
+					</a>
+				</div>
+			<% }) %>
+		</div>
+
+		<div class="text-center mt-4">
+			<button
+				id="see-more-btn"
+				class="btn"
+				aria-label="<%= t('home:portfolio.see_more_btn') %>"
+				type="button"
+			>
+				<%= t('home:portfolio.see_more_btn') %>
+			</button>
+		</div>
+	</div>
+</section>

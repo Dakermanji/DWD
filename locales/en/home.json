@@ -114,5 +114,35 @@
 				"description": "I design and implement robust, scalable backend systems that ensure smooth, efficient operations for your applications. My expertise includes developing APIs, managing databases, and creating server-side logic to meet diverse business requirements."
 			}
 		]
+	},
+	"portfolio": {
+		"title": "My Work",
+		"items": [
+			{
+				"img": "weather_app_en.jpg",
+				"title": "Weather App",
+				"description": "Built with Express, EJS, and Weather API",
+				"link": "weather"
+			},
+			{
+				"img": "chat_app_en.jpg",
+				"title": "Chat App",
+				"description": "Built with Express, Socket.io, Bcrypt, and MySQL",
+				"link": "chat_app"
+			},
+			{
+				"img": "visited_countries_en.jpg",
+				"title": "Visited Countries",
+				"description": "Built with Express, Bcrypt, MySQL, Nodemailer, and more",
+				"link": "visited_countries"
+			},
+			{
+				"img": "book_reviews_en.jpg",
+				"title": "Book Reviews",
+				"description": "Built with MySQL and OpenLibrary API",
+				"link": "books"
+			}
+		],
+		"see_more_btn": "See More"
 	}
 }

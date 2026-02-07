@@ -114,5 +114,35 @@
 				"description": "Je conçois et mets en œuvre des systèmes backend robustes et évolutifs qui assurent un fonctionnement fluide et efficace de vos applications. Mon expertise comprend le développement d'APIs, la gestion des bases de données et la création de logique côté serveur pour répondre à divers besoins métier."
 			}
 		]
+	},
+	"portfolio": {
+		"title": "Mes réalisations",
+		"items": [
+			{
+				"img": "weather_app_fr.jpg",
+				"title": "Application Météo",
+				"description": "Développée avec Express, EJS et Weather API",
+				"link": "weather"
+			},
+			{
+				"img": "chat_app_fr.jpg",
+				"title": "Application de Chat",
+				"description": "Développée avec Express, Socket.io, Bcrypt et MySQL",
+				"link": "chat_app"
+			},
+			{
+				"img": "visited_countries_fr.jpg",
+				"title": "Pays Visités",
+				"description": "Développée avec Express, Bcrypt, MySQL, Nodemailer et plus",
+				"link": "visited_countries"
+			},
+			{
+				"img": "book_reviews_fr.jpg",
+				"title": "Critiques de Livres",
+				"description": "Développée avec MySQL et OpenLibrary API",
+				"link": "books"
+			}
+		],
+		"see_more_btn": "Voir plus"
 	}
 }

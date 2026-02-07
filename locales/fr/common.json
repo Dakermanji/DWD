@@ -2,5 +2,5 @@
 	"app": {
 		"name": "Dakermanji {Dév Web}"
 	},
-	"home": "Accueil"
+	"screenshot_of": "Capture d’écran de {{title}}"
 }
