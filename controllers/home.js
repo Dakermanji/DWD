@@ -11,8 +11,8 @@ const renderHomePage = (req, res) => {
 	res.locals.requestPath = req.originalUrl;
 	res.render('home/main', {
 		titleKey: 'nav:home',
-		styles: ['home/main', 'home/hero'],
-		scripts: ['home/selectors', 'home/background'],
+		styles: ['home/main', 'home/hero', 'home/about'],
+		scripts: ['home/selectors', 'home/background', 'home/about'],
 	});
 };
 

@@ -1,4 +1,5 @@
 //! public/js/main/selectors.js
+
 /**
  * Global DOM selectors shared across Home page.
  * Loaded early to provide common layout references.
@@ -9,3 +10,7 @@ const main = document.querySelector('main');
 
 // Background overlay used for visual effects
 const overlay = main?.querySelector('.background-overlay');
+
+// About section tabs
+const tabLinks = document.querySelectorAll('.tab-links');
+const tabContents = document.querySelectorAll('.tab-contents');

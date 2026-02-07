@@ -65,6 +65,9 @@ await i18next.init({
 	// Keep language resolution predictable (e.g. "fr-CA" -> "fr")
 	load: 'languageOnly',
 
+	// Allow reurning objects
+	returnObjects: true,
+
 	// Supported Languages:
 	supportedLngs: SUPPORTED_LANGUAGES.map((l) => l.code), //example: ['ar', 'en', 'fr']
 	nonExplicitSupportedLngs: true,

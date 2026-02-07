@@ -43,3 +43,13 @@ h1 {
     margin-left: 5px;
     border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+    main>.background-overlay {
+        display: none;
+    }
+
+    .role {
+        color: black;
+    }
+}
