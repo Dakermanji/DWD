@@ -1,1 +1,92 @@
 <!-- views/home/_about.ejs -->
+<section id="about">
+	<div class="container">
+		<h2 class="text-center mb-5"><%= t('home:about.title') %></h2>
+
+		<div class="row">
+			<!-- Left: About image -->
+			<div class="about-col-1 text-center">
+				<img
+					src="/images/index/humanoid-robot.png"
+					alt="<%= t('home:about.image') %>"
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+
+			<!-- Right: About content -->
+			<div class="about-col-2 about-background">
+				<!-- About description paragraphs -->
+				<% t('home:about.description').forEach((paragraph) => { %>
+					<p><%= paragraph %></p>
+				<% }) %>
+
+				<!-- Tabs -->
+				<%
+					const tabTitles = t('home:about.tabs.titles');
+					const tabsOrder = ['experience', 'skills', 'education'];
+				%>
+
+				<div class="tab-titles" role="tablist" aria-label="<%= t('home:about.title') %>">
+					<% tabsOrder.forEach((tab) => { %>
+						<p
+							class="tab-links <%= tab === 'experience' ? 'active' : '' %>"
+							data-tab="<%= tab %>"
+							role="tab"
+							aria-selected="<%= tab === 'experience' ? 'true' : 'false' %>"
+						>
+							<%= tabTitles[tab] %>
+						</p>
+					<% }) %>
+				</div>
+
+				<!-- Tab contents -->
+				<% tabsOrder.forEach((tab) => { %>
+					<% const contents = t('home:about.tabs.' + tab); %>
+
+					<div
+						id="<%= tab %>"
+						class="tab-contents <%= tab === 'experience' ? 'active-tab' : '' %>"
+						role="tabpanel"
+					>
+						<% if (tab === 'experience') { %>
+							<ul>
+								<% contents.forEach((item) => { %>
+									<li>
+										<span><%= item.period %></span><br />
+										<%- item.role_company %><br />
+
+										<% if (item.location) { %>
+											<address><%= item.location %></address>
+										<% } %>
+									</li>
+								<% }) %>
+							</ul>
+
+						<% } else if (tab === 'skills') { %>
+							<ul>
+								<% contents.forEach((skill) => { %>
+									<li>
+										<span><%= skill.name %></span><br />
+										<%= skill.description %>
+									</li>
+								<% }) %>
+							</ul>
+
+						<% } else if (tab === 'education') { %>
+							<ul>
+								<% contents.forEach((edu) => { %>
+									<li>
+										<span><%= edu.year %></span><br />
+										<%= edu.title %><br />
+										<address><%= edu.institution %></address>
+									</li>
+								<% }) %>
+							</ul>
+						<% } %>
+					</div>
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</section>
