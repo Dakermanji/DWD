@@ -143,6 +143,10 @@
 				"link": "books"
 			}
 		],
+		"under_construction": {
+			"title": "Chantier en Cours",
+			"alt": "Illustration mignonne d’un ouvrier avec un panneau chantier en cours"
+		},
 		"see_more_btn": "Voir plus"
 	}
 }

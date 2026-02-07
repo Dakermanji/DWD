@@ -143,6 +143,10 @@
 				"link": "books"
 			}
 		],
+		"under_construction": {
+			"title": "Under Consitruction",
+			"alt": "Cute construction worker illustration with an under construction sign"
+		},
 		"see_more_btn": "See More"
 	}
 }

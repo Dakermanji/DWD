@@ -1,0 +1,115 @@
+/*! public/css/home/portfolio.css */
+
+#portfolio {
+    padding: 5rem;
+}
+
+#portfolio h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    gap: 50px;
+    justify-content: center;
+}
+
+.work {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    position: relative;
+    opacity: 0;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease, max-height var(--transition-duration) ease;
+}
+
+.work.visible {
+    opacity: 1;
+    max-height: 500px;
+    transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
+    transform: translateY(0) scale(1.05);
+}
+
+.work a {
+    text-decoration: none;
+}
+
+.work a:focus {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 5px;
+}
+
+.work h4 {
+    color: var(--color-primary);
+    font-weight: bold;
+    transition: color var(--transition-duration) ease;
+}
+
+.work img {
+    width: 100%;
+    /* height: 100%; */
+    height: auto;
+    display: block;
+    transition: transform var(--transition-duration) ease;
+    object-fit: cover;
+}
+
+.work:hover img {
+    transform: scale(1.05);
+}
+
+.work:hover h4 {
+    color: var(--color-secondary-dark);
+}
+
+#see-more-btn,
+#contact .btn {
+    color: white;
+    border: none;
+    background-color: var(--color-secondary);
+    transition: background-color var(--transition-duration) ease;
+}
+
+#see-more-btn:hover,
+#contact .btn:hover {
+    background-color: var(--color-secondary-dark);
+}
+
+#see-more-btn:focus,
+#contact .btn:focus {
+    outline: 2px solid var(--color-secondary-dark);
+    outline-offset: 3px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #portfolio h2 {
+        font-size: 2rem;
+    }
+
+    #portfolio h4 {
+        font-size: 1.3rem;
+    }
+
+    #portfolio .work p {
+        font-size: 0.8rem;
+    }
+
+    .work-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .work-list {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 200px));
+        gap: 5px;
+    }
+}

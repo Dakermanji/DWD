@@ -14,3 +14,8 @@ const overlay = main?.querySelector('.background-overlay');
 // About section tabs
 const tabLinks = document.querySelectorAll('.tab-links');
 const tabContents = document.querySelectorAll('.tab-contents');
+
+// Portfolio section
+const workContainer = document.querySelector('.work-list');
+const projects = document.querySelectorAll('.work');
+const seeMoreBtn = document.querySelector('#see-more-btn');
