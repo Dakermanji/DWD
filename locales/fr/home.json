@@ -2,6 +2,97 @@
 	"hero": {
 		"canadaFlag": "Drapeau du Canada",
 		"intro": "Bonjour, je suis Behnam <span class='orange'>D</span>akermanji du Canada",
-		"role": "Développeur <span class='orange>W</span>eb <span class='orange'>F</span>ull Stack"
+		"role": "Développeur <span class='orange'>W</span>eb <span class='orange'>F</span>ull Stack"
+	},
+	"about": {
+		"title": "À propos de moi",
+		"image": "Robot humanoïde travaillant sur un PC",
+		"description": [
+			"Bonjour ! Je suis Behnam Dakermanji, un développeur web passionné avec un parcours unique. Originaire de Syrie, j'ai émigré au Canada en 2019 en raison de la guerre. Bien que j'aie été médecin en Syrie, ma véritable passion a toujours été la programmation. J'ai commencé mon parcours en suivant des cours en ligne sur des plateformes comme Udemy et edX, et j'ai depuis obtenu trois diplômes en programmation web de l'Université Concordia.",
+			"Mon expérience professionnelle comprend un poste de consultant informatique dans une école de conduite à Montréal et, actuellement, un poste de testeur de jeux chez Keywords Studios. Le soir, je mets ma créativité et mes compétences au service de projets en freelance. J'adore résoudre des problèmes complexes et créer des expériences utilisateur fluides. Construisons quelque chose d'incroyable ensemble !"
+		],
+		"tabs": {
+			"titles": {
+				"experience": "Expérience",
+				"skills": "Compétences",
+				"education": "Éducation"
+			},
+			"experience": [
+				{
+					"period": "2021 - actuel",
+					"role_company": "Consultant informatique pour <strong><em>École de Conduite Expertise</em></strong>",
+					"location": "Montréal, QC, Canada"
+				},
+				{
+					"period": "2019 - actuel",
+					"role_company": "Freelance pour <strong><em>divers petits projets</em></strong>"
+				}
+			],
+			"skills": [
+				{
+					"name": "HTML/CSS",
+					"description": "Maîtrise de HTML5 et CSS3, avec expertise dans la structuration et le style des pages web pour créer des designs attrayants et conviviaux."
+				},
+				{
+					"name": "JavaScript",
+					"description": "Maîtrise de JavaScript, y compris des frameworks et bibliothèques modernes comme React, Angular, Vue.js et Express. Expérience dans l'utilisation de modèles JavaScript comme EJS pour créer des applications web dynamiques et réactives."
+				},
+				{
+					"name": "Développement Backend",
+					"description": "Compétence en langages côté serveur, notamment Node.js, avec des notions de PHP, Java et Python. Expérience dans la construction de systèmes backend robustes et évolutifs."
+				},
+				{
+					"name": "Gestion de bases de données",
+					"description": "Expérience avec des bases de données comme MySQL, MongoDB et PostgreSQL, garantissant un stockage et une récupération efficaces des données."
+				},
+				{
+					"name": "Conception Responsive",
+					"description": "Compétent dans la création de designs responsives qui s'adaptent parfaitement à divers appareils et tailles d'écran, améliorant l'expérience utilisateur."
+				},
+				{
+					"name": "Contrôle de version",
+					"description": "Maîtrise de Git pour le contrôle de version, avec expérience sur des plateformes comme GitHub et Bitbucket pour le développement collaboratif."
+				},
+				{
+					"name": "APIs",
+					"description": "Bonne connaissance de l'intégration de services tiers via des APIs RESTful et SOAP, assurant un échange de données fluide et efficace."
+				},
+				{
+					"name": "Tests & Débogage",
+					"description": "Aptitude à utiliser des outils comme Chrome DevTools pour des tests et débogages approfondis, garantissant des applications de haute qualité et sans bogues."
+				},
+				{
+					"name": "Microsoft Excel",
+					"description": "Compétent dans la création et la gestion de feuilles de calcul pour l'analyse et le reporting de données, en utilisant des fonctions avancées d'Excel."
+				}
+			],
+			"education": [
+				{
+					"year": "2023",
+					"title": "Diplôme en programmation web",
+					"institution": "Université Concordia, Canada"
+				},
+				{
+					"year": "2022",
+					"title": "Diplôme en développement d'applications PHP/MySQL",
+					"institution": "Université Concordia, Canada"
+				},
+				{
+					"year": "2021",
+					"title": "Diplôme en développement de programmation web",
+					"institution": "Université Concordia, Canada"
+				},
+				{
+					"year": "2021",
+					"title": "Certificat en fondamentaux de la programmation avec Java",
+					"institution": "Université Concordia, Canada"
+				},
+				{
+					"year": "2015",
+					"title": "Doctorat en médecine (MD)",
+					"institution": "Université de Kalamoon, Syrie"
+				}
+			]
+		}
 	}
 }
