@@ -12,7 +12,7 @@ const renderHomePage = (req, res) => {
 	res.render('home/main', {
 		titleKey: 'nav:home',
 		styles: ['home/main', 'home/hero'],
-		scripts: [],
+		scripts: ['home/selectors', 'home/background'],
 	});
 };
 
