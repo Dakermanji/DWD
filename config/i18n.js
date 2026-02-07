@@ -20,7 +20,15 @@ import { fileURLToPath } from 'url';
 import { SUPPORTED_LANGUAGES } from './languages.js';
 
 // Locales' Folders
-const NAMESPACES = ['auth', 'common', 'dashboard', 'flash', 'footer', 'nav'];
+const NAMESPACES = [
+	'auth',
+	'common',
+	'dashboard',
+	'flash',
+	'footer',
+	'home',
+	'nav',
+];
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
