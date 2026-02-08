@@ -1,0 +1,26 @@
+-- sql/1_users.sql
+CREATE TABLE users (
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+    username VARCHAR(50) NULL,
+    email VARCHAR(100) NOT NULL,
+    hashed_password VARCHAR(255) DEFAULT NULL,
+    google_id VARCHAR(255) DEFAULT NULL,
+    github_id VARCHAR(255) DEFAULT NULL,
+    is_blocked BOOLEAN NOT NULL DEFAULT FALSE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+    bad_login_attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    visibility_status ENUM('live', 'invisible', 'busy', 'away', 'dnd') NOT NULL DEFAULT 'live',
+    token_hash VARCHAR(255) DEFAULT NULL,
+    token_expires_at DATETIME DEFAULT NULL,
+    token_request_count INT NOT NULL DEFAULT 0,
+    last_login_at DATETIME DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uniq_users_email (email),
+    UNIQUE KEY uniq_users_username (username),
+    UNIQUE KEY uniq_users_google (google_id),
+    UNIQUE KEY uniq_users_github (github_id),
+    KEY idx_users_last_login (last_login_at),
+    KEY idx_users_token_expiry (token_expires_at)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
