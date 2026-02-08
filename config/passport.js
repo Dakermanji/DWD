@@ -36,7 +36,7 @@ passport.serializeUser((user, done) => {
  */
 passport.deserializeUser(async (id, done) => {
 	try {
-		const user = await userModel.findById(id);
+		const user = await userModel.findUserBy('id', id);
 
 		if (!user) {
 			// Session exists but user was deleted/disabled
@@ -79,17 +79,18 @@ passport.use(
 				const rawIdentifier = String(identifier).trim();
 
 				// Decide lookup method based on identifier type
-				const isEmail = validator.isEmail(rawIdentifier);
-				const lookup = isEmail
-					? rawIdentifier.toLowerCase()
-					: rawIdentifier;
+				const by = validator.isEmail(rawIdentifier)
+					? 'email'
+					: 'username';
+				const lookup =
+					by === 'email'
+						? rawIdentifier.toLowerCase()
+						: rawIdentifier;
 
 				// Fetch user with authentication fields
-				const user = isEmail
-					? await userModel.findByEmail(lookup, { withAuth: true })
-					: await userModel.findByUsername(lookup, {
-							withAuth: true,
-						});
+				const user = await userModel.findUserBy(by, lookup, {
+					withAuth: true,
+				});
 
 				// Fail generically if user does not exist or has no local password
 				if (!user || !user.hashed_password) {
@@ -172,21 +173,27 @@ passport.use(
 				}
 
 				// 1) Existing Google-linked account
-				const existingByGoogle =
-					await userModel.findByGoogleId(googleId);
+				const existingByGoogle = await userModel.findUserBy(
+					'googleId',
+					googleId
+				);
 				if (existingByGoogle) {
 					return done(null, existingByGoogle);
 				}
 
 				// 2) If email exists, link Google to that account
 				if (email) {
-					const existingByEmail = await userModel.findByEmail(email);
+					const existingByEmail = await userModel.findUserBy(
+						'email',
+						email
+					);
 					if (existingByEmail) {
 						await userModel.linkOAuthId(existingByEmail.id, {
 							googleId,
 						});
 
-						const linkedUser = await userModel.findById(
+						const linkedUser = await userModel.findUserBy(
+							'id',
 							existingByEmail.id
 						);
 						return done(null, linkedUser);
@@ -244,8 +251,10 @@ passport.use(
 				}
 
 				// 1) Existing GitHub-linked account
-				const existingByGithub =
-					await userModel.findByGithubId(githubId);
+				const existingByGithub = await userModel.findUserBy(
+					'githubId',
+					githubId
+				);
 				if (existingByGithub) {
 					return done(null, existingByGithub);
 				}

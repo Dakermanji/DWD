@@ -35,29 +35,26 @@ const AUTH_FIELDS = `
 `;
 
 /**
- * Find a user by id (UUID)
- * @param {string} id
+ * Find a user by a supported key (safe allowlist)
+ * @param {'id'|'email'|'username'|'googleId'|'githubId'} by
+ * @param {string} value
+ * @param {{ withAuth?: boolean }} [options]
  * @returns {Promise<object|null>}
  */
-async function findById(id) {
-	const [rows] = await db.query(
-		`SELECT
-			${PUBLIC_FIELDS}
-		FROM users
-		WHERE id = ?
-		LIMIT 1`,
-		[id]
-	);
+async function findUserBy(by, value, { withAuth = false } = {}) {
+	const columnBy = {
+		id: 'id',
+		email: 'email',
+		username: 'username',
+		googleId: 'google_id',
+		githubId: 'github_id',
+	};
 
-	return rows[0] ?? null;
-}
+	const column = columnBy[by];
+	if (!column) {
+		throw new Error(`Unsupported lookup key: ${by}`);
+	}
 
-/**
- * Find a user by email
- * @param {string} email
- * @returns {Promise<object|null>}
- */
-async function findByEmail(email, { withAuth = false } = {}) {
 	const fields = withAuth
 		? `${PUBLIC_FIELDS}, ${AUTH_FIELDS}`
 		: PUBLIC_FIELDS;
@@ -65,64 +62,9 @@ async function findByEmail(email, { withAuth = false } = {}) {
 	const [rows] = await db.query(
 		`SELECT ${fields}
 		 FROM users
-		 WHERE email = ?
+		 WHERE ${column} = ?
 		 LIMIT 1`,
-		[email]
-	);
-
-	return rows[0] ?? null;
-}
-
-/**
- * Find a user by username
- * @param {string} username
- * @returns {Promise<object|null>}
- */
-async function findByUsername(username, { withAuth = false } = {}) {
-	const fields = withAuth
-		? `${PUBLIC_FIELDS}, ${AUTH_FIELDS}`
-		: PUBLIC_FIELDS;
-
-	const [rows] = await db.query(
-		`SELECT ${fields}
-		 FROM users
-		 WHERE username = ?
-		 LIMIT 1`,
-		[username]
-	);
-
-	return rows[0] ?? null;
-}
-
-/**
- * Find a user by Google OAuth id
- * @param {string} googleId
- * @returns {Promise<object|null>}
- */
-async function findByGoogleId(googleId) {
-	const [rows] = await db.query(
-		`SELECT ${PUBLIC_FIELDS}
-		 FROM users
-		 WHERE google_id = ?
-		 LIMIT 1`,
-		[googleId]
-	);
-
-	return rows[0] ?? null;
-}
-
-/**
- * Find a user by GitHub OAuth id
- * @param {string} githubId
- * @returns {Promise<object|null>}
- */
-async function findByGithubId(githubId) {
-	const [rows] = await db.query(
-		`SELECT ${PUBLIC_FIELDS}
-		 FROM users
-		 WHERE github_id = ?
-		 LIMIT 1`,
-		[githubId]
+		[value]
 	);
 
 	return rows[0] ?? null;
@@ -183,15 +125,11 @@ async function createOAuthUser({ email, googleId = null, githubId = null }) {
 		values
 	);
 
-	return findById(id);
+	return findUserBy('id', id);
 }
 
 export default {
-	findById,
-	findByEmail,
-	findByUsername,
-	findByGoogleId,
-	findByGithubId,
+	findUserBy,
 	createOAuthUser,
 	linkOAuthId,
 };
