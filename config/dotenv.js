@@ -59,6 +59,10 @@ const env = {
 	DB_USER: requireEnv('DB_USER'),
 	DB_PASSWORD: requireEnv('DB_PASSWORD'),
 	DB_NAME: requireEnv('DB_NAME'),
+	GOOGLE_CLIENT_ID: requireEnv('GOOGLE_CLIENT_ID'),
+	GOOGLE_CLIENT_SECRET: requireEnv('GOOGLE_CLIENT_SECRET'),
+	GITHUB_CLIENT_ID: requireEnv('GITHUB_CLIENT_ID'),
+	GITHUB_CLIENT_SECRET: requireEnv('GITHUB_CLIENT_SECRET'),
 
 	// Optional variables with defaults
 	SITE_URL: optionalEnv('SITE_URL', 'http://localhost:3000'),

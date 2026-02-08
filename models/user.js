@@ -1,10 +1,12 @@
 //! models/user.js
+
 /**
  * Users model (queries only)
  * --------------------------
  * Keep this file limited to SQL queries. No business logic.
  */
 
+import crypto from 'crypto';
 import db from '../config/database.js';
 
 // Fields safe to expose in req.user / views
@@ -126,10 +128,70 @@ async function findByGithubId(githubId) {
 	return rows[0] ?? null;
 }
 
+/**
+ * Link OAuth provider IDs to an existing user
+ * @param {string} userId
+ * @param {Object} providers
+ * @param {string} [providers.googleId]
+ * @param {string} [providers.githubId]
+ */
+async function linkOAuthId(userId, { googleId, githubId }) {
+	const fields = [];
+	const values = [];
+
+	if (googleId) {
+		fields.push('google_id = ?');
+		values.push(googleId);
+	}
+
+	if (githubId) {
+		fields.push('github_id = ?');
+		values.push(githubId);
+	}
+
+	// Nothing to update → no-op
+	if (fields.length === 0) return;
+
+	values.push(userId);
+
+	await db.query(
+		`UPDATE users
+		 SET ${fields.join(', ')}
+		 WHERE id = ?
+		 LIMIT 1`,
+		values
+	);
+}
+
+async function createOAuthUser({ email, googleId = null, githubId = null }) {
+	const id = crypto.randomUUID();
+
+	const columns = [
+		'id',
+		'email',
+		'is_active',
+		'is_verified',
+		'google_id',
+		'github_id',
+	];
+	const placeholders = ['?', '?', 'TRUE', 'TRUE', '?', '?'];
+	const values = [id, email, googleId, githubId];
+
+	await db.query(
+		`INSERT INTO users (${columns.join(', ')})
+		 VALUES (${placeholders.join(', ')})`,
+		values
+	);
+
+	return findById(id);
+}
+
 export default {
 	findById,
 	findByEmail,
 	findByUsername,
 	findByGoogleId,
 	findByGithubId,
+	createOAuthUser,
+	linkOAuthId,
 };
