@@ -55,6 +55,10 @@ function optionalEnv(key, defaultValue) {
 const env = {
 	// Required variables (enable when needed)
 	SESSION_SECRET: requireEnv('SESSION_SECRET'),
+	DB_HOST: requireEnv('DB_HOST'),
+	DB_USER: requireEnv('DB_USER'),
+	DB_PASSWORD: requireEnv('DB_PASSWORD'),
+	DB_NAME: requireEnv('DB_NAME'),
 
 	// Optional variables with defaults
 	SITE_URL: optionalEnv('SITE_URL', 'http://localhost:3000'),
@@ -62,7 +66,10 @@ const env = {
 	PORT: Number(optionalEnv('PORT', 3000)),
 	NODE_ENV: optionalEnv('NODE_ENV', 'development'),
 	SENTRY_DSN: optionalEnv('SENTRY_DSN', ''),
-	SENTRY_TRACES_SAMPLE_RATE: optionalEnv('SENTRY_TRACES_SAMPLE_RATE', '0.0'),
+	SENTRY_TRACES_SAMPLE_RATE: Number(
+		optionalEnv('SENTRY_TRACES_SAMPLE_RATE', '0.0')
+	),
+	DB_PORT: optionalEnv('DB_PORT', 3306),
 };
 
 export default env;

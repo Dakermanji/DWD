@@ -13,6 +13,15 @@ import env from './config/dotenv.js';
 import logger from './utils/logger.js';
 import initProcessHandlers from './config/process.js';
 
+import {
+	initDatabase,
+	registerDatabaseShutdownHandlers,
+} from './config/database.js';
+
+// Initialize database connection
+await initDatabase();
+registerDatabaseShutdownHandlers();
+
 // Start the Express server and listen for incoming requests
 const server = app.listen(env.PORT, () => {
 	logger.info(`Server is running on ${env.SITE_URL}`);
