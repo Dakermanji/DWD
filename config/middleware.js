@@ -16,6 +16,8 @@ import securityMiddlewares from '../middlewares/security.js';
 import cookieMiddlewares from '../middlewares/cookies.js';
 import flashMiddlewares from '../middlewares/flash.js';
 import sessionMiddlewares from '../middlewares/session.js';
+import authModalLocals from '../middlewares/authModalLocals.js';
+import { initializePassport } from '../middlewares/passport.js';
 import i18nMiddlewares from '../middlewares/i18n.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
 import ejsMiddlewares from '../middlewares/ejs.js';
@@ -48,9 +50,27 @@ const applyMiddlewares = (app) => {
 	sessionMiddlewares(app);
 
 	/**
+	 * Passport initialization
+	 * Must run AFTER sessions so Passport can:
+	 * - persist authenticated users in the session
+	 * - deserialize req.user on each request
+	 */
+	initializePassport(app);
+
+	/**
 	 * Flash (adds req.flash)
 	 */
 	flashMiddlewares(app);
+
+	/**
+	 * Auth modal state (flash → res.locals)
+	 * Reads one-time modal intent from flash/session
+	 * (e.g. 'login', 'reset_password') and exposes it
+	 * to views via res.locals.showModal.
+	 *
+	 * This avoids query params and keeps URLs clean.
+	 */
+	authModalLocals(app);
 
 	/**
 	 * Internationalization (i18n)

@@ -10,6 +10,7 @@
 import express from 'express';
 import langRoutes from '../routes/lang.js';
 import homeRoutes from '../routes/home.js';
+import authRoutes from '../routes/auth.js';
 
 const router = express.Router();
 
@@ -26,5 +27,10 @@ router.use('/', homeRoutes);
  *   /lang/ar?returnTo=/projects
  */
 router.use('/lang', langRoutes);
+
+/**
+ * Authentication routes
+ */
+router.use('/auth', authRoutes);
 
 export default router;
