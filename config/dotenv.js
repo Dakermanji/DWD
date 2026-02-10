@@ -63,6 +63,9 @@ const env = {
 	GOOGLE_CLIENT_SECRET: requireEnv('GOOGLE_CLIENT_SECRET'),
 	GITHUB_CLIENT_ID: requireEnv('GITHUB_CLIENT_ID'),
 	GITHUB_CLIENT_SECRET: requireEnv('GITHUB_CLIENT_SECRET'),
+	EMAIL_SERVICE: requireEnv('EMAIL_SERVICE'),
+	EMAIL_USER: requireEnv('EMAIL_USER'),
+	EMAIL_PASS: requireEnv('EMAIL_PASS'),
 
 	// Optional variables with defaults
 	SITE_URL: optionalEnv('SITE_URL', 'http://localhost:3000'),
