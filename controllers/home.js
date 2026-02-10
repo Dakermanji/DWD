@@ -23,6 +23,7 @@ const renderHomePage = (req, res) => {
 			'home/background',
 			'home/about',
 			'home/portfolio',
+			'modals/auth',
 		],
 	});
 };

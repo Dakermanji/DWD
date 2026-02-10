@@ -1,0 +1,52 @@
+<!-- views/modals/auth/_authTabs.tabs.login.ejs -->
+<div
+	class="tab-pane fade show active"
+	id="auth-login"
+	role="tabpanel"
+	aria-labelledby="auth-login-tab"
+>
+	<form action="/auth/login" method="POST" novalidate>
+		<div class="mb-3">
+			<label for="authLogin-identifier" class="form-label">
+				<%= t('identifier') %>
+			</label>
+			<input
+				id="authLogin-identifier"
+				name="identifier"
+				type="text"
+				class="form-control"
+				autocomplete="username"
+				required
+			/>
+		</div>
+
+		<div class="mb-3">
+			<label for="authLogin-password" class="form-label">
+				<%= t('password') %>
+			</label>
+			<input
+				id="authLogin-password"
+				name="password"
+				type="password"
+				class="form-control"
+				autocomplete="current-password"
+				required
+			/>
+		</div>
+
+		<div class="d-grid gap-2">
+			<button type="submit" class="btn btn-primary">
+				<%= t('auth:login.submit') %>
+			</button>
+		</div>
+
+		<!-- Open account recovery modal -->
+		<a
+			href="#"
+			class="small text-decoration-none"
+			data-auth-open="recovery"
+		>
+			<%= t('auth:login.need_help') %>
+		</a>
+	</form>
+</div>

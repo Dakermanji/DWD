@@ -1,0 +1,51 @@
+<!-- views/modals/auth/_authTabs.ejs -->
+<div
+	class="modal fade"
+	id="authModal"
+	tabindex="-1"
+	aria-labelledby="authModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="authModalLabel">
+					<%= t('account') %>
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+
+			<div class="modal-body">
+				<!-- Modal state (read by JS) -->
+				<div
+					id="authModalState"
+					data-modal="<%= modal || '' %>"
+					data-default-tab="<%= modal === 'register' ? 'register' : 'login' %>"
+					class="d-none"
+				></div>
+
+				<!-- OAuth buttons -->
+				<div class="d-grid gap-2 mb-3">
+					<a class="btn btn-outline-dark" href="/auth/google">
+						<%= t('auth:oauth.google') %>
+					</a>
+					<a class="btn btn-outline-dark" href="/auth/github">
+						<%= t('auth:oauth.github') %>
+					</a>
+				</div>
+
+				<div class="text-center small text-muted mb-3">
+					<%= t('auth:oauth.or') %>
+				</div>
+
+				<!-- Tabs -->
+				<%- include('_authTabs_tabs') %>
+			</div>
+		</div>
+	</div>
+</div>

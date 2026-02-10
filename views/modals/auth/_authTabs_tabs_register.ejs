@@ -1,0 +1,32 @@
+<!-- views/modals/auth/_authTabs.tabs.register.ejs -->
+<div
+	class="tab-pane fade"
+	id="auth-register"
+	role="tabpanel"
+	aria-labelledby="auth-register-tab"
+>
+	<form action="/auth/register" method="POST" novalidate>
+		<div class="mb-3">
+			<label for="authRegister-email" class="form-label">
+				<%= t('email') %>
+			</label>
+			<input
+				id="authRegister-email"
+				name="email"
+				type="email"
+				class="form-control"
+				autocomplete="email"
+				required
+			/>
+			<div class="form-text">
+				<%= t('auth:register.email_first_hint') %>
+			</div>
+		</div>
+
+		<div class="d-grid gap-2">
+			<button type="submit" class="btn btn-success">
+				<%= t('auth:register.submit') %>
+			</button>
+		</div>
+	</form>
+</div>

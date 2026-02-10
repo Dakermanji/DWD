@@ -23,7 +23,7 @@
 <% if (!user) { %>
   <!-- Guest -->
   <% if (!modal || modal === 'login' || modal === 'register') { %>
-    <%- include('../modals/auth/_authTabs') %>
+    <%- include('../modals/auth/_authTabs', { modal }) %>
   <% } %>
 
   <% if (modal === 'complete_signup') { %>

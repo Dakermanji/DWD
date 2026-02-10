@@ -1,0 +1,39 @@
+<!-- views/modals/auth/_authTabs.tabs.ejs -->
+<ul class="nav nav-tabs" id="authTabs" role="tablist">
+	<li class="nav-item" role="presentation">
+		<button
+			class="nav-link active"
+			id="auth-login-tab"
+			data-bs-toggle="tab"
+			data-bs-target="#auth-login"
+			type="button"
+			role="tab"
+			aria-controls="auth-login"
+			aria-selected="true"
+		>
+			<%= t('auth:login.title') %>
+		</button>
+	</li>
+
+	<li class="nav-item" role="presentation">
+		<button
+			class="nav-link"
+			id="auth-register-tab"
+			data-bs-toggle="tab"
+			data-bs-target="#auth-register"
+			type="button"
+			role="tab"
+			aria-controls="auth-register"
+			aria-selected="false"
+		>
+			<%= t('auth:register.title') %>
+		</button>
+	</li>
+</ul>
+<div class="tab-content pt-3">
+	<!-- LOGIN -->
+	<%- include('_authTabs_tabs_login') %>
+
+	<!-- REGISTER (EMAIL-FIRST) -->
+	<%- include('_authTabs_tabs_register') %>
+</div>
