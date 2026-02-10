@@ -16,7 +16,25 @@
 <%- include('_contact') %>
 
 <!-- MODALS -->
-<!-- Auth Tabs (future) -->
+<%
+  const modal = (flash?.modal && flash.modal[0]) || null;
+%>
+
+<% if (!user) { %>
+  <!-- Guest -->
+  <% if (!modal || modal === 'login' || modal === 'register') { %>
+    <%- include('../modals/auth/_authTabs') %>
+  <% } %>
+
+  <% if (modal === 'complete_signup') { %>
+    <!-- include('../modals/auth/_setUsernameWithPassword') -->
+  <% } %>
+<% } %>
+
+<% if (user && !user.username) { %>
+    <!-- OAuth completion -->
+    <!-- include('../modals/auth/_setUsernameOnly') -->
+<% } %>
+
 <!-- Reset Password (future) -->
-<!-- Conditional Set Username Modal (future) -->
 <!-- Conditional Reset Password Modal (future) -->
