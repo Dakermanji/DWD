@@ -2,5 +2,9 @@
 	"app": {
 		"name": "Dakermanji {Dév Web}"
 	},
-	"screenshot_of": "Capture d’écran de {{title}}"
+	"screenshot_of": "Capture d’écran de {{title}}",
+	"account": "Compte",
+	"identifier": "E-mail ou nom d’utilisateur",
+	"password": "Mot de passe",
+	"email": "E-mail"
 }

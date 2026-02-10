@@ -2,5 +2,9 @@
 	"app": {
 		"name": "Dakermanji {Web Dev}"
 	},
-	"screenshot_of": "Screenshot of {{title}}"
+	"screenshot_of": "Screenshot of {{title}}",
+	"account": "Account",
+	"identifier": "Email or username",
+	"password": "Password",
+	"email": "Email"
 }
