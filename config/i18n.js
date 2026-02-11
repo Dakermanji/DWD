@@ -17,7 +17,7 @@ import i18nextMiddleware from 'i18next-http-middleware';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { SUPPORTED_LANGUAGES } from './languages.js';
+import { SUPPORTED_LANGUAGE_CODES } from './languages.js';
 
 // Locales' Folders
 const NAMESPACES = [
@@ -50,14 +50,13 @@ const loadJson = (relativePath) => {
 
 // Translation resources (namespace: "common")
 const resources = Object.fromEntries(
-	SUPPORTED_LANGUAGES.map(({ code }) => [
+	SUPPORTED_LANGUAGE_CODES.map((code) => [
 		code,
 		Object.fromEntries(
 			NAMESPACES.map((ns) => [ns, loadJson(`locales/${code}/${ns}.json`)])
 		),
 	])
 );
-
 // Enable language detection plugin (required for cookie/header detection)
 i18next.use(i18nextMiddleware.LanguageDetector);
 
@@ -69,7 +68,7 @@ await i18next.init({
 	returnObjects: true,
 
 	// Supported Languages:
-	supportedLngs: SUPPORTED_LANGUAGES.map((l) => l.code), //example: ['ar', 'en', 'fr']
+	supportedLngs: SUPPORTED_LANGUAGE_CODES, //example: ['ar', 'en', 'fr']
 	nonExplicitSupportedLngs: true,
 
 	resources,

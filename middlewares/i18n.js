@@ -11,7 +11,7 @@
 
 import i18next from '../config/i18n.js';
 import i18nextMiddleware from 'i18next-http-middleware';
-import { SUPPORTED_LANGUAGES } from '../config/languages.js';
+import { SUPPORTED_LANGUAGE_SET } from '../config/languages.js';
 
 const i18nMiddlewares = (app) => {
 	// Attach i18next to the request lifecycle (req.t, req.i18n, req.language)
@@ -28,10 +28,8 @@ const i18nMiddlewares = (app) => {
 		const explicitLang =
 			req.query.lang || req.session?.lang || req.cookies?.lang || null;
 
-		const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code);
-
 		// If user explicitly chose a language and it's unsupported → warn
-		if (explicitLang && !supportedCodes.includes(lang)) {
+		if (explicitLang && !SUPPORTED_LANGUAGE_SET.has(lang)) {
 			req.flash('warning', 'flash:warnings.not_supported_lang');
 
 			// Fallback safely (choose your default)

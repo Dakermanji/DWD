@@ -15,3 +15,7 @@ export const SUPPORTED_LANGUAGES = [
 	{ code: 'en', flag: 'ca', name: 'English' },
 	{ code: 'fr', flag: 'qc', name: 'Français' },
 ];
+
+export const SUPPORTED_LANGUAGE_CODES = SUPPORTED_LANGUAGES.map((l) => l.code);
+
+export const SUPPORTED_LANGUAGE_SET = new Set(SUPPORTED_LANGUAGE_CODES);
