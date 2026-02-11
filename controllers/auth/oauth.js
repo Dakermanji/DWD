@@ -41,7 +41,7 @@ export const googleCallback = asyncHandler(async (req, res, next) => {
 		// OAuth authentication succeeded → establish login session
 		req.logIn(user, (err) => {
 			if (err) return next(err);
-
+			if (!user.username) req.flash('modal', 'completeSignup_oauth');
 			// Redirect after successful OAuth login
 			return res.redirect('/');
 		});

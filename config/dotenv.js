@@ -8,6 +8,7 @@
  * - helper utilities for validation and testing
  */
 
+import { logger } from '@sentry/node';
 import dotenv from 'dotenv';
 
 // Load variables from .env into process.env
@@ -38,7 +39,7 @@ function optionalEnv(key, defaultValue) {
 	const value = process.env[key];
 
 	if (value === undefined && process.env.NODE_ENV !== 'production') {
-		console.warn(
+		logger.warn(
 			`[ENV WARNING] ${key} is not set. Using default: ${defaultValue}`
 		);
 	}
