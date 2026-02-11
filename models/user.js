@@ -219,7 +219,7 @@ async function findBySignupTokenHash(tokenHash) {
  * @returns {Promise<void>}
  */
 async function completeSignup({ userId, username, hashedPassword }) {
-	await db.query(
+	const [result] = await db.query(
 		`UPDATE users
 		 SET
 			username = ?,
@@ -232,6 +232,31 @@ async function completeSignup({ userId, username, hashedPassword }) {
 		 LIMIT 1`,
 		[username, hashedPassword, userId]
 	);
+	return result.affectedRows;
+}
+
+/**
+ * Set username for an existing user
+ * --------------------------------
+ * Used to finalize OAuth onboarding by setting a username once.
+ *
+ * Notes:
+ * - This query intentionally avoids overwriting an existing username.
+ *
+ * @param {{ userId: number|string, username: string }} params
+ * @returns {Promise<number>} affectedRows
+ */
+async function setUsername({ userId, username }) {
+	const [result] = await db.query(
+		`UPDATE users
+		 SET username = ?
+		 WHERE id = ?
+		   AND (username IS NULL OR username = '')
+		 LIMIT 1`,
+		[username, userId]
+	);
+
+	return result.affectedRows;
 }
 
 export default {
@@ -242,4 +267,5 @@ export default {
 	setSignupToken,
 	findBySignupTokenHash,
 	completeSignup,
+	setUsername,
 };

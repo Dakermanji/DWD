@@ -35,7 +35,7 @@ passport.use(
 				// DB requires email
 				if (!email) {
 					return done(null, false, {
-						message: 'auth.error.oauth_email_required',
+						message: 'auth:error.oauth_email_required',
 					});
 				}
 

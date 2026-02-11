@@ -68,7 +68,7 @@ const isSafeEmail = (email) => EMAIL_REGEX.test(normalizeEmail(email));
  * @param {string|false} modal - modal to reopen
  */
 const fail = (req, res, flashKey, modal = false) => {
-	req.flash('error', `auth.error.${flashKey}`);
+	req.flash('error', `auth:error.${flashKey}`);
 	if (modal) req.flash('modal', modal);
 	return res.redirect('/');
 };

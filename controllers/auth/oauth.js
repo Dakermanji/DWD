@@ -14,6 +14,7 @@
 
 import passport from 'passport';
 import asyncHandler from '../../utils/asyncHandler.js';
+import userModel from '../../models/user.js';
 
 /**
  * GET /auth/google/callback
@@ -74,4 +75,46 @@ export const githubCallback = asyncHandler(async (req, res, next) => {
 			return res.redirect('/');
 		});
 	})(req, res, next);
+});
+
+/**
+ * POST /auth/complete-oauth
+ * -------------------------
+ * Completes OAuth onboarding by setting a username for the authenticated user.
+ */
+export const postCompleteOAuth = asyncHandler(async (req, res) => {
+	const user = req.user;
+
+	// Shouldn't happen if routes are protected, but to keep it safe.
+	if (!user) {
+		req.flash('modal', 'register');
+		return res.redirect('/');
+	}
+
+	const username = String(req.body.username ?? '').trim();
+
+	let affectedRows;
+	try {
+		affectedRows = await userModel.setUsername({
+			userId: user.id,
+			username,
+		});
+	} catch (err) {
+		if (err?.code === 'ER_DUP_ENTRY') {
+			req.flash('error', 'auth:error.username_taken');
+			req.flash('modal', 'completeSignup_oauth');
+			return res.redirect('/');
+		}
+		throw err;
+	}
+
+	// Nothing updated → either user doesn't exist OR username already set
+	if (affectedRows === 0) {
+		req.flash('warning', 'auth:error.username_already_set');
+		return res.redirect('/');
+	}
+
+	// OAuth user is already authenticated; no need to req.logIn again.
+	req.flash('success', 'auth:register.completed');
+	return res.redirect('/');
 });

@@ -6,5 +6,6 @@
 	"account": "Account",
 	"identifier": "Email or username",
 	"password": "Password",
-	"email": "Email"
+	"email": "Email",
+	"save_and_continue": "Save and Continue"
 }

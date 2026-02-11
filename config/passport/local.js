@@ -50,7 +50,7 @@ passport.use(
 				// Generic failure (no enumeration)
 				if (!user || !user.hashed_password) {
 					return done(null, false, {
-						message: 'auth.error.invalid_credentials',
+						message: 'auth:error.invalid_credentials',
 					});
 				}
 
@@ -60,26 +60,15 @@ passport.use(
 					user.hashed_password
 				);
 
-				if (!isValid) {
+				// Generic failure (no enumeration)
+				if (
+					!isValid ||
+					user.is_blocked ||
+					!user.is_active ||
+					!user.is_verified
+				) {
 					return done(null, false, {
-						message: 'auth.error.invalid_credentials',
-					});
-				}
-
-				// Account state checks (post-auth)
-				if (user.is_blocked) {
-					return done(null, false, { message: 'auth.error.blocked' });
-				}
-
-				if (!user.is_active) {
-					return done(null, false, {
-						message: 'auth.error.inactive',
-					});
-				}
-
-				if (!user.is_verified) {
-					return done(null, false, {
-						message: 'auth.error.not_verified',
+						message: 'auth:error.invalid_credentials',
 					});
 				}
 

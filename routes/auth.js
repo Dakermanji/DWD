@@ -3,7 +3,11 @@
 import express from 'express';
 import passport from 'passport';
 import { postLogin } from '../controllers/auth/login.js';
-import { googleCallback, githubCallback } from '../controllers/auth/oauth.js';
+import {
+	googleCallback,
+	githubCallback,
+	postCompleteOAuth,
+} from '../controllers/auth/oauth.js';
 import {
 	postRegisterEmail,
 	getCompleteSignup,
@@ -31,4 +35,5 @@ router.get('/google/callback', googleCallback);
 router.get('/github', passport.authenticate('github'));
 router.get('/github/callback', githubCallback);
 
+router.post('/complete-oauth', postCompleteOAuth);
 export default router;

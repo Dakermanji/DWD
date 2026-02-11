@@ -1,7 +1,7 @@
 <!-- views/modals/auth/_completeSignup_local.ejs -->
 <div class="mb-3">
 	<label for="username" class="form-label"
-		><%= t('auth.choose_username') %></label
+		><%= t('auth:security.choose_username') %></label
 	>
 	<input
 		type="text"
@@ -13,9 +13,7 @@
 </div>
 
 <div class="mb-3">
-	<label for="set-password" class="form-label"
-		><%= t('auth.password') %></label
-	>
+	<label for="set-password" class="form-label"><%= t('password') %></label>
 	<input
 		type="password"
 		class="form-control"
@@ -31,7 +29,7 @@
 
 <div class="mb-3">
 	<label for="confirmPassword" class="form-label"
-		><%= t('auth.confirm_password') %></label
+		><%= t('auth:security.confirm_password') %></label
 	>
 	<input
 		type="password"
@@ -45,7 +43,6 @@
 
 <div class="d-grid">
 	<button type="submit" class="btn btn-primary">
-		<i class="bi bi-check2-circle me-1"></i> <%= t('auth.save_and_continue')
-		%>
+		<i class="bi bi-check2-circle me-1"></i> <%= t('save_and_continue') %>
 	</button>
 </div>

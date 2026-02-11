@@ -50,7 +50,7 @@ export const postRegisterEmail = asyncHandler(async (req, res) => {
 
 	// Ensure token request limit so we do not spam a user
 	if (user?.token_request_count >= 5) {
-		req.flash('success', 'auth.register.check_email');
+		req.flash('success', 'auth:register.check_email');
 		return res.redirect('/');
 	}
 
@@ -77,7 +77,7 @@ export const postRegisterEmail = asyncHandler(async (req, res) => {
 	}
 
 	// Generic response to prevent email enumeration
-	req.flash('success', 'auth.register.check_email');
+	req.flash('success', 'auth:register.check_email');
 	req.flash('modal', 'login'); // or 'register' if you prefer
 	return res.redirect('/');
 });
@@ -101,7 +101,7 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 
 	// Token must come from session (set by GET /complete-signup/:token)
 	if (!token) {
-		req.flash('error', 'auth.error.token_invalid');
+		req.flash('error', 'auth:error.token_invalid');
 		req.flash('modal', 'register');
 		return res.redirect('/');
 	}
@@ -112,7 +112,7 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 
 	if (!user) {
 		delete req.session.signupToken;
-		req.flash('error', 'auth.error.token_invalid');
+		req.flash('error', 'auth:error.token_invalid');
 		req.flash('modal', 'register');
 		return res.redirect('/');
 	}
@@ -123,7 +123,7 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 		new Date(user.token_expires_at) < new Date()
 	) {
 		delete req.session.signupToken;
-		req.flash('error', 'auth.error.token_expired');
+		req.flash('error', 'auth:error.token_expired');
 		req.flash('modal', 'register');
 		return res.redirect('/');
 	}
@@ -131,8 +131,9 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 	// Hash password (controller logic)
 	const hashedPassword = await bcrypt.hash(password, 12);
 
+	let affectedRows;
 	try {
-		await userModel.completeSignup({
+		affectedRows = await userModel.completeSignup({
 			userId: user.id,
 			username,
 			hashedPassword,
@@ -140,7 +141,7 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 	} catch (err) {
 		// Handle unique username/email collisions cleanly
 		if (err?.code === 'ER_DUP_ENTRY') {
-			req.flash('error', 'auth.error.username_taken');
+			req.flash('error', 'auth:error.username_taken');
 			req.flash('modal', 'completeSignup_local');
 			return res.redirect('/');
 		}
@@ -150,11 +151,17 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 	// One-time token: clear session copy
 	delete req.session.signupToken;
 
+	// Nothing updated → invalid token or already completed
+	if (affectedRows === 0) {
+		req.flash('warning', 'auth:register.invalid_or_completed');
+		return res.redirect('/');
+	}
+
 	// Optionally auto-login after completion:
 	req.logIn({ id: user.id }, async (err) => {
 		if (err) return next(err);
 
-		req.flash('success', 'auth.register.completed');
+		req.flash('success', 'auth:register.completed');
 		return res.redirect('/');
 	});
 });
