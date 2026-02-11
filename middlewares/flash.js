@@ -24,6 +24,7 @@ const flashMiddlewares = (app) => {
 			error: req.flash('error'),
 			warning: req.flash('warning'),
 			info: req.flash('info'),
+			modal: req.flash('modal'),
 		};
 
 		next();

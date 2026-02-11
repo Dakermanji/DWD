@@ -90,7 +90,7 @@ export const getCompleteSignup = asyncHandler(async (req, res) => {
 	req.session.signupToken = token;
 
 	// Open the complete signup modal on home
-	req.flash('modal', 'complete_signup');
+	req.flash('modal', 'completeSignup_local');
 	return res.redirect('/');
 });
 
@@ -141,7 +141,7 @@ export const postCompleteSignup = asyncHandler(async (req, res, next) => {
 		// Handle unique username/email collisions cleanly
 		if (err?.code === 'ER_DUP_ENTRY') {
 			req.flash('error', 'auth.error.username_taken');
-			req.flash('modal', 'complete_signup');
+			req.flash('modal', 'completeSignup_local');
 			return res.redirect('/');
 		}
 		throw err;

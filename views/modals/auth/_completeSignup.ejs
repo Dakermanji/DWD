@@ -1,0 +1,41 @@
+<!-- views/modals/auth/_completeSignup.ejs -->
+<div
+	class="modal fade"
+	id="setUsernameModal"
+	tabindex="-1"
+	aria-labelledby="setUsernameModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header border-bottom-0">
+				<h5 class="modal-title" id="setUsernameModalLabel">
+					<i class="bi bi-person-check me-1"></i> <%=
+					t('auth.complete_profile') %>
+				</h5>
+				<button
+					type="button"
+					class="btn-close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+				></button>
+			</div>
+
+			<div class="modal-body">
+				<% if (modal === 'completeSignup_local') { %>
+				<!-- 🔐 Email signup -->
+				<form action="/auth/complete-signup" method="POST">
+					<%- include('_completeSignup_local') %>
+				</form>
+				<% } else if (modal === 'completeSignup_oauth' ) { %>
+				<!-- 🌐 OAuth -->
+				<form action="/auth/complete-oauth" method="POST">
+					<%- include('_completeSignup_oauth') %>
+				</form>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Future: scrtipts for common passwords and strength UX -->
