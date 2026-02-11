@@ -21,7 +21,7 @@ setTimeout(() => {
 		if (!document.body.contains(msg)) return;
 
 		// Trigger CSS fade-out
-		msg.classList.add('fade');
+		msg.classList.add('flash-fade-out');
 
 		// Remove element after transition completes
 		msg.addEventListener(

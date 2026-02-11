@@ -1,5 +1,8 @@
 {
 	"errors": {
 		"wrong": "Une erreur s’est produite. Veuillez réessayer plus tard."
+	},
+	"warnings": {
+		"not_supported_lang": "La langue sélectionnée n’est pas prise en charge. Nous avons basculé vers l’anglais."
 	}
 }

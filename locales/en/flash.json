@@ -1,5 +1,8 @@
 {
 	"errors": {
 		"wrong": "Something went wrong. Please try again later."
+	},
+	"warnings": {
+		"not_supported_lang": "The selected language is not supported. We switched to English."
 	}
 }
