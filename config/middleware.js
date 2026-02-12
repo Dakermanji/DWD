@@ -19,6 +19,8 @@ import sessionMiddlewares from '../middlewares/session.js';
 import authModalLocals from '../middlewares/authModalLocals.js';
 import { initializePassport } from '../middlewares/passport.js';
 import i18nMiddlewares from '../middlewares/i18n.js';
+import csrfMiddlewares from '../middlewares/csrf.js';
+import originMiddlewares from '../middlewares/origin.js';
 import { navBarMiddleware } from '../middlewares/navBar.js';
 import ejsMiddlewares from '../middlewares/ejs.js';
 import loggerMiddlewares from '../middlewares/logger.js';
@@ -78,6 +80,22 @@ const applyMiddlewares = (app) => {
 	 * - exposes req.t and template locals (t, lang, dir)
 	 */
 	i18nMiddlewares(app);
+
+	/**
+	 * CSRF protection layer
+	 * Runs after session & cookie middlewares.
+	 * - Issues session-bound CSRF token
+	 * - Exposes token to templates
+	 * - Verifies token on state-changing requests
+	 */
+	csrfMiddlewares(app);
+
+	/**
+	 * Origin / Referer validation
+	 * Extra CSRF hardening for state-changing requests (payment-ready).
+	 * Runs after CSRF so both layers apply consistently.
+	 */
+	originMiddlewares(app);
 
 	/**
 	 * Navigation

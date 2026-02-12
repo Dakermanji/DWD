@@ -78,7 +78,6 @@ export const postRegisterEmail = asyncHandler(async (req, res) => {
 
 	// Generic response to prevent email enumeration
 	req.flash('success', 'auth:register.check_email');
-	req.flash('modal', 'login'); // or 'register' if you prefer
 	return res.redirect('/');
 });
 

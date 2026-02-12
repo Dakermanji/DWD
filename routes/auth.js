@@ -13,6 +13,7 @@ import {
 	getCompleteSignup,
 	postCompleteSignup,
 } from '../controllers/auth/register.js';
+import { postLogout } from '../controllers/auth/logout.js';
 import {
 	validateLogin,
 	validateRegisterEmail,
@@ -24,8 +25,6 @@ const router = express.Router();
 // Local
 router.post('/login', validateLogin, postLogin);
 router.post('/register', validateRegisterEmail, postRegisterEmail);
-router.get('/complete-signup/:token', getCompleteSignup);
-router.post('/complete-signup', validateCompleteSignup, postCompleteSignup);
 
 // Google
 router.get('/google', passport.authenticate('google'));
@@ -35,5 +34,12 @@ router.get('/google/callback', googleCallback);
 router.get('/github', passport.authenticate('github'));
 router.get('/github/callback', githubCallback);
 
+// Complete Signup
+router.get('/complete-signup/:token', getCompleteSignup);
+router.post('/complete-signup', validateCompleteSignup, postCompleteSignup);
 router.post('/complete-oauth', postCompleteOAuth);
+
+// Logout
+router.post('/logout', postLogout);
+
 export default router;

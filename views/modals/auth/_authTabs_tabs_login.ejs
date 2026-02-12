@@ -1,4 +1,4 @@
-<!-- views/modals/auth/_authTabs.tabs.login.ejs -->
+<!-- views/modals/auth/_authTabs_tabs_login.ejs -->
 <div
 	class="tab-pane fade show active"
 	id="auth-login"
@@ -6,6 +6,7 @@
 	aria-labelledby="auth-login-tab"
 >
 	<form action="/auth/login" method="POST" novalidate>
+		<%- include('../../partials/_csrf') %>
 		<div class="mb-3">
 			<label for="authLogin-identifier" class="form-label">
 				<%= t('identifier') %>

@@ -37,14 +37,15 @@
 
 <li class="nav-item">
 	<form action="/auth/logout" method="POST" class="d-inline">
+		<%- include('../partials/_csrf') %>
 		<button
 			type="submit"
 			class="btn btn-link nav-link"
 			data-bs-toggle="tooltip"
-			title="<%= t('auth:logout') %>"
+			title="<%= t('auth:logout.title') %>"
 		>
 			<i class="bi bi-box-arrow-right"></i>
-			<span class="nav-text"><%= t('auth:logout') %></span>
+			<span class="nav-text"><%= t('auth:logout.title') %></span>
 		</button>
 	</form>
 </li>

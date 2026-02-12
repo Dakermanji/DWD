@@ -25,11 +25,13 @@
 				<% if (modal === 'completeSignup_local') { %>
 				<!-- 🔐 Email signup -->
 				<form action="/auth/complete-signup" method="POST">
+					<%- include('../../partials/_csrf') %>
 					<%- include('_completeSignup_local') %>
 				</form>
 				<% } else if (modal === 'completeSignup_oauth' ) { %>
 				<!-- 🌐 OAuth -->
 				<form action="/auth/complete-oauth" method="POST">
+					<%- include('../../partials/_csrf') %>
 					<%- include('_completeSignup_oauth') %>
 				</form>
 				<% } %>

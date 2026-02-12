@@ -1,4 +1,4 @@
-<!-- views/modals/auth/_authTabs.tabs.register.ejs -->
+<!-- views/modals/auth/_authTabs_tabs_register.ejs -->
 <div
 	class="tab-pane fade"
 	id="auth-register"
@@ -6,6 +6,7 @@
 	aria-labelledby="auth-register-tab"
 >
 	<form action="/auth/register" method="POST" novalidate>
+		<%- include('../../partials/_csrf') %>
 		<div class="mb-3">
 			<label for="authRegister-email" class="form-label">
 				<%= t('email') %>

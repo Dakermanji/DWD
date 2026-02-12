@@ -104,6 +104,8 @@ const securityMiddlewares = (app) => {
 			crossOriginEmbedderPolicy: isProd,
 			hsts: isProd,
 
+			referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+
 			/**
 			 * - in case deploying behind a proxy/CDN and in need to correct HTTPS detection,
 			 *  app.set('trust proxy', 1)

@@ -70,6 +70,7 @@ const env = {
 
 	// Optional variables with defaults
 	SITE_URL: optionalEnv('SITE_URL', 'http://localhost:3000'),
+	SITE_URLS: optionalEnv('SITE_URLS', 'http://localhost:3000'),
 	HOST: optionalEnv('HOST', 'localhost'),
 	PORT: Number(optionalEnv('PORT', 3000)),
 	NODE_ENV: optionalEnv('NODE_ENV', 'development'),

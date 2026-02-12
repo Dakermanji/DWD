@@ -28,13 +28,13 @@
 
 
   <!-- Guest -->
-
-  <% if (!user && (!modal || modal === 'login' || modal === 'register')) { %>
-    <%- include('../modals/auth/_authTabs', { modal }) %>
-  <% } else if (modal === 'completeSignup_local' || modal === 'completeSignup_oauth') {
+<% if (!user) { %>
+  <%- include('../modals/auth/_authTabs', { modal }) %>
+<% } %>
+<% if (modal === 'completeSignup_local' || modal === 'completeSignup_oauth') {
  %>
   <%- include('../modals/auth/_completeSignup', { modal }) %>
-  <% } %>
+<% } %>
 
 <!-- Reset Password (future) -->
 <!-- Conditional Reset Password Modal (future) -->
