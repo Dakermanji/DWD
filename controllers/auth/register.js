@@ -11,7 +11,7 @@
  *
  * Step 2: GET /auth/complete-signup/:token
  * - Stores raw token in session (one-time)
- * - Opens "complete_signup" modal on home
+ * - Opens "completeSignup_local" modal on home
  *
  * Step 3: POST /auth/complete-signup
  * - Reads token from session

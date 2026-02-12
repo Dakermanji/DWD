@@ -102,11 +102,11 @@ function validateCompleteSignup(req, res, next) {
 	const password = req.body.password;
 
 	if (!isValidUsername(username)) {
-		return fail(req, res, 'username_invalid', 'complete_signup');
+		return fail(req, res, 'username_invalid', 'completeSignup_local');
 	}
 
 	if (!isValidPassword(password)) {
-		return fail(req, res, 'password_weak', 'complete_signup');
+		return fail(req, res, 'password_weak', 'completeSignup_local');
 	}
 
 	// Normalize username before controller uses it
